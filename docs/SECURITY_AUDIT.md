@@ -46,10 +46,9 @@ Não declarar o projeto seguro para produção com base nesta etapa. É necessá
 
 ## Testes e validação — estado real
 
-- O workflow de CI foi criado, mas ainda não foi executado pelo GitHub Actions nesta branch.
+- O workflow de CI foi executado com sucesso: lint de todos os PHP e testes unitários passaram; as duas migrations também foram aplicadas numa instância descartável MariaDB 10.4.32.
 - tests/run.php contém verificações unitárias simples para escaping, geração de chave de rate limit e token CSRF. tests/login_rate_limit_integration.php testa o limite real, mas exige uma base de dados descartável com nome terminado em _test.
 - tests/migration_smoke.php verifica, em modo somente leitura, as tabelas esperadas depois da aplicação das migrations.
-- A migration 20261111_002_login_rate_limit.sql foi adicionada, mas não foi executada.
-- A migration de integrações também não foi executada.
-- Não foi fornecida uma cópia acessível da base de dados e este ambiente não tem ligação ao MySQL local do utilizador. Portanto, não é correto afirmar que as migrations foram testadas contra uma cópia real.
+- A migration 20261111_001_integrations_foundation.sql e a migration 20261111_002_login_rate_limit.sql foram aplicadas com sucesso numa instância descartável MariaDB 10.4.32, restaurando o dump schema-only atual e executando o smoke test e o teste de rate limit.
+- O ensaio automatizado usa o dump schema-only (sem INSERTs/dados de clientes) numa base de dados descartável. Ainda não foi testada uma cópia com os registos reais da instalação do utilizador; essa validação de integridade e contagens deve ser feita localmente conforme docs/MIGRATION_TESTING.md.
 - Nenhuma alteração foi aplicada à base de dados de produção.
