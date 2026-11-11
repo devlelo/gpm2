@@ -26,9 +26,9 @@ $pdo = new PDO(
 );
 $tables = ['login_attempts', 'gpm_schema_versions', 'supplier_integrations', 'supplier_product_mappings', 'supplier_sync_runs', 'payment_providers', 'payment_transactions', 'payment_webhook_events'];
 foreach ($tables as $table) {
-    $stmt = $pdo->prepare('SHOW TABLES LIKE ?');
+    $stmt = $pdo->prepare('SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name = ?');
     $stmt->execute([$table]);
-    if (!$stmt->fetchColumn()) {
+    if ((int) $stmt->fetchColumn() !== 1) {
         fwrite(STDERR, "Missing table after migrations: {$table}\n");
         exit(1);
     }
