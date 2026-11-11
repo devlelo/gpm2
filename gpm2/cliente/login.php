@@ -22,12 +22,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     verify_csrf();
 
     $email = strtolower(trim($_POST['email'] ?? ''));
-    $senha = $_POST['password'] ?? '';
+    $senha = (string) ($_POST['password'] ?? '');
 
     if ($email === '' || $senha === '') {
         $erro = 'Preenche o email e a palavra-passe.';
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $erro = 'Introduz um endereço de email válido.';
+    } elseif (strlen($senha) > 4096) {
+        $erro = 'Email ou palavra-passe incorretos.';
+    } elseif (login_is_limited($email)) {
+        http_response_code(429);
+        $erro = 'Demasiadas tentativas. Aguarda 15 minutos antes de tentar novamente.';
     } else {
         $stmt = $pdo->prepare(
             "SELECT id, name, email, password, active
@@ -45,15 +50,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $cliente['password'] === '' ||
             !password_verify($senha, (string)$cliente['password'])
         ) {
+            login_register_failure($email);
             $erro = 'Email ou palavra-passe incorretos.';
         } elseif (!(int) $cliente['active']) {
-            $erro = 'A tua conta está desativada. Contacta a equipa GPM.';
+            login_register_failure($email);
+            $erro = 'Email ou palavra-passe incorretos.';
         } else {
             /*
             |--------------------------------------------------------------------------
             | Login bem-sucedido
             |--------------------------------------------------------------------------
             */
+            login_clear_failures($email);
             session_regenerate_id(true);
 
             $_SESSION['gpm_customer'] = [

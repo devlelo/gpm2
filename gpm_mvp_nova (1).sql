@@ -59,10 +59,6 @@ CREATE TABLE `categories` (
 -- Despejando dados para a tabela `categories`
 --
 
-INSERT INTO `categories` (`id`, `name`, `slug`, `description`, `image`, `active`, `created_at`, `updated_at`) VALUES
-(1, 'cano', 'cano', '', NULL, 1, '2026-10-20 16:19:07', '2026-10-20 16:19:07'),
-(2, 'fogão', 'fog-ao', '', NULL, 1, '2026-10-27 13:39:18', '2026-10-27 13:39:18');
-
 -- --------------------------------------------------------
 
 --
@@ -87,9 +83,6 @@ CREATE TABLE `company_settings` (
 --
 -- Despejando dados para a tabela `company_settings`
 --
-
-INSERT INTO `company_settings` (`id`, `company_name`, `nif`, `address`, `city`, `province`, `phone`, `email`, `logo_path`, `currency`, `delivery_fee`, `updated_at`) VALUES
-(1, 'GPM', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'AOA', 0.00, '2026-10-20 16:04:14');
 
 -- --------------------------------------------------------
 
@@ -128,17 +121,6 @@ CREATE TABLE `conversations` (
 -- Despejando dados para a tabela `conversations`
 --
 
-INSERT INTO `conversations` (`id`, `order_id`, `customer_id`, `assigned_user_id`, `status`, `last_message_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, NULL, 'open', '2026-10-21 16:50:00', '2026-10-21 15:49:40', '2026-10-21 15:50:00'),
-(2, 2, 2, NULL, 'open', '2026-10-27 17:44:57', '2026-10-27 16:34:15', '2026-10-27 16:44:57'),
-(3, 3, 2, NULL, 'open', '2026-10-27 17:45:59', '2026-10-27 16:45:59', '2026-10-27 16:45:59'),
-(4, 4, 2, NULL, 'open', '2026-10-29 14:11:40', '2026-10-29 13:11:22', '2026-10-29 13:11:40'),
-(5, 5, 2, NULL, 'open', '2026-10-30 15:11:20', '2026-10-30 14:11:20', '2026-10-30 14:11:20'),
-(6, 6, 2, NULL, 'open', '2026-10-30 15:25:20', '2026-10-30 14:25:20', '2026-10-30 14:25:20'),
-(7, 7, 2, NULL, 'open', '2026-10-30 15:26:52', '2026-10-30 14:26:52', '2026-10-30 14:26:52'),
-(8, 8, 2, NULL, 'open', '2026-10-30 15:46:43', '2026-10-30 14:46:43', '2026-10-30 14:46:43'),
-(9, 9, 2, NULL, 'open', '2026-11-04 17:18:40', '2026-10-30 14:57:39', '2026-11-04 16:18:40');
-
 -- --------------------------------------------------------
 
 --
@@ -167,10 +149,6 @@ CREATE TABLE `customers` (
 -- Despejando dados para a tabela `customers`
 --
 
-INSERT INTO `customers` (`id`, `customer_type`, `name`, `nif`, `phone`, `email`, `password`, `address`, `city`, `province`, `active`, `email_verified_at`, `last_login_at`, `created_at`, `updated_at`) VALUES
-(1, 'company', 'jose lelo', '006218586CA048', '955639957', 'joselelowork@gmail.com', '$2y$10$YB8TDI/bKO8NRAUmqhey9.7FZwhre1mn.xz1sY9kpg.oLkbqcucQ6', NULL, NULL, NULL, 1, NULL, '2026-10-30 15:07:20', '2026-10-21 15:48:47', '2026-10-30 14:07:20'),
-(2, 'individual', 'jose lelo', '006218586CA048', '+244955639957', 'joselelowork3@gmail.com', '$2y$10$2557jCoeLfS9DcZ57tWeYOkYTV8K0CJP8PwpkE9sirQYvbedffJvq', NULL, NULL, NULL, 1, NULL, '2026-10-30 15:11:02', '2026-10-27 13:48:38', '2026-10-30 14:11:02');
-
 -- --------------------------------------------------------
 
 --
@@ -196,9 +174,6 @@ CREATE TABLE `customer_addresses` (
 -- Despejando dados para a tabela `customer_addresses`
 --
 
-INSERT INTO `customer_addresses` (`id`, `customer_id`, `label`, `address`, `street`, `neighborhood`, `reference_point`, `city`, `province`, `is_default`, `created_at`, `updated_at`) VALUES
-(1, 2, 'ssssss', 'egegege', 'egegege', 'ssssss', NULL, 'efwe', 'benguela', 1, '2026-10-30 14:46:43', '2026-10-30 14:52:57');
-
 -- --------------------------------------------------------
 
 --
@@ -219,24 +194,6 @@ CREATE TABLE `messages` (
 --
 -- Despejando dados para a tabela `messages`
 --
-
-INSERT INTO `messages` (`id`, `conversation_id`, `sender_type`, `customer_sender_id`, `user_sender_id`, `body`, `read_at`, `created_at`) VALUES
-(1, 1, 'customer', 1, NULL, 'Olá. Fiz o pedido GPM-20261021-7B8FAC e gostaria de acompanhar o seu estado.', NULL, '2026-10-21 15:49:40'),
-(2, 1, 'customer', 1, NULL, 'oi', NULL, '2026-10-21 15:50:00'),
-(3, 2, 'customer', 2, NULL, 'Olá. Fiz o pedido GPM-20261027-40F214 e gostaria de acompanhar o seu estado.', NULL, '2026-10-27 16:34:15'),
-(4, 2, 'customer', 2, NULL, 'Bom dia', NULL, '2026-10-27 16:42:39'),
-(5, 2, 'customer', 2, NULL, 'Bom dia', NULL, '2026-10-27 16:43:52'),
-(6, 2, 'customer', 2, NULL, 'ss', NULL, '2026-10-27 16:43:58'),
-(7, 2, 'customer', 2, NULL, 'xx', NULL, '2026-10-27 16:44:57'),
-(8, 3, 'customer', 2, NULL, 'Olá. Fiz o pedido GPM-20261027-64DF79 e gostaria de acompanhar o seu estado.', NULL, '2026-10-27 16:45:59'),
-(9, 4, 'customer', 2, NULL, 'Olá. Fiz o pedido GPM-20261029-B7EC17 e gostaria de acompanhar o seu estado.', '2026-11-11 15:21:38', '2026-10-29 13:11:22'),
-(10, 4, 'customer', 2, NULL, 'dfggdf', '2026-11-11 15:21:38', '2026-10-29 13:11:40'),
-(11, 5, 'customer', 2, NULL, 'Olá. Fiz o pedido GPM-20261030-42ED55 e gostaria de acompanhar o seu estado.', NULL, '2026-10-30 14:11:20'),
-(12, 6, 'customer', 2, NULL, 'Olá. Fiz o pedido GPM-20261030-D6E07A e gostaria de acompanhar o seu estado.', NULL, '2026-10-30 14:25:20'),
-(13, 7, 'customer', 2, NULL, 'Olá. Fiz o pedido GPM-20261030-3486F6 e gostaria de acompanhar o seu estado.', '2026-11-06 16:53:16', '2026-10-30 14:26:52'),
-(14, 8, 'customer', 2, NULL, 'Olá. Fiz o pedido GPM-20261030-B8D73A e gostaria de acompanhar o seu estado.', '2026-11-04 17:18:45', '2026-10-30 14:46:43'),
-(15, 9, 'customer', 2, NULL, 'Olá. Fiz o pedido GPM-20261030-1919CD e gostaria de acompanhar o seu estado.', '2026-11-04 17:18:04', '2026-10-30 14:57:39'),
-(16, 9, 'staff', NULL, 1, 'Boa tarde senhor x vamos responder logo', NULL, '2026-11-04 16:18:40');
 
 -- --------------------------------------------------------
 
@@ -281,17 +238,6 @@ CREATE TABLE `orders` (
 -- Despejando dados para a tabela `orders`
 --
 
-INSERT INTO `orders` (`id`, `order_number`, `customer_id`, `responsible_user_id`, `customer_type`, `customer_name`, `customer_nif`, `customer_phone`, `customer_email`, `delivery_address`, `delivery_city`, `delivery_province`, `delivery_fee`, `discount`, `subtotal`, `total`, `payment_method`, `payment_status`, `status`, `notes`, `stock_deducted`, `ordered_at`, `confirmed_at`, `completed_at`, `cancelled_at`, `created_at`, `updated_at`, `delivery_street`, `delivery_neighborhood`, `delivery_reference`) VALUES
-(1, 'GPM-20261021-7B8FAC', 1, NULL, 'company', 'jose lelo', '006218586CA048', '955639957', 'joselelowork@gmail.com', 'egegege', 'efwe', NULL, 0.00, 0.00, 130000.00, 130000.00, 'dinheiro', 'pending', 'pending', 'eferg', 0, '2026-10-21 16:49:40', NULL, NULL, NULL, '2026-10-21 15:49:40', '2026-10-21 15:49:40', NULL, NULL, NULL),
-(2, 'GPM-20261027-40F214', 2, NULL, 'individual', 'jose lelo', '006218586CA048', '+244955639957', 'joselelowork3@gmail.com', 'egegege', 'efwe', 'benguela', 0.00, 0.00, 196664.00, 196664.00, 'transferencia', 'pending', 'pending', 'adsds', 0, '2026-10-27 17:34:15', NULL, NULL, NULL, '2026-10-27 16:34:15', '2026-10-27 16:34:15', NULL, NULL, NULL),
-(3, 'GPM-20261027-64DF79', 2, NULL, 'individual', 'jose lelo', '006218586CA048', '+244955639957', 'joselelowork3@gmail.com', 'egegege', 'efwe', 'benguela', 0.00, 0.00, 1000.00, 1000.00, 'dinheiro', 'pending', 'pending', 'vsdvds', 0, '2026-10-27 17:45:59', NULL, NULL, NULL, '2026-10-27 16:45:59', '2026-10-27 16:45:59', NULL, NULL, NULL),
-(4, 'GPM-20261029-B7EC17', 2, NULL, 'individual', 'jose lelo', '006218586CA048', '+244955639957', 'joselelowork3@gmail.com', 'egegege', 'efwe', 'benguela', 0.00, 0.00, 12222.00, 12222.00, 'dinheiro', 'pending', 'confirmed', 'efgtrrt', 0, '2026-10-29 14:11:22', '2026-10-30 15:08:00', NULL, NULL, '2026-10-29 13:11:22', '2026-10-30 14:08:00', NULL, NULL, NULL),
-(5, 'GPM-20261030-42ED55', 2, NULL, 'individual', 'jose lelo', '006218586CA048', '+244955639957', 'joselelowork3@gmail.com', 'egegege', 'efwe', 'benguela', 0.00, 0.00, 58888.00, 58888.00, NULL, 'pending', 'pending', NULL, 0, '2026-10-30 15:11:20', NULL, NULL, NULL, '2026-10-30 14:11:20', '2026-10-30 14:11:20', NULL, NULL, NULL),
-(6, 'GPM-20261030-D6E07A', 2, NULL, 'individual', 'jose lelo', '006218586CA048', '+244955639957', 'joselelowork3@gmail.com', 'egegege', 'efwe', 'benguela', 0.00, 0.00, 1000.00, 1000.00, 'dinheiro', 'pending', 'pending', 'ffgddf', 0, '2026-10-30 15:25:20', NULL, NULL, NULL, '2026-10-30 14:25:20', '2026-10-30 14:25:20', NULL, NULL, NULL),
-(7, 'GPM-20261030-3486F6', 2, NULL, 'individual', 'jose lelo', '006218586CA048', '+244955639957', 'joselelowork3@gmail.com', 'egegege', 'efwe', 'benguela', 0.00, 0.00, 111000.00, 111000.00, NULL, 'pending', 'pending', 'eeeeeeeee', 0, '2026-10-30 15:26:52', NULL, NULL, NULL, '2026-10-30 14:26:52', '2026-10-30 14:26:52', NULL, NULL, NULL),
-(8, 'GPM-20261030-B8D73A', 2, NULL, 'individual', 'jose lelo', '006218586CA048', '+244955639957', 'joselelowork3@gmail.com', 'egegege', 'efwe', 'benguela', 0.00, 0.00, 4000.00, 4000.00, 'multicaixa', 'pending', 'pending', 'sssssss', 0, '2026-10-30 15:46:43', NULL, NULL, NULL, '2026-10-30 14:46:43', '2026-10-30 14:46:43', NULL, NULL, NULL),
-(9, 'GPM-20261030-1919CD', 2, NULL, 'individual', 'jose lelo', '006218586CA048', '+244955639957', 'joselelowork3@gmail.com', 'egegege, Bairro ssssss, efwe, Luanda. Referência: aaaaaaaaaaa', 'efwe', 'Luanda', 0.00, 0.00, 1000.00, 1000.00, NULL, 'pending', 'pending', 'aaaaa', 0, '2026-10-30 15:57:39', NULL, NULL, NULL, '2026-10-30 14:57:39', '2026-10-30 14:57:39', 'egegege', 'ssssss', 'aaaaaaaaaaa');
-
 -- --------------------------------------------------------
 
 --
@@ -315,19 +261,6 @@ CREATE TABLE `order_items` (
 -- Despejando dados para a tabela `order_items`
 --
 
-INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `product_name`, `product_sku`, `unit`, `quantity`, `unit_price`, `subtotal`, `created_at`) VALUES
-(1, 1, 1, 'Cano 2t', '123', 'kg', 13.000, 10000.00, 130000.00, '2026-10-21 15:49:40'),
-(2, 2, 1, 'Cano 2t', '123', 'kg', 5.000, 10000.00, 50000.00, '2026-10-27 16:34:15'),
-(3, 2, 4, 'Cano 2t2', '123412', 'th', 12.000, 12222.00, 146664.00, '2026-10-27 16:34:15'),
-(4, 3, 5, 'ventilador', '342', 'kg', 1.000, 1000.00, 1000.00, '2026-10-27 16:45:59'),
-(5, 4, 4, 'Cano 2t2', '123412', 'th', 1.000, 12222.00, 12222.00, '2026-10-29 13:11:22'),
-(6, 5, 1, 'Cano 2t', '123', 'kg', 1.000, 10000.00, 10000.00, '2026-10-30 14:11:20'),
-(7, 5, 4, 'Cano 2t2', '123412', 'th', 4.000, 12222.00, 48888.00, '2026-10-30 14:11:20'),
-(8, 6, 5, 'ventilador', '342', 'kg', 1.000, 1000.00, 1000.00, '2026-10-30 14:25:20'),
-(9, 7, 5, 'ventilador', '342', 'kg', 111.000, 1000.00, 111000.00, '2026-10-30 14:26:52'),
-(10, 8, 5, 'ventilador', '342', 'kg', 4.000, 1000.00, 4000.00, '2026-10-30 14:46:43'),
-(11, 9, 5, 'ventilador', '342', 'kg', 1.000, 1000.00, 1000.00, '2026-10-30 14:57:39');
-
 -- --------------------------------------------------------
 
 --
@@ -347,18 +280,6 @@ CREATE TABLE `order_status_history` (
 --
 -- Despejando dados para a tabela `order_status_history`
 --
-
-INSERT INTO `order_status_history` (`id`, `order_id`, `user_id`, `old_status`, `new_status`, `note`, `created_at`) VALUES
-(1, 1, NULL, NULL, 'pending', 'Pedido criado pelo marketplace.', '2026-10-21 15:49:40'),
-(2, 2, NULL, NULL, 'pending', 'Pedido criado pelo marketplace.', '2026-10-27 16:34:15'),
-(3, 3, NULL, NULL, 'pending', 'Pedido criado pelo marketplace.', '2026-10-27 16:45:59'),
-(4, 4, NULL, NULL, 'pending', 'Pedido criado pelo marketplace.', '2026-10-29 13:11:22'),
-(5, 4, 1, 'pending', 'confirmed', '', '2026-10-30 14:08:00'),
-(6, 5, NULL, NULL, 'pending', 'Pedido criado pelo marketplace.', '2026-10-30 14:11:20'),
-(7, 6, NULL, NULL, 'pending', 'Pedido criado pelo marketplace.', '2026-10-30 14:25:20'),
-(8, 7, NULL, NULL, 'pending', 'Pedido criado pelo marketplace.', '2026-10-30 14:26:52'),
-(9, 8, NULL, NULL, 'pending', 'Pedido criado pelo marketplace.', '2026-10-30 14:46:43'),
-(10, 9, NULL, NULL, 'pending', 'Pedido criado pelo marketplace.', '2026-10-30 14:57:39');
 
 -- --------------------------------------------------------
 
@@ -389,11 +310,6 @@ CREATE TABLE `products` (
 -- Despejando dados para a tabela `products`
 --
 
-INSERT INTO `products` (`id`, `category_id`, `name`, `slug`, `sku`, `description`, `price`, `cost_price`, `stock_quantity`, `min_stock`, `unit`, `main_image`, `active`, `featured`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Cano 2t', 'cano-2t', '123', 'cano t21', 10000.00, NULL, 100.000, 10.000, 'kg', NULL, 1, 0, '2026-10-20 16:20:11', '2026-10-20 16:20:11'),
-(4, 1, 'Cano 2t2', 'cano-2t2', '123412', '', 12222.00, NULL, 12.000, 4.000, 'th', 'uploads/produtos/e402fcab26049ef62c3c21d6e2920b5e.jpg', 1, 0, '2026-10-20 16:31:31', '2026-10-20 16:31:31'),
-(5, 2, 'ventilador', 'ventilador', '342', 'wewf', 1000.00, NULL, 6.000, 120.000, 'kg', 'uploads/produtos/956114bdbd6b278ca3914294ddd3e311.webp', 1, 0, '2026-10-27 14:23:19', '2026-10-30 14:57:39');
-
 -- --------------------------------------------------------
 
 --
@@ -412,10 +328,6 @@ CREATE TABLE `product_images` (
 --
 -- Despejando dados para a tabela `product_images`
 --
-
-INSERT INTO `product_images` (`id`, `product_id`, `image_path`, `alt_text`, `sort_order`, `created_at`) VALUES
-(1, 4, 'uploads/produtos/8939eac8748bdb79c2b8b921bf35a3d8.jpg', NULL, 0, '2026-10-20 16:31:31'),
-(2, 4, 'uploads/produtos/33c4758d29c595a9ed4c4402d550ad14.jpg', NULL, 0, '2026-10-20 16:31:31');
 
 -- --------------------------------------------------------
 
@@ -453,17 +365,6 @@ CREATE TABLE `proformas` (
 --
 -- Despejando dados para a tabela `proformas`
 --
-
-INSERT INTO `proformas` (`id`, `order_id`, `proforma_number`, `company_name`, `company_nif`, `company_address`, `company_phone`, `company_email`, `customer_name`, `customer_nif`, `customer_phone`, `customer_email`, `customer_address`, `subtotal`, `delivery_fee`, `discount`, `total`, `status`, `issue_date`, `valid_until`, `notes`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 'PF-20261021-FCBB49', NULL, NULL, NULL, NULL, NULL, 'jose lelo', '006218586CA048', '955639957', 'joselelowork@gmail.com', 'egegege', 130000.00, 0.00, 0.00, 130000.00, 'issued', '2026-10-21', NULL, 'Proforma criada a partir do pedido GPM-20261021-7B8FAC', NULL, '2026-10-21 15:49:40', '2026-10-21 15:49:40'),
-(2, 2, 'PF-20261027-6D5BAD', NULL, NULL, NULL, NULL, NULL, 'jose lelo', '006218586CA048', '+244955639957', 'joselelowork3@gmail.com', 'egegege', 196664.00, 0.00, 0.00, 196664.00, 'issued', '2026-10-27', NULL, 'Proforma criada a partir do pedido GPM-20261027-40F214', NULL, '2026-10-27 16:34:15', '2026-10-27 16:34:15'),
-(3, 3, 'PF-20261027-64D3F2', NULL, NULL, NULL, NULL, NULL, 'jose lelo', '006218586CA048', '+244955639957', 'joselelowork3@gmail.com', 'egegege', 1000.00, 0.00, 0.00, 1000.00, 'issued', '2026-10-27', NULL, 'Proforma criada a partir do pedido GPM-20261027-64DF79', NULL, '2026-10-27 16:45:59', '2026-10-27 16:45:59'),
-(4, 4, 'PF-20261029-D0AAB5', NULL, NULL, NULL, NULL, NULL, 'jose lelo', '006218586CA048', '+244955639957', 'joselelowork3@gmail.com', 'egegege', 12222.00, 0.00, 0.00, 12222.00, 'issued', '2026-10-29', NULL, 'Proforma criada a partir do pedido GPM-20261029-B7EC17', NULL, '2026-10-29 13:11:22', '2026-10-29 13:11:22'),
-(5, 5, 'PF-20261030-9CF589', NULL, NULL, NULL, NULL, NULL, 'jose lelo', '006218586CA048', '+244955639957', 'joselelowork3@gmail.com', 'egegege', 58888.00, 0.00, 0.00, 58888.00, 'issued', '2026-10-30', NULL, 'Proforma criada a partir do pedido GPM-20261030-42ED55', NULL, '2026-10-30 14:11:20', '2026-10-30 14:11:20'),
-(6, 6, 'PF-20261030-B3162E', NULL, NULL, NULL, NULL, NULL, 'jose lelo', '006218586CA048', '+244955639957', 'joselelowork3@gmail.com', 'egegege', 1000.00, 0.00, 0.00, 1000.00, 'issued', '2026-10-30', NULL, 'Proforma criada a partir do pedido GPM-20261030-D6E07A', NULL, '2026-10-30 14:25:20', '2026-10-30 14:25:20'),
-(7, 7, 'PF-20261030-18F32A', NULL, NULL, NULL, NULL, NULL, 'jose lelo', '006218586CA048', '+244955639957', 'joselelowork3@gmail.com', 'egegege', 111000.00, 0.00, 0.00, 111000.00, 'issued', '2026-10-30', NULL, 'Proforma criada a partir do pedido GPM-20261030-3486F6', NULL, '2026-10-30 14:26:52', '2026-10-30 14:26:52'),
-(8, 8, 'PF-20261030-EC7087', NULL, NULL, NULL, NULL, NULL, 'jose lelo', '006218586CA048', '+244955639957', 'joselelowork3@gmail.com', 'egegege', 4000.00, 0.00, 0.00, 4000.00, 'issued', '2026-10-30', NULL, 'Proforma criada a partir do pedido GPM-20261030-B8D73A', NULL, '2026-10-30 14:46:43', '2026-10-30 14:46:43'),
-(9, 9, 'PF-20261030-F5A979', NULL, NULL, NULL, NULL, NULL, 'jose lelo', '006218586CA048', '+244955639957', 'joselelowork3@gmail.com', 'egegege, Bairro ssssss, efwe, Luanda. Referência: aaaaaaaaaaa', 1000.00, 0.00, 0.00, 1000.00, 'issued', '2026-10-30', NULL, 'Proforma criada a partir do pedido GPM-20261030-1919CD', NULL, '2026-10-30 14:57:39', '2026-10-30 14:57:39');
 
 -- --------------------------------------------------------
 
@@ -507,9 +408,6 @@ CREATE TABLE `users` (
 --
 -- Despejando dados para a tabela `users`
 --
-
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `active`, `must_change_password`, `last_login_at`, `created_at`, `updated_at`) VALUES
-(1, 'joselelo', 'joselelowork@gmail.com', '$2y$10$rGwBCYMwn1F2EDHdQS3WhuNEwZzW1YQR9Yo9fE5ShdlwQBtsEdxwC', 'admin', 1, 0, NULL, '2026-10-20 16:18:11', '2026-10-20 16:18:11');
 
 --
 -- Índices para tabelas despejadas

@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = trim((string)($_POST['email'] ?? ''));
         $password = (string)($_POST['password'] ?? '');
         $role = (string)($_POST['role'] ?? 'seller');
-        if ($name === '' || !filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($password) < 10 || !in_array($role, ['admin', 'seller', 'stock_manager'], true)) {
+        if ($name === '' || !filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($password) < 10 || strlen($password) > 72 || !in_array($role, ['admin', 'seller', 'stock_manager'], true)) {
             throw new RuntimeException('Preenche os campos corretamente. A palavra-passe deve ter pelo menos 10 caracteres.');
         }
         $stmt = $pdo->prepare('INSERT INTO users (name, email, password, role, active) VALUES (?, ?, ?, ?, 1)');

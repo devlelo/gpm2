@@ -10,13 +10,29 @@ declare(strict_types=1);
 if (session_status() !== PHP_SESSION_ACTIVE) {
     $secure = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
 
+    ini_set('session.use_strict_mode', '1');
+    ini_set('session.use_only_cookies', '1');
+    ini_set('session.cookie_httponly', '1');
+    ini_set('session.cookie_samesite', 'Lax');
+
     session_set_cookie_params([
         'httponly' => true,
         'secure'   => $secure,
         'samesite' => 'Lax',
+        'path'     => '/',
     ]);
 
     session_start();
+}
+
+if (!headers_sent()) {
+    header('X-Content-Type-Options: nosniff');
+    header('X-Frame-Options: SAMEORIGIN');
+    header('Referrer-Policy: strict-origin-when-cross-origin');
+    header('Permissions-Policy: camera=(), microphone=(), geolocation=()');
+    if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+        header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
+    }
 }
 
 /*
@@ -122,6 +138,54 @@ function verify_csrf(): void
 |--------------------------------------------------------------------------
 */
 
+/**
+ * Rate limit de autenticação persistido na BD (por IP + identificador).
+ * A tabela login_attempts é criada pela migration de segurança.
+ */
+function login_rate_limit_key(string $identifier): string
+{
+    $ip = (string) ($_SERVER['REMOTE_ADDR'] ?? 'unknown');
+    return hash('sha256', strtolower(trim($identifier)) . '|' . $ip);
+}
+
+function login_ip_rate_limit_key(): string
+{
+    return hash('sha256', 'ip|' . (string) ($_SERVER['REMOTE_ADDR'] ?? 'unknown'));
+}
+
+function login_is_limited(string $identifier, int $maxAttempts = 5, int $windowMinutes = 15): bool
+{
+    $windowMinutes = max(1, min(60, $windowMinutes));
+    $stmt = db()->prepare(
+        "SELECT
+            SUM(attempt_key = ?) AS identifier_attempts,
+            SUM(attempt_key = ?) AS ip_attempts
+         FROM login_attempts
+         WHERE attempted_at >= (NOW() - INTERVAL {$windowMinutes} MINUTE)
+           AND attempt_key IN (?, ?)"
+    );
+    $identifierKey = login_rate_limit_key($identifier);
+    $ipKey = login_ip_rate_limit_key();
+    $stmt->execute([$identifierKey, $ipKey, $identifierKey, $ipKey]);
+    $counts = $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
+    return (int) ($counts['identifier_attempts'] ?? 0) >= $maxAttempts
+        || (int) ($counts['ip_attempts'] ?? 0) >= ($maxAttempts * 4);
+}
+
+function login_register_failure(string $identifier): void
+{
+    $stmt = db()->prepare(
+        'INSERT INTO login_attempts (attempt_key, attempted_at) VALUES (?, NOW()), (?, NOW())'
+    );
+    $stmt->execute([login_rate_limit_key($identifier), login_ip_rate_limit_key()]);
+}
+
+function login_clear_failures(string $identifier): void
+{
+    $stmt = db()->prepare('DELETE FROM login_attempts WHERE attempt_key = ?');
+    $stmt->execute([login_rate_limit_key($identifier)]);
+}
+
 function current_user(): ?array
 {
     $user = $_SESSION['gpm_user'] ?? null;
@@ -144,20 +208,30 @@ function require_login(): void
     }
 
     try {
-        $statement = db()->prepare('SELECT active FROM users WHERE id = ? LIMIT 1');
-        $statement->execute([(int)$user['id']]);
-        $active = $statement->fetchColumn();
+        $statement = db()->prepare(
+            'SELECT id, active, role, name, email FROM users WHERE id = ? LIMIT 1'
+        );
+        $statement->execute([(int) $user['id']]);
+        $account = $statement->fetch(PDO::FETCH_ASSOC);
     } catch (Throwable $e) {
         error_log('[GPM auth] ' . $e->getMessage());
         http_response_code(503);
         exit('Não foi possível validar a sessão. Tenta novamente dentro de instantes.');
     }
 
-    if ((int)$active !== 1) {
+    if (!$account || (int) $account['active'] !== 1) {
         unset($_SESSION['gpm_user']);
         session_regenerate_id(true);
         redirect(BASE_URL . '/admin/login.php');
     }
+
+    // A função não confia indefinidamente no perfil guardado na sessão.
+    $_SESSION['gpm_user'] = [
+        'id' => (int) $account['id'],
+        'name' => $account['name'],
+        'email' => $account['email'],
+        'role' => $account['role'],
+    ];
 }
 
 function require_admin(): void

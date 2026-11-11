@@ -1,0 +1,65 @@
+name: PHP security checks
+
+on:
+  push:
+    branches: [main, security/foundation-hardening]
+  pull_request:
+    branches: [main]
+
+jobs:
+  php-lint-and-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: pdo, pdo_mysql, fileinfo
+      - name: Lint every PHP file (including legacy tree)
+        run: |
+          find . -type f -name '*.php' -print0 | while IFS= read -r -d '' file; do
+            php -l "$file"
+          done
+      - name: Run security helper tests
+        run: php tests/run.php
+
+  migration-mariadb:
+    runs-on: ubuntu-latest
+    services:
+      mariadb:
+        image: mariadb:10.4.32
+        env:
+          MARIADB_ROOT_PASSWORD: root
+          MARIADB_DATABASE: gpm_mvp_nova_test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mariadb-admin ping -h 127.0.0.1 -uroot -proot"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: pdo, pdo_mysql, fileinfo
+      - name: Install MariaDB client
+        run: sudo apt-get update && sudo apt-get install -y mariadb-client
+      - name: Restore schema-only copy of the current database
+        run: mysql --skip-ssl --host=127.0.0.1 --user=root --password=root gpm_mvp_nova_test < "gpm_mvp_nova (1).sql"
+      - name: Apply integration migration
+        run: mysql --skip-ssl --host=127.0.0.1 --user=root --password=root gpm_mvp_nova_test < database/migrations/20261111_001_integrations_foundation.sql
+      - name: Apply login rate-limit migration
+        run: mysql --skip-ssl --host=127.0.0.1 --user=root --password=root gpm_mvp_nova_test < database/migrations/20261111_002_login_rate_limit.sql
+      - name: Verify migrated schema
+        env:
+          APP_ENV: local
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_NAME: gpm_mvp_nova_test
+          DB_USER: root
+          DB_PASS: root
+        run: |
+          php tests/migration_smoke.php
+          php tests/login_rate_limit_integration.php
