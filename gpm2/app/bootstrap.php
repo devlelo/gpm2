@@ -138,22 +138,35 @@ function login_rate_limit_key(string $identifier): string
     return hash('sha256', strtolower(trim($identifier)) . '|' . $ip);
 }
 
+function login_ip_rate_limit_key(): string
+{
+    return hash('sha256', 'ip|' . (string) ($_SERVER['REMOTE_ADDR'] ?? 'unknown'));
+}
+
 function login_is_limited(string $identifier, int $maxAttempts = 5, int $windowMinutes = 15): bool
 {
     $stmt = db()->prepare(
-        'SELECT COUNT(*) FROM login_attempts
-         WHERE attempt_key = ? AND attempted_at >= (NOW() - INTERVAL ? MINUTE)'
+        'SELECT
+            SUM(attempt_key = ?) AS identifier_attempts,
+            SUM(attempt_key = ?) AS ip_attempts
+         FROM login_attempts
+         WHERE attempted_at >= (NOW() - INTERVAL ? MINUTE)
+           AND attempt_key IN (?, ?)'
     );
-    $stmt->execute([login_rate_limit_key($identifier), $windowMinutes]);
-    return (int) $stmt->fetchColumn() >= $maxAttempts;
+    $identifierKey = login_rate_limit_key($identifier);
+    $ipKey = login_ip_rate_limit_key();
+    $stmt->execute([$identifierKey, $ipKey, $windowMinutes, $identifierKey, $ipKey]);
+    $counts = $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
+    return (int) ($counts['identifier_attempts'] ?? 0) >= $maxAttempts
+        || (int) ($counts['ip_attempts'] ?? 0) >= ($maxAttempts * 4);
 }
 
 function login_register_failure(string $identifier): void
 {
     $stmt = db()->prepare(
-        'INSERT INTO login_attempts (attempt_key, attempted_at) VALUES (?, NOW())'
+        'INSERT INTO login_attempts (attempt_key, attempted_at) VALUES (?, NOW()), (?, NOW())'
     );
-    $stmt->execute([login_rate_limit_key($identifier)]);
+    $stmt->execute([login_rate_limit_key($identifier), login_ip_rate_limit_key()]);
 }
 
 function login_clear_failures(string $identifier): void
