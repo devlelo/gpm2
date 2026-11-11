@@ -208,7 +208,7 @@ function require_login(): void
 
     try {
         $statement = db()->prepare(
-            'SELECT active, role, name, email FROM users WHERE id = ? LIMIT 1'
+            'SELECT id, active, role, name, email FROM users WHERE id = ? LIMIT 1'
         );
         $statement->execute([(int) $user['id']]);
         $account = $statement->fetch(PDO::FETCH_ASSOC);
@@ -226,7 +226,7 @@ function require_login(): void
 
     // A função não confia indefinidamente no perfil guardado na sessão.
     $_SESSION['gpm_user'] = [
-        'id' => (int) $account['id'] ?? (int) $user['id'],
+        'id' => (int) $account['id'],
         'name' => $account['name'],
         'email' => $account['email'],
         'role' => $account['role'],
