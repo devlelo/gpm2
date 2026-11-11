@@ -33,6 +33,8 @@ Migrar a aplicação PHP atual para Laravel mantendo a mesma base de dados MySQL
 
 ### Exemplo de baseline seguro
 
+Existe um modelo em docs/laravel/2026_11_11_000000_baseline_existing_schema.php.example. Copia-o para a pasta database/migrations do futuro projeto Laravel e ajusta a lista de tabelas/colunas após o inventário final.
+
 A migration inicial do Laravel deve verificar a presença das tabelas críticas com Schema::hasTable() e falhar com uma mensagem clara se faltar alguma. O método down() não deve apagar tabelas legadas; deve lançar uma exceção explicando que a reversão do baseline é manual e controlada.
 
 Não gerar migrations que façam Schema::drop, dropIfExists ou recriem as tabelas atuais.
