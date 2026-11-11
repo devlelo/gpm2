@@ -1,0 +1,2 @@
+# Legacy application tree: deny direct HTTP access on Apache.
+Require all denied
