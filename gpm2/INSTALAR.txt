@@ -1,0 +1,49 @@
+GPM - PAINEL ADMINISTRATIVO INICIAL
+===================================
+
+1. EXTRAIR
+   Extraia a pasta gpm para C:\xampp\htdocs, ou extraia o ZIP diretamente em C:\xampp\htdocs.
+   A estrutura final deve incluir C:\xampp\htdocs\gpm\admin e C:\xampp\htdocs\gpm\config.
+
+2. CONFIGURAR A BASE DE DADOS
+   Abra C:\xampp\htdocs\gpm\config\database.php.
+   Confirme DB_HOST, DB_PORT, DB_NAME, DB_USER e DB_PASS.
+   Este pacote assume por defeito a base gpm_mvp_nova, criada pelo SQL anterior.
+   Se criou a base com outro nome, altere DB_NAME.
+   Em XAMPP normal, o utilizador é root e a palavra-passe pode estar vazia.
+
+3. CONFIRMAR AS TABELAS
+   Este painel espera o esquema do ficheiro gpm.sql anterior, incluindo as tabelas:
+   users, customers, categories, products, orders, order_items,
+   stock_movements, order_status_history, conversations, messages,
+   proformas e company_settings.
+   Não importe este SQL por cima de uma base de dados com dados reais sem backup.
+
+4. CRIAR UM ADMINISTRADOR SE AINDA NÃO EXISTIR
+   Abra CMD e execute:
+   cd C:\xampp\htdocs\gpm
+   C:\xampp\php\php.exe database\create_admin.php
+   Introduza nome, email e palavra-passe com pelo menos 12 caracteres.
+   O script não substitui utilizadores existentes.
+   Se já tem administrador válido na tabela users, não precisa de criar outro.
+
+5. ABRIR O PAINEL
+   Inicie Apache e MySQL no XAMPP.
+   Aceda a http://localhost/gpm/admin/login.php
+
+6. PRIMEIRAS PÁGINAS
+   Visão geral: /admin/index.php
+   Produtos: /admin/products.php
+   Categorias: /admin/categories.php
+   Stock: /admin/stock.php
+   Pedidos: /admin/orders.php
+   Clientes: /admin/customers.php
+   Conversas: /admin/conversations.php
+   Dados da empresa/NIF: /admin/company.php
+   Utilizadores: /admin/users.php
+
+NOTAS IMPORTANTES
+- Este é o primeiro pacote do painel administrativo; a loja do cliente será criada depois.
+- Confirme o esquema da base antes de usar em produção.
+- As imagens de produtos, a emissão de proformas em PDF, as mensagens do chat e as integrações com o checkout ainda serão completadas nas próximas etapas.
+- Não publique o sistema sem HTTPS, backups, validação do servidor e testes de segurança.
