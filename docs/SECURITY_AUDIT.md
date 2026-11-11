@@ -21,9 +21,12 @@ A inspeção continua sendo estática e por amostragem de fluxos críticos. Não
 - A configuração de sessão passou a ativar strict mode e cookies apenas por HTTP.
 - Criada migration aditiva para fundação de integrações de fornecedores e pagamentos.
 - Criada documentação de arquitetura, contrato de base de dados, política de segurança e auditoria.
-- Implementado rate limit persistente de login (5 tentativas / 15 minutos por hash de identificador + IP) nos logins administrativo e de cliente. A nova tabela é criada pela migration 20261111_002_login_rate_limit.sql.
+- Implementado rate limit persistente de login (5 tentativas / 15 minutos por identificador+IP e 20 tentativas / 15 minutos por IP) nos logins administrativo e de cliente. A nova tabela é criada pela migration 20261111_002_login_rate_limit.sql.
 - Login de cliente passou a usar mensagem genérica também para contas inativas, reduzindo enumeração de contas.
 - Upload de produtos reforçado com validação MIME por conteúdo, is_uploaded_file, limite de 5 MB, dimensões máximas, nome aleatório e validação do diretório final.
+- Permissões internas são agora relidas da BD em cada pedido autenticado; desativação ou alteração de perfil passa a refletir-se na sessão seguinte.
+- Adicionados headers X-Content-Type-Options, X-Frame-Options, Referrer-Policy e Permissions-Policy; HSTS é enviado apenas quando HTTPS está ativo.
+- A cópia duplicada/legada gpm2/gpm foi marcada como referência e bloqueada por .htaccess no Apache.
 - Criado workflow GitHub Actions para lint de todos os ficheiros PHP e execução de testes de helpers.
 - Criado teste read-only de smoke test para confirmar tabelas após migrations.
 - Criado plano de migração Laravel sem recriação do esquema existente.
@@ -44,7 +47,7 @@ Não declarar o projeto seguro para produção com base nesta etapa. É necessá
 ## Testes e validação — estado real
 
 - O workflow de CI foi criado, mas ainda não foi executado pelo GitHub Actions nesta branch.
-- tests/run.php contém verificações unitárias simples para escaping, geração de chave de rate limit e token CSRF.
+- tests/run.php contém verificações unitárias simples para escaping, geração de chave de rate limit e token CSRF. tests/login_rate_limit_integration.php testa o limite real, mas exige uma base de dados descartável com nome terminado em _test.
 - tests/migration_smoke.php verifica, em modo somente leitura, as tabelas esperadas depois da aplicação das migrations.
 - A migration 20261111_002_login_rate_limit.sql foi adicionada, mas não foi executada.
 - A migration de integrações também não foi executada.
