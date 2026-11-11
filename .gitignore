@@ -1,0 +1,29 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Dependencies and build output
+/vendor/
+/node_modules/
+/.idea/
+/.vscode/
+
+# Runtime data, logs and backups
+*.log
+*.sql.gz
+/backups/
+/storage/private/
+/storage/logs/
+/cache/
+/tmp/
+
+# Local database exports and temporary files
+*.bak
+*.dump
+*.old
+*~
