@@ -12,3 +12,8 @@ CREATE TABLE IF NOT EXISTS login_attempts (
 
 -- Keep this cleanup as a scheduled maintenance task, not on every request:
 -- DELETE FROM login_attempts WHERE attempted_at < (NOW() - INTERVAL 30 DAY);
+
+-- Record the migration after 001 has created the version registry.
+INSERT INTO gpm_schema_versions (version_key, checksum)
+VALUES ('20261111_002_login_rate_limit', SHA2('20261111_002_login_rate_limit', 256))
+ON DUPLICATE KEY UPDATE checksum = VALUES(checksum);
