@@ -155,17 +155,18 @@ function login_ip_rate_limit_key(): string
 
 function login_is_limited(string $identifier, int $maxAttempts = 5, int $windowMinutes = 15): bool
 {
+    $windowMinutes = max(1, min(60, $windowMinutes));
     $stmt = db()->prepare(
-        'SELECT
+        "SELECT
             SUM(attempt_key = ?) AS identifier_attempts,
             SUM(attempt_key = ?) AS ip_attempts
          FROM login_attempts
-         WHERE attempted_at >= (NOW() - INTERVAL ? MINUTE)
-           AND attempt_key IN (?, ?)'
+         WHERE attempted_at >= (NOW() - INTERVAL {$windowMinutes} MINUTE)
+           AND attempt_key IN (?, ?)"
     );
     $identifierKey = login_rate_limit_key($identifier);
     $ipKey = login_ip_rate_limit_key();
-    $stmt->execute([$identifierKey, $ipKey, $windowMinutes, $identifierKey, $ipKey]);
+    $stmt->execute([$identifierKey, $ipKey, $identifierKey, $ipKey]);
     $counts = $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
     return (int) ($counts['identifier_attempts'] ?? 0) >= $maxAttempts
         || (int) ($counts['ip_attempts'] ?? 0) >= ($maxAttempts * 4);
