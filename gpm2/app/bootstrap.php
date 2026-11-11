@@ -128,6 +128,40 @@ function verify_csrf(): void
 |--------------------------------------------------------------------------
 */
 
+/**
+ * Rate limit de autenticação persistido na BD (por IP + identificador).
+ * A tabela login_attempts é criada pela migration de segurança.
+ */
+function login_rate_limit_key(string $identifier): string
+{
+    $ip = (string) ($_SERVER['REMOTE_ADDR'] ?? 'unknown');
+    return hash('sha256', strtolower(trim($identifier)) . '|' . $ip);
+}
+
+function login_is_limited(string $identifier, int $maxAttempts = 5, int $windowMinutes = 15): bool
+{
+    $stmt = db()->prepare(
+        'SELECT COUNT(*) FROM login_attempts
+         WHERE attempt_key = ? AND attempted_at >= (NOW() - INTERVAL ? MINUTE)'
+    );
+    $stmt->execute([login_rate_limit_key($identifier), $windowMinutes]);
+    return (int) $stmt->fetchColumn() >= $maxAttempts;
+}
+
+function login_register_failure(string $identifier): void
+{
+    $stmt = db()->prepare(
+        'INSERT INTO login_attempts (attempt_key, attempted_at) VALUES (?, NOW())'
+    );
+    $stmt->execute([login_rate_limit_key($identifier)]);
+}
+
+function login_clear_failures(string $identifier): void
+{
+    $stmt = db()->prepare('DELETE FROM login_attempts WHERE attempt_key = ?');
+    $stmt->execute([login_rate_limit_key($identifier)]);
+}
+
 function current_user(): ?array
 {
     $user = $_SESSION['gpm_user'] ?? null;
