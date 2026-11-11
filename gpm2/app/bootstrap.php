@@ -25,6 +25,16 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
+if (!headers_sent()) {
+    header('X-Content-Type-Options: nosniff');
+    header('X-Frame-Options: SAMEORIGIN');
+    header('Referrer-Policy: strict-origin-when-cross-origin');
+    header('Permissions-Policy: camera=(), microphone=(), geolocation=()');
+    if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+        header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
+    }
+}
+
 /*
 |--------------------------------------------------------------------------
 | Caminho base do projeto
@@ -197,20 +207,30 @@ function require_login(): void
     }
 
     try {
-        $statement = db()->prepare('SELECT active FROM users WHERE id = ? LIMIT 1');
-        $statement->execute([(int)$user['id']]);
-        $active = $statement->fetchColumn();
+        $statement = db()->prepare(
+            'SELECT active, role, name, email FROM users WHERE id = ? LIMIT 1'
+        );
+        $statement->execute([(int) $user['id']]);
+        $account = $statement->fetch(PDO::FETCH_ASSOC);
     } catch (Throwable $e) {
         error_log('[GPM auth] ' . $e->getMessage());
         http_response_code(503);
         exit('Não foi possível validar a sessão. Tenta novamente dentro de instantes.');
     }
 
-    if ((int)$active !== 1) {
+    if (!$account || (int) $account['active'] !== 1) {
         unset($_SESSION['gpm_user']);
         session_regenerate_id(true);
         redirect(BASE_URL . '/admin/login.php');
     }
+
+    // A função não confia indefinidamente no perfil guardado na sessão.
+    $_SESSION['gpm_user'] = [
+        'id' => (int) $account['id'] ?? (int) $user['id'],
+        'name' => $account['name'],
+        'email' => $account['email'],
+        'role' => $account['role'],
+    ];
 }
 
 function require_admin(): void
