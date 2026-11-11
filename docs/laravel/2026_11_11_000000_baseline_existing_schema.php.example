@@ -1,0 +1,53 @@
+<?php
+
+/*
+ * EXAMPLE ONLY — copy into the future Laravel application's database/migrations.
+ * Do not execute this file in the current PHP-only application.
+ *
+ * This baseline deliberately does not create, alter or delete legacy tables.
+ * Laravel records this migration as applied only after the existing schema passes.
+ */
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    private array $requiredTables = [
+        'users',
+        'customers',
+        'categories',
+        'products',
+        'orders',
+        'order_items',
+        'stock_movements',
+        'customer_addresses',
+        'conversations',
+        'messages',
+        'proformas',
+    ];
+
+    public function up(): void
+    {
+        $missing = [];
+
+        foreach ($this->requiredTables as $table) {
+            if (!Schema::hasTable($table)) {
+                $missing[] = $table;
+            }
+        }
+
+        if ($missing !== []) {
+            throw new RuntimeException(
+                'GPM legacy schema is incomplete. Missing tables: ' . implode(', ', $missing)
+            );
+        }
+    }
+
+    public function down(): void
+    {
+        throw new RuntimeException(
+            'The GPM baseline is intentionally irreversible. Do not drop legacy tables during rollback.'
+        );
+    }
+};
