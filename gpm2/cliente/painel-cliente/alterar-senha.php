@@ -12,11 +12,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare("SELECT password FROM customers WHERE id = ? LIMIT 1");
     $stmt->execute([(int)$cliente['id']]); $hash = $stmt->fetchColumn();
     if (!$hash || !password_verify($atual, (string)$hash)) $erro = 'A palavra-passe atual está incorreta.';
-    elseif (strlen($nova) < 8) $erro = 'A nova palavra-passe deve ter pelo menos 8 caracteres.';
+    elseif (strlen($nova) < 10 || strlen($nova) > 4096) $erro = 'A nova palavra-passe deve ter entre 10 e 4096 caracteres.';
     elseif ($nova !== $confirmacao) $erro = 'A confirmação não corresponde à nova palavra-passe.';
     else {
         $stmt = $pdo->prepare("UPDATE customers SET password = ?, updated_at = NOW() WHERE id = ?");
         $stmt->execute([password_hash($nova, PASSWORD_DEFAULT), (int)$cliente['id']]);
+        session_regenerate_id(true);
         $sucesso = 'A palavra-passe foi alterada com sucesso.';
     }
 }
