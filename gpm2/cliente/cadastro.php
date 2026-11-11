@@ -45,8 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erro = 'O NIF não pode ultrapassar 50 caracteres.';
     } elseif (!in_array($tipoCliente, ['individual', 'company'], true)) {
         $erro = 'Seleciona um tipo de cliente válido.';
-    } elseif (strlen($senha) < 8) {
-        $erro = 'A palavra-passe deve ter pelo menos 8 caracteres.';
+    } elseif (strlen($senha) < 10 || strlen($senha) > 72) {
+        $erro = 'A palavra-passe deve ter entre 10 e 72 caracteres.';
     } elseif ($senha !== $confirmarSenha) {
         $erro = 'As palavras-passe não coincidem.';
     } else {
@@ -254,7 +254,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                     <label for="password" class="block text-xs font-bold text-[#0d233f] uppercase tracking-wider mb-2">Palavra-passe *</label>
-                    <input type="password" id="password" name="password" minlength="8" autocomplete="new-password" required class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#f96b21] focus:ring-0 bg-gray-50 transition" placeholder="••••••••">
+                    <input type="password" id="password" name="password" minlength="10" autocomplete="new-password" required class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#f96b21] focus:ring-0 bg-gray-50 transition" placeholder="••••••••">
                 </div>
                 <div>
                     <label for="password_confirmation" class="block text-xs font-bold text-[#0d233f] uppercase tracking-wider mb-2">Confirmar *</label>
