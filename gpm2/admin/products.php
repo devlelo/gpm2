@@ -70,9 +70,16 @@ function product_validate_upload(array $file): ?string
         );
     }
 
-    // Confirmar que o ficheiro pode ser reconhecido como imagem.
-    if (@getimagesize((string) $file['tmp_name']) === false) {
+    // Validar conteúdo real e limitar dimensões contra imagens abusivamente grandes.
+    $imageInfo = @getimagesize((string) $file['tmp_name']);
+    if ($imageInfo === false) {
         throw new RuntimeException('O ficheiro enviado não é uma imagem válida.');
+    }
+
+    $width = (int) ($imageInfo[0] ?? 0);
+    $height = (int) ($imageInfo[1] ?? 0);
+    if ($width < 1 || $height < 1 || $width > 8000 || $height > 8000 || ($width * $height) > 30000000) {
+        throw new RuntimeException('A imagem excede as dimensões permitidas (máximo 8000 × 8000 e 30 megapíxeis).');
     }
 
     return $allowed[$mime];
@@ -91,7 +98,18 @@ function product_save_uploaded_image(
         }
     }
 
-    if (!is_writable($directory)) {
+    $resolvedDirectory = realpath($directory);
+    $expectedDirectory = realpath(BASE_PATH . '/public/uploads/produtos');
+
+    if (
+        $resolvedDirectory === false
+        || $expectedDirectory === false
+        || $resolvedDirectory !== $expectedDirectory
+    ) {
+        throw new RuntimeException('Destino de upload não autorizado.');
+    }
+
+    if (!is_writable($resolvedDirectory)) {
         throw new RuntimeException(
             'A pasta de imagens não permite escrita.'
         );
@@ -106,6 +124,7 @@ function product_save_uploaded_image(
         );
     }
 
+    @chmod($destination, 0644);
     return $filename;
 }
 
