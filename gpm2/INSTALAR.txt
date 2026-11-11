@@ -1,49 +1,52 @@
-GPM - PAINEL ADMINISTRATIVO INICIAL
-===================================
+GPM CONECTA — INSTALAÇÃO LOCAL E ATUALIZAÇÕES SEGURAS
+=======================================================
 
-1. EXTRAIR
-   Extraia a pasta gpm para C:\xampp\htdocs, ou extraia o ZIP diretamente em C:\xampp\htdocs.
-   A estrutura final deve incluir C:\xampp\htdocs\gpm\admin e C:\xampp\htdocs\gpm\config.
+ESTRUTURA
+---------
+A aplicação PHP está em gpm2/. Copia essa pasta para C:\xampp\htdocs\gpm2.
+A configuração PDO canónica está em gpm2\config\database.php.
+A árvore gpm2\gpm\ mantém compatibilidade temporária e delega para a mesma configuração.
 
-2. CONFIGURAR A BASE DE DADOS
-   Abra C:\xampp\htdocs\gpm\config\database.php.
-   Confirme DB_HOST, DB_PORT, DB_NAME, DB_USER e DB_PASS.
-   Este pacote assume por defeito a base gpm_mvp_nova, criada pelo SQL anterior.
-   Se criou a base com outro nome, altere DB_NAME.
-   Em XAMPP normal, o utilizador é root e a palavra-passe pode estar vazia.
+BASE DE DADOS EXISTENTE
+-----------------------
+Nome de referência: gpm_mvp_nova
+Servidor esperado: MySQL/MariaDB com InnoDB e utf8mb4.
 
-3. CONFIRMAR AS TABELAS
-   Este painel espera o esquema do ficheiro gpm.sql anterior, incluindo as tabelas:
-   users, customers, categories, products, orders, order_items,
-   stock_movements, order_status_history, conversations, messages,
-   proformas e company_settings.
-   Não importe este SQL por cima de uma base de dados com dados reais sem backup.
+Se já tens dados reais, NÃO importes o dump schema-only por cima da base.
+O dump na raiz do repositório serve apenas para referência estrutural.
+Não executar DROP DATABASE, db:wipe, migrate:fresh ou import total durante atualização.
 
-4. CRIAR UM ADMINISTRADOR SE AINDA NÃO EXISTIR
-   Abra CMD e execute:
-   cd C:\xampp\htdocs\gpm
-   C:\xampp\php\php.exe database\create_admin.php
-   Introduza nome, email e palavra-passe com pelo menos 12 caracteres.
-   O script não substitui utilizadores existentes.
-   Se já tem administrador válido na tabela users, não precisa de criar outro.
+CONFIGURAÇÃO LOCAL XAMPP
+------------------------
+Os defaults locais são 127.0.0.1:3306, gpm_mvp_nova, root e password vazia.
+Mantém isto apenas no XAMPP local isolado.
+Em produção, define APP_ENV=production e DB_HOST, DB_PORT, DB_NAME,
+DB_USER e DB_PASS no ambiente do servidor. Não guardar segredos no Git.
 
-5. ABRIR O PAINEL
-   Inicie Apache e MySQL no XAMPP.
-   Aceda a http://localhost/gpm/admin/login.php
+INSTALAÇÃO / VERIFICAÇÃO
+------------------------
+1. Inicia Apache e MySQL.
+2. Confirma que a base gpm_mvp_nova já existe e contém as tabelas atuais.
+3. Configura as variáveis de ambiente, se necessário.
+4. Abre http://localhost/gpm2/admin/login.php.
+5. Confirma login, catálogo, stock, pedidos, proformas e área de cliente.
 
-6. PRIMEIRAS PÁGINAS
-   Visão geral: /admin/index.php
-   Produtos: /admin/products.php
-   Categorias: /admin/categories.php
-   Stock: /admin/stock.php
-   Pedidos: /admin/orders.php
-   Clientes: /admin/customers.php
-   Conversas: /admin/conversations.php
-   Dados da empresa/NIF: /admin/company.php
-   Utilizadores: /admin/users.php
+MIGRATIONS
+----------
+As migrations são incrementais e ficam em database/migrations/ na raiz do repositório.
+Antes de aplicar qualquer migration:
+- faz backup completo;
+- testa a restauração;
+- executa primeiro numa cópia de staging;
+- valida contagens, chaves estrangeiras e fluxos de encomenda/stock;
+- confirma que a migration não apaga nem recria tabelas existentes.
 
-NOTAS IMPORTANTES
-- Este é o primeiro pacote do painel administrativo; a loja do cliente será criada depois.
-- Confirme o esquema da base antes de usar em produção.
-- As imagens de produtos, a emissão de proformas em PDF, as mensagens do chat e as integrações com o checkout ainda serão completadas nas próximas etapas.
-- Não publique o sistema sem HTTPS, backups, validação do servidor e testes de segurança.
+A migration 20261111_001_integrations_foundation.sql acrescenta a fundação de
+integrações de fornecedores e pagamentos. Não ativa gateways nem sincroniza
+fornecedores por si só; apenas prepara o schema.
+
+IMPORTANTE
+---------
+A branch security/foundation-hardening é uma preparação de segurança, não uma
+declaração de que o sistema já está certificado para produção. A auditoria dos
+endpoints PHP e os testes funcionais completos ainda são necessários.
