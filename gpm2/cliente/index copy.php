@@ -644,7 +644,7 @@ $cliente = cliente_atual();
             <a href="carrinho.php">Carrinho (<?= (int) $totalCarrinho ?>)</a>
 
             <?php if ($cliente): ?>
-                <a href="../painel-cliente/index.php">Minha conta</a>
+                <a href="painel-cliente/index.php">Minha conta</a>
             <?php else: ?>
                 <a href="login.php">Entrar</a>
                 <a href="cadastro.php">Criar conta</a>
