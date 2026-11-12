@@ -143,8 +143,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         brand: {
                             navy: '#0d233f',
                             navyLight: '#163154',
-                            orange: '#2F776F',
-                            orangeHover: '#0A2945',
+                            teal: '#2F776F',
+                            navyHover: '#0A2945',
                             offWhite: '#f8f9fa'
                         }
                     },
