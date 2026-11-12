@@ -266,6 +266,7 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
             transition: transform 0.5s ease;
         }
     </style>
+<link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
 
