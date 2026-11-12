@@ -349,7 +349,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
     <div class="mb-8">
         <a href="index.php"
-           class="text-sm text-gray-500 hover:text-[#f96b21]">
+           class="text-sm text-gray-500 hover:text-[#0A2945]">
             <i class="fa-solid fa-arrow-left mr-2"></i>
             Voltar ao catálogo
         </a>
@@ -388,7 +388,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                         <button
                             type="button"
                             onclick="mudarImagem(<?= $indice ?>)"
-                            class="w-20 h-20 border border-gray-200 bg-gray-50 hover:border-[#f96b21] p-2"
+                            class="w-20 h-20 border border-gray-200 bg-gray-50 hover:border-[#0A2945] p-2"
                         >
                             <img
                                 src="<?= e($imagem['imagem']) ?>"
@@ -408,7 +408,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
         <!-- Informações -->
         <div>
 
-            <span class="text-xs font-bold text-[#f96b21] uppercase tracking-widest">
+            <span class="text-xs font-bold text-[#0A2945] uppercase tracking-widest">
                 <?= e($produto['category_name'] ?? 'Materiais de Construção') ?>
             </span>
 
@@ -557,7 +557,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8 border-b border-gray-200 pb-4">
 
                 <div>
-                    <span class="text-xs font-bold text-[#f96b21] uppercase tracking-widest">
+                    <span class="text-xs font-bold text-[#0A2945] uppercase tracking-widest">
                         Continue a explorar
                     </span>
 
@@ -719,19 +719,19 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 <!-- Notificação do carrinho -->
 <div
     id="aviso-carrinho"
-    class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 bg-[#0d233f] text-white px-6 py-4 shadow-2xl border-l-4 border-[#f96b21] pointer-events-none transition-all duration-300 flex items-center gap-4 max-w-sm"
+    class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 bg-[#0d233f] text-white px-6 py-4 shadow-2xl border-l-4 border-[#0A2945] pointer-events-none transition-all duration-300 flex items-center gap-4 max-w-sm"
     role="status"
     aria-live="polite"
 >
 
-    <div class="w-10 h-10 bg-[#f96b21] flex items-center justify-center flex-shrink-0">
+    <div class="w-10 h-10 bg-[#0A2945] flex items-center justify-center flex-shrink-0">
         <i id="aviso-icone" class="fa-solid fa-check text-white text-lg"></i>
     </div>
 
     <div>
         <h5
             id="aviso-titulo"
-            class="text-sm font-bold uppercase tracking-wider mb-1 text-[#f96b21]"
+            class="text-sm font-bold uppercase tracking-wider mb-1 text-[#0A2945]"
         >
             Adicionado
         </h5>
@@ -809,10 +809,10 @@ function alterarQuantidade(valor) {
         avisoTexto.textContent = mensagem;
 
         aviso.classList.toggle('border-red-500', erro);
-        aviso.classList.toggle('border-[#f96b21]', !erro);
+        aviso.classList.toggle('border-[#0A2945]', !erro);
 
         avisoTitulo.classList.toggle('text-red-500', erro);
-        avisoTitulo.classList.toggle('text-[#f96b21]', !erro);
+        avisoTitulo.classList.toggle('text-[#0A2945]', !erro);
 
         avisoIcone.className = erro
             ? 'fa-solid fa-triangle-exclamation text-white text-lg'
