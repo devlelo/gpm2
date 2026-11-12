@@ -10,7 +10,7 @@ require_once __DIR__ . '/includes/iniciar.php';
 | Encaminha-o para o painel, em vez da página antiga de pedidos.
 */
 if (cliente_atual()) {
-    redirect('../cliente/painel-cliente/index.php');
+    redirect('painel-cliente/index.php');
     exit;
 }
 
