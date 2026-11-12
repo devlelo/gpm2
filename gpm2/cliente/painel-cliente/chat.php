@@ -5,7 +5,7 @@ require_once __DIR__ . '/../includes/iniciar.php';
 
 
 $cliente = cliente_atual();
-if (!$cliente) { $_SESSION['gpm_redirect_after_login'] = 'pedidos.php'; header('Location: login.php'); exit; }
+if (!$cliente) { $_SESSION['gpm_redirect_after_login'] = 'pedidos.php'; header('Location: ../login.php'); exit; }
 $pdo = db();
 $pedidoId = filter_input(INPUT_GET, 'pedido', FILTER_VALIDATE_INT);
 if (!$pedidoId || $pedidoId < 1) { http_response_code(400); exit('Compra inválida.'); }
