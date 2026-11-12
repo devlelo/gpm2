@@ -24,7 +24,7 @@ if (is_array($carrinho)) {
 ?>
 <!DOCTYPE html>
 <html lang="pt">
-<head><style>.gpm-market-logo{display:block;width:52px;height:52px;object-fit:contain;flex:none}.gpm-market-wordmark{font-size:clamp(21px,2vw,27px);font-weight:900;letter-spacing:-1px;color:#0A2945;white-space:nowrap;line-height:1}.gpm-market-logo-link{display:flex;align-items:center;gap:10px}@media(max-width:640px){.gpm-market-logo{width:44px;height:44px}.gpm-market-wordmark{font-size:21px}}</style>
+<head><style>.gpm-market-logo{display:block;width:52px;height:52px;object-fit:contain;flex:none}.gpm-market-wordmark{font-size:clamp(21px,2vw,27px);font-weight:900;letter-spacing:-1px;color:#0A2945;white-space:nowrap;line-height:1}@media(max-width:640px){.gpm-market-logo{width:44px;height:44px}.gpm-market-wordmark{font-size:21px}}</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0A2945"><link rel="icon" type="image/png" href="<?= $baseMarketplace ?>/../assets/img/GPMlogo.png">
