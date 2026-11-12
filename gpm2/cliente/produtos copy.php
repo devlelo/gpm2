@@ -271,12 +271,7 @@ $carrinhoTotalItens = array_sum(
 <header class="bg-white border-b border-gray-100 sticky top-0 z-50">
     <div class="max-w-site mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
         <!-- Logo -->
-        <a href="index.php" class="flex items-center gap-2 cursor-pointer">
-            <div class="w-8 h-8 bg-[#0A2945] text-white flex items-center justify-center font-bold text-lg">
-                <i class="fa-solid fa-layer-group"></i>
-            </div>
-            <span class="text-2xl font-black text-[#0A2945] tracking-tighter">GPM.</span>
-        </a>
+        <a href="index.php" class="flex items-center gap-3 cursor-pointer"><img src="../assets/img/GPMlogo.png" alt="" style="width:52px;height:52px;object-fit:contain"><span class="text-2xl font-black text-[#0A2945] tracking-tighter">gpm-conecta</span></a>
 
         <!-- Nav -->
         <nav class="hidden md:flex items-center space-x-8 text-xs font-bold uppercase tracking-wider text-[#0A2945]">
