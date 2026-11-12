@@ -72,8 +72,8 @@ textarea {
 input:focus,
 select:focus,
 textarea:focus {
-    outline: 2px solid #fea619;
-    border-color: #fea619;
+    outline: 2px solid #2F776F;
+    border-color: #2F776F;
 }
 
 button {
@@ -81,7 +81,7 @@ button {
     padding: 14px;
     border: 0;
     border-radius: 8px;
-    background: #fea619;
+    background: #2F776F;
     color: #202020;
     font-size: 16px;
     font-weight: 700;
@@ -127,3 +127,5 @@ a {
         padding: 22px;
     }
 }
+.gpm-market-logo{height:76px;width:auto;max-width:100px;object-fit:contain}
+@media(max-width:640px){.gpm-market-logo{height:64px;max-width:84px}}

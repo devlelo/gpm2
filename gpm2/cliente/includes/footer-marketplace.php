@@ -1,12 +1,12 @@
 <!-- Footer Marketplace -->
-<footer class="bg-[#0d233f] text-white pt-16 pb-8 border-t-4 border-[#f96b21] mt-auto">
+<footer class="bg-[#0d233f] text-white pt-16 pb-8 border-t-4 border-[#2F776F] mt-auto">
     <div class="max-w-site mx-auto px-4 sm:px-6">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
             
             <!-- Logo e Descrição -->
             <div class="md:col-span-2">
                 <a href="<?= $baseMarketplace ?>/index.php" class="flex items-center gap-2 mb-4">
-                    <div class="w-8 h-8 bg-[#f96b21] text-white flex items-center justify-center font-bold text-lg">
+                    <div class="w-8 h-8 bg-[#2F776F] text-white flex items-center justify-center font-bold text-lg">
                         <i class="fa-solid fa-layer-group"></i>
                     </div>
                     <span class="text-2xl font-black tracking-tighter">GPM.</span>
@@ -24,7 +24,7 @@
 
             <!-- Links Úteis -->
             <div>
-                <h3 class="text-xs font-bold uppercase tracking-widest text-[#f96b21] mb-6">Links Úteis</h3>
+                <h3 class="text-xs font-bold uppercase tracking-widest text-[#2F776F] mb-6">Links Úteis</h3>
                 <ul class="space-y-3 text-sm text-gray-300">
                     <li><a href="<?= $baseMarketplace ?>/index.php" class="hover:text-white transition">Início</a></li>
                     <li><a href="<?= $baseMarketplace ?>/index.php#produtos" class="hover:text-white transition">Produtos</a></li>
@@ -35,11 +35,11 @@
 
             <!-- Contactos -->
             <div>
-                <h3 class="text-xs font-bold uppercase tracking-widest text-[#f96b21] mb-6">Contactos</h3>
+                <h3 class="text-xs font-bold uppercase tracking-widest text-[#2F776F] mb-6">Contactos</h3>
                 <p class="text-sm text-gray-400 mb-4 leading-relaxed">
                     Entre em contacto connosco para obter informações sobre produtos, preços e entregas.
                 </p>
-                <a href="<?= $baseMarketplace ?>/index.php#contactos" class="inline-block bg-[#f96b21] hover:bg-[#e05812] text-[#0d233f] font-bold text-xs uppercase tracking-wider px-6 py-3 transition shadow-md">
+                <a href="<?= $baseMarketplace ?>/index.php#contactos" class="inline-block bg-[#2F776F] hover:bg-[#0A2945] text-[#0d233f] font-bold text-xs uppercase tracking-wider px-6 py-3 transition shadow-md">
                     Fale Connosco
                 </a>
             </div>

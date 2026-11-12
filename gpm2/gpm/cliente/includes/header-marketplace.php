@@ -15,7 +15,7 @@ $tituloPagina = $tituloPagina ?? 'Marketplace';
 <div class="topbar"><div class="container topbar-inner"><span>GPM — Materiais de Construção</span><span>Angola · Preços em Kz</span></div></div>
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="index.php"><span class="brand-mark">G</span><span>GPM<span class="brand-dot">.</span></span></a>
+    <a class="brand" href="index.php"><img class="brand-logo" src="../assets/img/gpm-conecta.png" alt="GPM Conecta"></a>
     <button class="menu-toggle" type="button" aria-label="Abrir menu" onclick="document.querySelector('.main-nav').classList.toggle('open')"><i class="fa-solid fa-bars"></i></button>
     <nav class="main-nav">
       <a href="index.php">Marketplace</a>
