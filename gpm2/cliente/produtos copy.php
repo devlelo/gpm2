@@ -176,8 +176,8 @@ $carrinhoTotalItens = array_sum(
                 extend: {
                     colors: {
                         brand: {
-                            navy: '#0d233f',
-                            navyLight: '#163154',
+                            navy: '#0A2945',
+                            navyLight: '#123653',
                             teal: '#0A2945',
                             navyHover: '#123653',
                             offWhite: '#f8f9fa'
@@ -253,7 +253,7 @@ $carrinhoTotalItens = array_sum(
 <body class="min-h-screen flex flex-col">
 
 <!-- Top Bar -->
-<div class="bg-[#0d233f] text-white text-[10px] sm:text-xs py-2 border-b border-gray-700">
+<div class="bg-[#0A2945] text-white text-[10px] sm:text-xs py-2 border-b border-gray-700">
     <div class="max-w-site mx-auto px-4 sm:px-6 flex justify-between items-center">
         <div class="flex items-center gap-4">
             <span>GPM Conecta — Catálogo</span>
@@ -275,11 +275,11 @@ $carrinhoTotalItens = array_sum(
             <div class="w-8 h-8 bg-[#0A2945] text-white flex items-center justify-center font-bold text-lg">
                 <i class="fa-solid fa-layer-group"></i>
             </div>
-            <span class="text-2xl font-black text-[#0d233f] tracking-tighter">GPM.</span>
+            <span class="text-2xl font-black text-[#0A2945] tracking-tighter">GPM.</span>
         </a>
 
         <!-- Nav -->
-        <nav class="hidden md:flex items-center space-x-8 text-xs font-bold uppercase tracking-wider text-[#0d233f]">
+        <nav class="hidden md:flex items-center space-x-8 text-xs font-bold uppercase tracking-wider text-[#0A2945]">
             <a href="produtos.php" class="text-[#0A2945]">Produtos</a>
             <a href="#" class="hover:text-[#0A2945] transition">Serviços</a>
             <a href="#" class="hover:text-[#0A2945] transition">Garantia</a>
@@ -289,15 +289,15 @@ $carrinhoTotalItens = array_sum(
         <!-- Actions -->
         <div class="flex items-center space-x-5">
             <?php if (cliente_atual()): ?>
-                <div class="hidden lg:flex items-center gap-2 text-xs font-bold text-[#0d233f]">
+                <div class="hidden lg:flex items-center gap-2 text-xs font-bold text-[#0A2945]">
                     <i class="fa-solid fa-user-circle text-[#0A2945] text-lg"></i>
                     <span>Olá, <?= escapar(cliente_atual()['name']) ?></span>
                 </div>
-                <a href="pedidos.php" class="hidden md:inline-block text-xs font-bold uppercase tracking-wider text-[#0d233f] hover:text-[#0A2945] transition">
+                <a href="pedidos.php" class="hidden md:inline-block text-xs font-bold uppercase tracking-wider text-[#0A2945] hover:text-[#0A2945] transition">
                     Pedidos
                 </a>
             <?php else: ?>
-                <a href="login.php" class="hidden md:inline-block text-xs font-bold uppercase tracking-wider text-[#0d233f] hover:text-[#0A2945] transition">
+                <a href="login.php" class="hidden md:inline-block text-xs font-bold uppercase tracking-wider text-[#0A2945] hover:text-[#0A2945] transition">
                     Entrar
                 </a>
                 <a href="cadastro.php" class="hidden md:inline-block text-xs font-bold uppercase tracking-wider text-[#0A2945] border-b-2 border-[#0A2945] pb-0.5">
@@ -305,14 +305,14 @@ $carrinhoTotalItens = array_sum(
                 </a>
             <?php endif; ?>
 
-            <a href="carrinho.php" class="flex items-center gap-2 text-[#0d233f] hover:text-[#0A2945] transition group">
+            <a href="carrinho.php" class="flex items-center gap-2 text-[#0A2945] hover:text-[#0A2945] transition group">
                 <i class="fa-solid fa-cart-shopping text-lg"></i>
                 <span class="bg-[#0A2945] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
                     <?= (int) $carrinhoTotalItens ?>
                 </span>
             </a>
             
-            <button class="md:hidden text-[#0d233f] text-xl">
+            <button class="md:hidden text-[#0A2945] text-xl">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
@@ -320,7 +320,7 @@ $carrinhoTotalItens = array_sum(
 </header>
 
 <!-- Hero Section -->
-<section class="relative bg-[#0d233f] text-white overflow-hidden py-16 md:py-20">
+<section class="relative bg-[#0A2945] text-white overflow-hidden py-16 md:py-20">
     <div class="max-w-site mx-auto px-4 sm:px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
         <div class="md:w-2/3 space-y-5">
             <span class="inline-block bg-white/10 px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-[#0A2945]">
@@ -346,7 +346,7 @@ $carrinhoTotalItens = array_sum(
                     name="q"
                     placeholder="O que procura?"
                     value="<?= escapar($pesquisa) ?>"
-                    class="flex-1 px-4 py-3 text-[#0d233f] text-sm focus:outline-none border-none"
+                    class="flex-1 px-4 py-3 text-[#0A2945] text-sm focus:outline-none border-none"
                 >
                 <button type="submit" class="bg-[#0A2945] hover:bg-[#123653] text-white px-6 font-bold text-sm transition">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -384,7 +384,7 @@ $carrinhoTotalItens = array_sum(
 
     <!-- Título + Filtro -->
     <div class="flex justify-between items-end mb-10 border-b border-gray-200 pb-2 reveal">
-        <h2 class="text-xl font-black text-[#0d233f] uppercase tracking-wide">
+        <h2 class="text-xl font-black text-[#0A2945] uppercase tracking-wide">
             <?= $pesquisa !== '' ? 'Produtos Encontrados' : 'Top Vendas' ?>
         </h2>
         <span class="text-xs font-bold text-gray-400">
@@ -398,9 +398,9 @@ $carrinhoTotalItens = array_sum(
         <?php if (!$produtos): ?>
             <div class="col-span-full text-center py-16 bg-gray-50 border border-gray-100 reveal">
                 <i class="fa-solid fa-box-open text-gray-300 text-5xl mb-4"></i>
-                <h3 class="text-lg font-bold text-[#0d233f] mb-2">Nenhum produto encontrado.</h3>
+                <h3 class="text-lg font-bold text-[#0A2945] mb-2">Nenhum produto encontrado.</h3>
                 <p class="text-gray-500 text-sm mb-6">Tente ajustar os filtros ou pesquisar por outro termo.</p>
-                <a href="produtos.php" class="inline-block bg-[#0d233f] text-white px-6 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-[#163154] transition">
+                <a href="produtos.php" class="inline-block bg-[#0A2945] text-white px-6 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-[#123653] transition">
                     Ver todos os produtos
                 </a>
             </div>
@@ -453,7 +453,7 @@ $carrinhoTotalItens = array_sum(
                         <div class="text-[10px] font-bold text-[#0A2945] uppercase tracking-widest mb-2">
                             <?= escapar($produto['unit'] ?? 'GPM') ?>
                         </div>
-                        <h3 class="text-sm font-bold text-[#0d233f] mb-2 line-clamp-1 group-hover:text-[#0A2945] transition">
+                        <h3 class="text-sm font-bold text-[#0A2945] mb-2 line-clamp-1 group-hover:text-[#0A2945] transition">
                             <?= escapar($produto['name']) ?>
                         </h3>
                         <p class="descricao text-xs text-gray-500 mb-4 line-clamp-2 leading-relaxed min-h-[40px]">
@@ -468,7 +468,7 @@ $carrinhoTotalItens = array_sum(
                         </p>
                         
                         <div class="flex items-center justify-between mt-auto pt-2 border-t border-gray-100">
-                            <span class="preco text-lg font-black text-[#0d233f]">
+                            <span class="preco text-lg font-black text-[#0A2945]">
                                 <?= escapar(money($produto['price'])) ?>
                             </span>
                             <?php if ($stock > 0): ?>
@@ -505,10 +505,10 @@ $carrinhoTotalItens = array_sum(
                                 step="1"
                                 required
                                 aria-label="Quantidade de <?= escapar($produto['name']) ?>"
-                                class="w-16 px-2 py-2.5 text-xs font-bold text-center text-[#0d233f] border border-gray-200 focus:border-[#0A2945] focus:ring-1 focus:ring-[#0A2945] rounded-sm bg-white"
+                                class="w-16 px-2 py-2.5 text-xs font-bold text-center text-[#0A2945] border border-gray-200 focus:border-[#0A2945] focus:ring-1 focus:ring-[#0A2945] rounded-sm bg-white"
                             >
 
-                            <button class="flex-1 bg-[#0d233f] hover:bg-[#163154] text-white text-xs font-bold py-2.5 uppercase tracking-wider transition flex items-center justify-center gap-2 rounded-sm" type="submit">
+                            <button class="flex-1 bg-[#0A2945] hover:bg-[#123653] text-white text-xs font-bold py-2.5 uppercase tracking-wider transition flex items-center justify-center gap-2 rounded-sm" type="submit">
                                 <i class="fa-solid fa-cart-plus"></i>
                                 Adicionar
                             </button>
@@ -528,7 +528,7 @@ $carrinhoTotalItens = array_sum(
 </main>
 
 <!-- Footer -->
-<footer class="bg-[#0d233f] text-white pt-16 pb-8 border-t-4 border-[#0A2945] mt-auto">
+<footer class="bg-[#0A2945] text-white pt-16 pb-8 border-t-4 border-[#0A2945] mt-auto">
     <div class="max-w-site mx-auto px-4 sm:px-6">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
             
@@ -567,7 +567,7 @@ $carrinhoTotalItens = array_sum(
             <div>
                 <h3 class="text-xs font-bold uppercase tracking-widest text-[#0A2945] mb-6">Newsletter</h3>
                 <p class="text-sm text-gray-400 mb-4">Receba atualizações sobre novos produtos e ofertas.</p>
-                <form class="flex bg-[#163154] rounded overflow-hidden" onsubmit="event.preventDefault();">
+                <form class="flex bg-[#123653] rounded overflow-hidden" onsubmit="event.preventDefault();">
                     <input type="email" placeholder="O seu e-mail" class="flex-1 bg-transparent px-4 py-3 text-white text-sm focus:outline-none placeholder-gray-500" required>
                     <button type="submit" class="bg-[#0A2945] hover:bg-[#123653] text-white px-4 transition">
                         <i class="fa-solid fa-arrow-right"></i>
