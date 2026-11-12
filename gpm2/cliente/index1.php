@@ -217,8 +217,8 @@ if ($pesquisa !== '') {
                         brand: {
                             navy: '#0d233f',
                             navyLight: '#163154',
-                            orange: '#f96b21',
-                            orangeHover: '#e05812',
+                            teal: '#0A2945',
+                            navyHover: '#123653',
                             offWhite: '#f8f9fa'
                         }
                     },
@@ -284,7 +284,7 @@ if ($pesquisa !== '') {
         .product-card:hover {
             box-shadow: 0 10px 25px rgba(13,35,63,0.08);
             transform: translateY(-5px);
-            border-color: #f96b21;
+            border-color: #0A2945;
         }
         .product-card:hover .product-img {
             transform: scale(1.08);
@@ -305,8 +305,8 @@ if ($pesquisa !== '') {
             <span>Angola</span>
         </div>
         <div class="flex items-center gap-4">
-            <span class="hover:text-[#f96b21] cursor-pointer transition">Português</span>
-            <span class="hover:text-[#f96b21] cursor-pointer transition">AOA (Kz)</span>
+            <span class="hover:text-[#0A2945] cursor-pointer transition">Português</span>
+            <span class="hover:text-[#0A2945] cursor-pointer transition">AOA (Kz)</span>
         </div>
     </div>
 </div>
@@ -316,7 +316,7 @@ if ($pesquisa !== '') {
     <div class="max-w-site mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
         <!-- Logo -->
         <a href="index.php" class="flex items-center gap-2 cursor-pointer">
-            <div class="w-8 h-8 bg-[#f96b21] text-white flex items-center justify-center font-bold text-lg">
+            <div class="w-8 h-8 bg-[#0A2945] text-white flex items-center justify-center font-bold text-lg">
                 <i class="fa-solid fa-layer-group"></i>
             </div>
             <span class="text-2xl font-black text-[#0d233f] tracking-tighter">GPM.</span>
@@ -324,24 +324,24 @@ if ($pesquisa !== '') {
 
         <!-- Nav -->
         <nav class="hidden md:flex items-center space-x-8 text-xs font-bold uppercase tracking-wider text-[#0d233f]">
-            <a href="#" class="text-[#f96b21]">Produtos</a>
-            <a href="#" class="hover:text-[#f96b21] transition">Serviços</a>
-            <a href="#" class="hover:text-[#f96b21] transition">Garantia</a>
-            <a href="#" class="hover:text-[#f96b21] transition">Sobre Nós</a>
+            <a href="#" class="text-[#0A2945]">Produtos</a>
+            <a href="#" class="hover:text-[#0A2945] transition">Serviços</a>
+            <a href="#" class="hover:text-[#0A2945] transition">Garantia</a>
+            <a href="#" class="hover:text-[#0A2945] transition">Sobre Nós</a>
         </nav>
 
         <!-- Actions -->
         <div class="flex items-center space-x-5">
             <form action="index.php" method="GET" class="relative hidden lg:block">
-                <input type="search" name="q" placeholder="Pesquisar..." value="<?= e($pesquisa) ?>" class="w-48 xl:w-64 pl-4 pr-10 py-2 text-sm bg-gray-50 border border-gray-200 rounded-full focus:outline-none focus:border-[#f96b21] focus:ring-1 focus:ring-[#f96b21] transition">
-                <button type="submit" class="absolute right-3 top-2.5 text-gray-400 hover:text-[#f96b21]">
+                <input type="search" name="q" placeholder="Pesquisar..." value="<?= e($pesquisa) ?>" class="w-48 xl:w-64 pl-4 pr-10 py-2 text-sm bg-gray-50 border border-gray-200 rounded-full focus:outline-none focus:border-[#0A2945] focus:ring-1 focus:ring-[#0A2945] transition">
+                <button type="submit" class="absolute right-3 top-2.5 text-gray-400 hover:text-[#0A2945]">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
             
-            <a href="carrinho.php" class="flex items-center gap-2 text-[#0d233f] hover:text-[#f96b21] transition group">
+            <a href="carrinho.php" class="flex items-center gap-2 text-[#0d233f] hover:text-[#0A2945] transition group">
                 <i class="fa-solid fa-cart-shopping text-lg"></i>
-                <span class="bg-[#f96b21] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                <span class="bg-[#0A2945] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
                     <?= (int) $totalCarrinho ?>
                 </span>
             </a>
@@ -357,12 +357,12 @@ if ($pesquisa !== '') {
 <section class="relative bg-[#0d233f] text-white overflow-hidden py-12 md:py-16">
     <div class="max-w-site mx-auto px-4 sm:px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
         <div class="md:w-2/3 space-y-4">
-            <span class="inline-block bg-white/10 px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-[#f96b21]">
+            <span class="inline-block bg-white/10 px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-[#0A2945]">
                 Catálogo Completo
             </span>
             <h1 class="text-3xl md:text-5xl font-black leading-[1.1] uppercase tracking-tight">
                 <?php if ($pesquisa !== ''): ?>
-                    Resultados para: <span class="text-[#f96b21]">"<?= e($pesquisa) ?>"</span>
+                    Resultados para: <span class="text-[#0A2945]">"<?= e($pesquisa) ?>"</span>
                 <?php else: ?>
                     Explore as Nossas <br>Soluções
                 <?php endif; ?>
@@ -376,7 +376,7 @@ if ($pesquisa !== '') {
         <div class="md:w-1/3 w-full">
              <form action="index.php" method="GET" class="flex bg-white rounded shadow-lg overflow-hidden">
                 <input type="search" name="q" placeholder="O que procura?" value="<?= e($pesquisa) ?>" class="flex-1 px-4 py-3 text-[#0d233f] text-sm focus:outline-none">
-                <button type="submit" class="bg-[#f96b21] hover:bg-[#e05812] text-white px-6 font-bold text-sm transition">
+                <button type="submit" class="bg-[#0A2945] hover:bg-[#123653] text-white px-6 font-bold text-sm transition">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
@@ -392,11 +392,11 @@ if ($pesquisa !== '') {
         <aside class="w-full lg:w-64 flex-shrink-0 space-y-8 lg:sticky lg:top-28 h-fit reveal">
             <!-- Categories -->
             <div>
-                <h2 class="text-lg font-black text-[#0d233f] mb-4 border-b-2 border-[#f96b21] inline-block pb-1 uppercase tracking-wide">Categorias</h2>
+                <h2 class="text-lg font-black text-[#0d233f] mb-4 border-b-2 border-[#0A2945] inline-block pb-1 uppercase tracking-wide">Categorias</h2>
                 <ul class="space-y-1 text-sm max-h-[60vh] overflow-y-auto sidebar-scroll pr-2">
                     <li>
                         <a href="index.php<?= $pesquisa !== '' ? '?q=' . urlencode($pesquisa) : '' ?>" 
-                           class="block py-2 px-3 rounded transition <?= $categoriaId === null ? 'bg-[#f96b21]/10 text-[#f96b21] font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#0d233f]' ?>">
+                           class="block py-2 px-3 rounded transition <?= $categoriaId === null ? 'bg-[#0A2945]/10 text-[#0A2945] font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#0d233f]' ?>">
                             Todas as Categorias
                         </a>
                     </li>
@@ -410,7 +410,7 @@ if ($pesquisa !== '') {
                         ?>
                         <li>
                             <a href="<?= e($urlCategoria) ?>" 
-                               class="block py-2 px-3 rounded transition <?= $isActive ? 'bg-[#f96b21]/10 text-[#f96b21] font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#0d233f]' ?>">
+                               class="block py-2 px-3 rounded transition <?= $isActive ? 'bg-[#0A2945]/10 text-[#0A2945] font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#0d233f]' ?>">
                                 <?= e($categoria['name']) ?>
                             </a>
                         </li>
@@ -474,10 +474,10 @@ if ($pesquisa !== '') {
 
                             <!-- Info -->
                             <div class="p-5 text-left">
-                                <div class="text-[10px] font-bold text-[#f96b21] uppercase tracking-widest mb-2">
+                                <div class="text-[10px] font-bold text-[#0A2945] uppercase tracking-widest mb-2">
                                     <?= e($produto['category_name'] ?? 'GPM') ?>
                                 </div>
-                                <h3 class="text-sm font-bold text-[#0d233f] mb-2 line-clamp-1 group-hover:text-[#f96b21] transition">
+                                <h3 class="text-sm font-bold text-[#0d233f] mb-2 line-clamp-1 group-hover:text-[#0A2945] transition">
                                     <?= e($produto['name']) ?>
                                 </h3>
                                 <p class="text-xs text-gray-500 mb-4 line-clamp-2 leading-relaxed">
@@ -526,14 +526,14 @@ if ($pesquisa !== '') {
 </main>
 
 <!-- Footer -->
-<footer class="bg-[#0d233f] text-white pt-16 pb-8 border-t-4 border-[#f96b21]">
+<footer class="bg-[#0d233f] text-white pt-16 pb-8 border-t-4 border-[#0A2945]">
     <div class="max-w-site mx-auto px-4 sm:px-6">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
             
             <!-- Logo & Desc -->
             <div class="md:col-span-2">
                 <a href="index.php" class="flex items-center gap-2 mb-4">
-                    <div class="w-8 h-8 bg-[#f96b21] text-white flex items-center justify-center font-bold text-lg">
+                    <div class="w-8 h-8 bg-[#0A2945] text-white flex items-center justify-center font-bold text-lg">
                         <i class="fa-solid fa-layer-group"></i>
                     </div>
                     <span class="text-2xl font-black tracking-tighter">GPM.</span>
@@ -550,7 +550,7 @@ if ($pesquisa !== '') {
 
             <!-- Links Rápidos -->
             <div>
-                <h3 class="text-xs font-bold uppercase tracking-widest text-[#f96b21] mb-6">Navegação</h3>
+                <h3 class="text-xs font-bold uppercase tracking-widest text-[#0A2945] mb-6">Navegação</h3>
                 <ul class="space-y-3 text-sm text-gray-300">
                     <li><a href="index.php" class="hover:text-white transition">Início</a></li>
                     <li><a href="index.php" class="hover:text-white transition">Produtos</a></li>
@@ -561,11 +561,11 @@ if ($pesquisa !== '') {
 
             <!-- Newsletter -->
             <div>
-                <h3 class="text-xs font-bold uppercase tracking-widest text-[#f96b21] mb-6">Newsletter</h3>
+                <h3 class="text-xs font-bold uppercase tracking-widest text-[#0A2945] mb-6">Newsletter</h3>
                 <p class="text-sm text-gray-400 mb-4">Receba atualizações sobre novos produtos e ofertas.</p>
                 <form class="flex bg-[#163154] rounded overflow-hidden" onsubmit="event.preventDefault();">
                     <input type="email" placeholder="O seu e-mail" class="flex-1 bg-transparent px-4 py-3 text-white text-sm focus:outline-none placeholder-gray-500" required>
-                    <button type="submit" class="bg-[#f96b21] hover:bg-[#e05812] text-white px-4 transition">
+                    <button type="submit" class="bg-[#0A2945] hover:bg-[#123653] text-white px-4 transition">
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </form>
