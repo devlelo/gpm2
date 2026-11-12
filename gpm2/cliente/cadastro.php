@@ -131,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0A2945"><link rel="icon" type="image/png" href="../assets/img/GPMlogo.png">
     <title>Criar conta | GPM</title>
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -203,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         <div class="text-center mb-10">
             <div class="w-12 h-12 bg-[#2F776F] text-white flex items-center justify-center font-bold text-2xl mx-auto mb-4">
-                <i class="fa-solid fa-layer-group"></i>
+                <img class="gpm-auth-logo" src="../assets/img/GPMlogo.png" alt="">
             </div>
             <h1 class="text-3xl font-black text-[#0d233f] uppercase tracking-tight mb-2">Criar Conta</h1>
             <p class="text-gray-500 text-sm">Registe-se para finalizar compras e acompanhar os seus pedidos.</p>
