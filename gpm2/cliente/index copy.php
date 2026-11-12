@@ -213,7 +213,7 @@ $cliente = cliente_atual();
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/png" href="../favicon.png">
 
     <meta name="description"
           content="Compre materiais de construção na loja online GPM. Consulte produtos e preços.">
@@ -222,7 +222,7 @@ $cliente = cliente_atual();
 
     <style>
         :root {
-            --laranja: #FEA619;
+            --gpm-navy: #0A2945;
             --escuro: #17212b;
             --texto: #596575;
             --fundo: #f6f7f9;
@@ -291,7 +291,7 @@ $cliente = cliente_atual();
         }
 
         .logo span {
-            color: var(--laranja);
+            color: var(--gpm-navy);
         }
 
         .links {
@@ -312,7 +312,7 @@ $cliente = cliente_atual();
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: var(--laranja);
+            background: var(--gpm-navy);
             color: #171717;
             font-weight: 700;
             padding: 11px 16px;
@@ -636,7 +636,7 @@ $cliente = cliente_atual();
 
 <header>
     <div class="container nav">
-        <a class="logo" href="../index.php">GPM<span>.</span></a>
+        <a class="logo gpm-legacy-brand" href="../index.php"><img src="../assets/img/GPMlogo.png" alt=""><strong>gpm-conecta</strong></a>
 
         <nav class="links" aria-label="Menu do marketplace">
             <a href="../index.php">Página inicial</a>
@@ -885,3 +885,5 @@ $cliente = cliente_atual();
 
 </body>
 </html>
+
+<style>.gpm-legacy-brand{display:flex;align-items:center;gap:10px}.gpm-legacy-brand img{width:52px;height:52px;object-fit:contain}.gpm-legacy-brand strong{font-size:24px;font-weight:900;letter-spacing:-.8px;color:#0A2945}</style>
