@@ -86,7 +86,7 @@ if (
     && (!$carrinho || !is_array($carrinho))
     && !empty($_SESSION['gpm_ultimo_pedido_id'])
 ) {
-    redirect('pedido.php?id=' . (int) $_SESSION['gpm_ultimo_pedido_id']);
+    redirect('painel-cliente/pedido.php?id=' . (int) $_SESSION['gpm_ultimo_pedido_id']);
     exit;
 }
 
@@ -436,7 +436,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             flash('success', 'Pedido criado com sucesso.');
 
-            redirect('pedido.php?id=' . $pedidoId);
+            redirect('painel-cliente/pedido.php?id=' . $pedidoId);
             exit;
 
         } catch (Throwable $e) {
