@@ -5,12 +5,7 @@
             
             <!-- Logo e Descrição -->
             <div class="md:col-span-2">
-                <a href="<?= $baseMarketplace ?>/index.php" class="flex items-center gap-2 mb-4">
-                    <div class="w-8 h-8 bg-[#2F776F] text-white flex items-center justify-center font-bold text-lg">
-                        <i class="fa-solid fa-layer-group"></i>
-                    </div>
-                    <span class="text-2xl font-black tracking-tighter">GPM.</span>
-                </a>
+                <a href="<?= $baseMarketplace ?>/index.php" class="flex items-center gap-2 mb-4"><img class="gpm-market-logo" src="<?= $baseMarketplace ?>/../assets/img/GPMlogo.png" alt=""><span class="gpm-market-wordmark footer-wordmark">gpm-conecta</span></a>
                 <p class="text-gray-400 text-sm max-w-sm leading-relaxed mb-6">
                     Materiais de construção para ajudar a transformar os seus projetos em realidade.
                 </p>
