@@ -221,7 +221,7 @@ header{background:#fff;border-bottom:1px solid var(--borda)}
 .sidebar h2{font-size:16px;margin:0 0 14px}
 .category-list{display:grid;gap:5px}
 .category-list a{padding:10px;border-radius:6px;font-size:13px;color:var(--texto)}
-.category-list a:hover,.category-list a.active{background:#fff2d9;color:#805000;font-weight:bold}
+.category-list a:hover,.category-list a.active{background:#EAF0F5;color:#0A2945;font-weight:bold}
 .heading{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:0 0 20px}
 .heading h2{margin:0 0 6px;font-size:23px}
 .heading p{margin:0;color:#6b7280;font-size:13px}
