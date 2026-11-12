@@ -41,12 +41,11 @@ if ($conversa) {
 function chat_e($v): string { return htmlspecialchars((string)$v, ENT_QUOTES, 'UTF-8'); }
 ?>
 <?php $tituloPagina = 'Chat da compra'; require __DIR__ . '/../includes/header.php'; ?>
-<h1>Chat da compra <?= chat_e($pedido['order_number']) ?></h1><div class="muted">Esta conversa é privada e está associada apenas a esta encomenda.</div>
-<div class="chatbox"><div class="messages">
+<section class="gpm-card customer-chat-page"><div class="customer-chat-heading"><div><h2>Compra <?= chat_e($pedido['order_number']) ?></h2><p>Conversa privada associada a esta encomenda.</p></div><a class="btn alt" href="pedido.php?id=<?= (int)$pedidoId ?>">Voltar aos detalhes</a></div><div class="chatbox"><div class="messages">
 <?php if (!$conversa): ?><div class="empty">A conversa desta compra ainda não foi criada.</div>
 <?php elseif (!$mensagens): ?><div class="empty">Ainda não existem mensagens. Envia a primeira mensagem à equipa GPM.</div>
 <?php else: foreach($mensagens as $m): ?><div class="msg <?= $m['sender_type']==='customer'?'mine':'' ?>"><?= chat_e($m['body']) ?><span class="time"><?= $m['sender_type']==='customer'?'Tu':'Equipa GPM' ?> · <?= chat_e(date('d/m/Y H:i',strtotime((string)$m['created_at']))) ?></span></div><?php endforeach; endif; ?>
 </div>
 <?php if ($conversa && $conversa['status']==='open'): ?><form class="send" method="post"><?= csrf_field() ?><?php if($erro): ?><div class="error"><?= chat_e($erro) ?></div><?php endif; ?><label for="body">A tua mensagem</label><textarea id="body" name="body" maxlength="5000" required placeholder="Escreve aqui a tua mensagem..."></textarea><button class="btn" type="submit">Enviar mensagem</button></form>
 <?php elseif($conversa): ?><div class="send">Esta conversa está encerrada.</div><?php endif; ?>
-</div><p><a href="pedido.php?id=<?= (int)$pedidoId ?>">← Voltar aos detalhes da compra</a></p><?php require __DIR__ . '/../includes/footer.php'; ?>
+</div></section><?php require __DIR__ . '/../includes/footer.php'; ?>
