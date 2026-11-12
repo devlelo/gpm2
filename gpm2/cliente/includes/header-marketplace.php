@@ -24,7 +24,7 @@ if (is_array($carrinho)) {
 ?>
 <!DOCTYPE html>
 <html lang="pt">
-<head><style>.gpm-market-logo{display:block;height:76px;width:auto;max-width:100px;object-fit:contain}.gpm-market-logo-link{display:flex;align-items:center}@media(max-width:640px){.gpm-market-logo{height:64px;max-width:84px}}</style>
+<head><style>.gpm-market-logo{display:block;width:52px;height:52px;object-fit:contain;flex:none}.gpm-market-wordmark{font-size:clamp(21px,2vw,27px);font-weight:900;letter-spacing:-1px;color:#0A2945;white-space:nowrap;line-height:1}.gpm-market-logo-link{display:flex;align-items:center;gap:10px}@media(max-width:640px){.gpm-market-logo{width:44px;height:44px}.gpm-market-wordmark{font-size:21px}}</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0A2945"><link rel="icon" type="image/png" href="<?= $baseMarketplace ?>/../assets/img/GPMlogo.png">
@@ -46,8 +46,8 @@ if (is_array($carrinho)) {
                         brand: {
                             navy: '#0d233f',
                             navyLight: '#163154',
-                            orange: '#2F776F',
-                            orangeHover: '#0A2945',
+                            teal: '#2F776F',
+                            navyHover: '#123653',
                             offWhite: '#f8f9fa'
                         }
                     },
@@ -90,15 +90,7 @@ if (is_array($carrinho)) {
 <header class="bg-white sticky top-0 z-50 border-b border-gray-100">
     <div class="max-w-site mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4">
         <!-- Logo -->
-        <a href="<?= $baseMarketplace ?>/index.php" class="flex items-center gap-2 cursor-pointer flex-shrink-0">
-            <div class="w-8 h-8 bg-[#2F776F] text-white flex items-center justify-center font-bold text-lg">
-                <i class="fa-solid fa-layer-group"></i>
-            </div>
-            <div>
-                <span class="text-2xl font-black text-[#0d233f] tracking-tighter block leading-none">GPM.</span>
-                <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest block mt-1">Equipamentos &amp; Suprimentos</span>
-            </div>
-        </a>
+        <a href="<?= $baseMarketplace ?>/index.php" class="flex items-center gap-2 cursor-pointer flex-shrink-0"><img class="gpm-market-logo" src="<?= $baseMarketplace ?>/../assets/img/GPMlogo.png" alt=""><span class="gpm-market-wordmark">gpm-conecta</span></a>
 
         <!-- Barra de Pesquisa (Desktop) -->
         <form action="<?= $baseMarketplace ?>/index.php" method="GET" class="hidden md:flex flex-1 max-w-md bg-gray-50 border border-gray-200 focus-within:border-[#2F776F] transition">
