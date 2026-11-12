@@ -189,11 +189,11 @@ $totalCarrinho = array_sum(
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/png" href="../favicon.png">
 <meta name="description" content="Marketplace GPM — materiais de construção.">
 <title>Marketplace | GPM — Materiais de Construção</title>
 <style>
-:root{--laranja:#FEA619;--azul:#0A2945;--texto:#596575;--fundo:#f5f7fa;--borda:#e3e8ef;--branco:#fff}
+:root{--gpm-navy:#0A2945;--azul:#0A2945;--texto:#596575;--fundo:#f5f7fa;--borda:#e3e8ef;--branco:#fff}
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--azul);background:var(--fundo)}
 a{color:inherit;text-decoration:none}
@@ -203,7 +203,7 @@ a{color:inherit;text-decoration:none}
 header{background:#fff;border-bottom:1px solid var(--borda)}
 .nav{min-height:75px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .logo{font-size:28px;font-weight:900;letter-spacing:-1px}
-.logo span{color:var(--laranja)}
+.logo span{color:var(--gpm-navy)}
 .links{display:flex;gap:18px;align-items:center;flex-wrap:wrap;font-size:14px;font-weight:bold}
 .links a:hover{color:#9a6200}
 .hero{background:linear-gradient(120deg,#0A2945,#193b60);color:white;padding:42px 0}
@@ -211,7 +211,7 @@ header{background:#fff;border-bottom:1px solid var(--borda)}
 .hero p{color:#dce5f0;line-height:1.6;margin:0 0 22px}
 .search{display:flex;gap:10px;max-width:720px}
 .search input{flex:1;min-width:0;padding:14px;border:0;border-radius:7px;font-size:15px}
-.button{border:0;border-radius:7px;background:var(--laranja);color:#17212b;font-weight:800;padding:12px 14px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;text-align:center;font-size:13px}
+.button{border:0;border-radius:7px;background:var(--gpm-navy);color:#17212b;font-weight:800;padding:12px 14px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;text-align:center;font-size:13px}
 .button:hover{filter:brightness(.96)}
 .button:disabled{opacity:.5;cursor:not-allowed}
 .button.secondary{background:#fff;border:1px solid var(--borda);color:var(--azul)}
@@ -257,7 +257,7 @@ footer p{color:#cbd5e1}
 
 <header>
     <div class="container nav">
-        <a class="logo" href="../index.php">GPM<span>.</span></a>
+        <a class="logo gpm-legacy-brand" href="../index.php"><img src="../assets/img/GPMlogo.png" alt=""><strong>gpm-conecta</strong></a>
         <nav class="links" aria-label="Menu principal">
             <a href="../index.php">Página inicial</a>
             <a href="index.php">Produtos</a>
@@ -449,3 +449,5 @@ footer p{color:#cbd5e1}
 <?php require_once __DIR__ . '/includes/footer-marketplace.php'; ?>
 </body>
 </html>
+
+<style>.gpm-legacy-brand{display:flex;align-items:center;gap:10px}.gpm-legacy-brand img{width:52px;height:52px;object-fit:contain}.gpm-legacy-brand strong{font-size:24px;font-weight:900;letter-spacing:-.8px;color:#0A2945}</style>
