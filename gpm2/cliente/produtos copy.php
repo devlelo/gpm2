@@ -137,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['gpm_cart'][$produtoId] = $novaQuantidade;
 
                     flash('success', 'Produto adicionado ao carrinho.');
-                    redirect('produtos.php' . (
+                    redirect('index.php' . (
                         $pesquisa !== ''
                             ? '?q=' . urlencode($pesquisa)
                             : ''
@@ -276,7 +276,7 @@ $carrinhoTotalItens = array_sum(
 
         <!-- Nav -->
         <nav class="hidden md:flex items-center space-x-8 text-xs font-bold uppercase tracking-wider text-[#0A2945]">
-            <a href="produtos.php" class="text-[#0A2945]">Produtos</a>
+            <a href="index.php" class="text-[#0A2945]">Produtos</a>
             <a href="#" class="hover:text-[#0A2945] transition">Serviços</a>
             <a href="#" class="hover:text-[#0A2945] transition">Garantia</a>
             <a href="#" class="hover:text-[#0A2945] transition">Sobre Nós</a>
@@ -336,7 +336,7 @@ $carrinhoTotalItens = array_sum(
         
         <!-- Barra de pesquisa -->
         <div class="md:w-1/3 w-full">
-             <form class="pesquisa flex bg-white rounded shadow-lg overflow-hidden" method="get" action="produtos.php">
+             <form class="pesquisa flex bg-white rounded shadow-lg overflow-hidden" method="get" action="index.php">
                 <input
                     type="search"
                     name="q"
@@ -396,7 +396,7 @@ $carrinhoTotalItens = array_sum(
                 <i class="fa-solid fa-box-open text-gray-300 text-5xl mb-4"></i>
                 <h3 class="text-lg font-bold text-[#0A2945] mb-2">Nenhum produto encontrado.</h3>
                 <p class="text-gray-500 text-sm mb-6">Tente ajustar os filtros ou pesquisar por outro termo.</p>
-                <a href="produtos.php" class="inline-block bg-[#0A2945] text-white px-6 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-[#123653] transition">
+                <a href="index.php" class="inline-block bg-[#0A2945] text-white px-6 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-[#123653] transition">
                     Ver todos os produtos
                 </a>
             </div>
@@ -483,7 +483,7 @@ $carrinhoTotalItens = array_sum(
                 <!-- Actions -->
                 <div class="px-5 pb-5 pt-0">
                     <?php if ($stock > 0): ?>
-                        <form method="post" action="produtos.php<?= $pesquisa !== '' ? '?q=' . urlencode($pesquisa) : '' ?>" class="flex gap-2">
+                        <form method="post" action="index.php<?= $pesquisa !== '' ? '?q=' . urlencode($pesquisa) : '' ?>" class="flex gap-2">
                             <?= csrf_field() ?>
 
                             <input
@@ -545,7 +545,7 @@ $carrinhoTotalItens = array_sum(
             <div>
                 <h3 class="text-xs font-bold uppercase tracking-widest text-[#0A2945] mb-6">Navegação</h3>
                 <ul class="space-y-3 text-sm text-gray-300">
-                    <li><a href="produtos.php" class="hover:text-white transition">Produtos</a></li>
+                    <li><a href="index.php" class="hover:text-white transition">Produtos</a></li>
                     <li><a href="carrinho.php" class="hover:text-white transition">Carrinho</a></li>
                     <?php if (cliente_atual()): ?>
                         <li><a href="pedidos.php" class="hover:text-white transition">Meus Pedidos</a></li>
