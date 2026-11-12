@@ -178,7 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
-<style>.gpm-auth-logo{display:block;width:64px;height:64px;object-fit:contain}.gpm-auth-logo-center{margin:0 auto 18px}</style>
+<style>.gpm-auth-logo{display:block;width:64px;height:64px;object-fit:contain}.gpm-auth-logo-center{margin:0 auto 18px}.gpm-login-brand-center{justify-content:center;margin:0 auto 24px}.gpm-login-brand-center span{color:#0A2945}</style>
 </head>
 <body class="relative flex items-center justify-center p-4 py-12">
 
