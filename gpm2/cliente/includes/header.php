@@ -9,11 +9,11 @@ $paginaAtual = basename($_SERVER['PHP_SELF'] ?? 'index.php');
 $nomeClientePainel = (string)($cliente['name'] ?? 'Cliente');
 $inicialClientePainel = strtoupper(substr($nomeClientePainel, 0, 1));
 ?>
-<!doctype html><html lang="pt-AO"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?= pc_e($tituloPagina) ?> | GPM Conecta</title><link rel="stylesheet" href="../../assets/css/customer-panel.css"></head><body>
+<!doctype html><html lang="pt-AO"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0A2945"><link rel="icon" type="image/png" href="../../assets/img/GPMlogo.png"><link rel="apple-touch-icon" href="../../assets/img/GPMlogo.png"><title><?= pc_e($tituloPagina) ?> | GPM Conecta</title><link rel="stylesheet" href="../../assets/css/customer-panel.css"></head><body>
 <div class="customer-layout">
 <div class="customer-overlay" id="customerOverlay"></div>
 <aside class="customer-sidebar" id="customerSidebar" aria-label="Navegação da área do cliente">
-<a class="customer-brand" href="index.php"><img src="../../assets/img/gpm-conecta.png" alt="GPM Conecta"><span>ÁREA DO CLIENTE</span></a>
+<a class="customer-brand" href="index.php"><img src="../../assets/img/GPMlogo.png" alt=""><span class="brand-wordmark">gpm-conecta<small>ÁREA DO CLIENTE</small></span></a>
 <div class="customer-nav-label">A MINHA CONTA</div>
 <nav class="customer-nav">
 <a class="<?= $paginaAtual === 'index.php' ? 'active' : '' ?>" href="index.php"><span class="customer-nav-icon">⌂</span><span>Painel</span></a>
