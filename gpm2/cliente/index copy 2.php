@@ -263,7 +263,7 @@ footer p{color:#cbd5e1}
             <a href="index.php">Produtos</a>
             <a href="carrinho.php">Carrinho (<span id="contador-carrinho"><?= (int)$totalCarrinho ?></span>)</a>
             <?php if ($cliente): ?>
-                <a href="../cliente/painel-cliente/index.php">Minha conta</a>
+                <a href="painel-cliente/index.php">Minha conta</a>
             <?php else: ?>
                 <a href="login.php">Entrar</a>
                 <a href="cadastro.php">Criar conta</a>
