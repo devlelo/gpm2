@@ -69,7 +69,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
     <!-- Voltar (Agora aponta para o painel do cliente) -->
     <div class="mb-8 reveal">
-        <a href="painel-cliente/index.php" class="inline-flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-[#f96b21] transition">
+        <a href="painel-cliente/index.php" class="inline-flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-[#0A2945] transition">
             <i class="fa-solid fa-arrow-left"></i> Ir para o painel de controle de pedidos
         </a>
     </div>
@@ -77,7 +77,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
     <!-- Cabeçalho do Pedido -->
     <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4 border-b border-gray-200 pb-6 reveal">
         <div>
-            <div class="inline-block bg-[#f96b21]/10 text-[#f96b21] text-[10px] font-bold uppercase tracking-widest px-3 py-1 mb-3">
+            <div class="inline-block bg-[#0A2945]/10 text-[#0A2945] text-[10px] font-bold uppercase tracking-widest px-3 py-1 mb-3">
                 Detalhes do Pedido
             </div>
             <h1 class="text-3xl md:text-5xl font-black text-[#0d233f] uppercase tracking-tight">
@@ -100,34 +100,34 @@ require_once __DIR__ . '/includes/header-marketplace.php';
             <!-- Linha de Estado Visual -->
             <div class="bg-white border border-gray-100 shadow-sm p-6 reveal">
                 <h2 class="text-xs font-bold text-[#0d233f] uppercase tracking-widest mb-6 flex items-center gap-2">
-                    <i class="fa-solid fa-truck-fast text-[#f96b21]"></i> Estado do Pedido
+                    <i class="fa-solid fa-truck-fast text-[#0A2945]"></i> Estado do Pedido
                 </h2>
                 <div class="flex items-center justify-between relative">
                     <div class="absolute top-1/2 left-0 w-full h-0.5 bg-gray-100 -z-10"></div>
                     
                     <div class="flex flex-col items-center gap-2 bg-white px-2">
-                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs <?= in_array($pedido['status'], ['pending','confirmed','preparing','shipped','completed','completed']) ? 'bg-[#f96b21] text-white' : 'bg-gray-200 text-gray-400' ?>">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs <?= in_array($pedido['status'], ['pending','confirmed','preparing','shipped','completed','completed']) ? 'bg-[#0A2945] text-white' : 'bg-gray-200 text-gray-400' ?>">
                             <i class="fa-solid fa-check"></i>
                         </div>
                         <span class="text-[10px] font-bold uppercase tracking-wider <?= in_array($pedido['status'], ['pending','confirmed','preparing','shipped','completed','completed']) ? 'text-[#0d233f]' : 'text-gray-400' ?>">Pendente</span>
                     </div>
 
                     <div class="flex flex-col items-center gap-2 bg-white px-2">
-                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs <?= in_array($pedido['status'], ['preparing','shipped','completed','completed']) ? 'bg-[#f96b21] text-white' : 'bg-gray-200 text-gray-400' ?>">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs <?= in_array($pedido['status'], ['preparing','shipped','completed','completed']) ? 'bg-[#0A2945] text-white' : 'bg-gray-200 text-gray-400' ?>">
                             <i class="fa-solid fa-box"></i>
                         </div>
                         <span class="text-[10px] font-bold uppercase tracking-wider <?= in_array($pedido['status'], ['preparing','shipped','completed','completed']) ? 'text-[#0d233f]' : 'text-gray-400' ?>">Em Preparação</span>
                     </div>
 
                     <div class="flex flex-col items-center gap-2 bg-white px-2">
-                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs <?= in_array($pedido['status'], ['shipped','completed','completed']) ? 'bg-[#f96b21] text-white' : 'bg-gray-200 text-gray-400' ?>">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs <?= in_array($pedido['status'], ['shipped','completed','completed']) ? 'bg-[#0A2945] text-white' : 'bg-gray-200 text-gray-400' ?>">
                             <i class="fa-solid fa-truck"></i>
                         </div>
                         <span class="text-[10px] font-bold uppercase tracking-wider <?= in_array($pedido['status'], ['shipped','completed','completed']) ? 'text-[#0d233f]' : 'text-gray-400' ?>">Enviado</span>
                     </div>
 
                     <div class="flex flex-col items-center gap-2 bg-white px-2">
-                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs <?= in_array($pedido['status'], ['completed','completed']) ? 'bg-[#f96b21] text-white' : 'bg-gray-200 text-gray-400' ?>">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs <?= in_array($pedido['status'], ['completed','completed']) ? 'bg-[#0A2945] text-white' : 'bg-gray-200 text-gray-400' ?>">
                             <i class="fa-solid fa-house-chimney"></i>
                         </div>
                         <span class="text-[10px] font-bold uppercase tracking-wider <?= in_array($pedido['status'], ['completed','completed']) ? 'text-[#0d233f]' : 'text-gray-400' ?>">Entregue</span>
@@ -161,7 +161,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                             </div>
                             <div class="text-left sm:text-right">
                                 <span class="block text-xs text-gray-400 mb-1"><?= escapar(money($item['unit_price'])) ?> / un</span>
-                                <span class="block font-black text-[#f96b21] text-lg"><?= escapar(money($item['subtotal'])) ?></span>
+                                <span class="block font-black text-[#0A2945] text-lg"><?= escapar(money($item['subtotal'])) ?></span>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -198,7 +198,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
             
             <!-- Dados de Entrega -->
             <div class="bg-[#0d233f] text-white shadow-lg p-6">
-                <h2 class="text-xs font-bold text-[#f96b21] uppercase tracking-widest mb-6 flex items-center gap-2">
+                <h2 class="text-xs font-bold text-[#0A2945] uppercase tracking-widest mb-6 flex items-center gap-2">
                     <i class="fa-solid fa-location-dot"></i> Dados de Entrega
                 </h2>
                 
@@ -223,7 +223,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                     </div>
                     <div>
                         <span class="block text-[10px] text-gray-400 uppercase tracking-wider mb-1">Pagamento</span>
-                        <p class="text-[#f96b21] font-bold uppercase tracking-wide">
+                        <p class="text-[#0A2945] font-bold uppercase tracking-wide">
                             <?= escapar($pedido['payment_status'] ?: 'A combinar') ?>
                         </p>
                     </div>
@@ -238,7 +238,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                 </p>
 
                 <?php if ($conversa): ?>
-                    <a href="../cliente/painel-cliente/chat.php?pedido=<?= (int) $pedido['id'] ?>" class="w-full bg-[#f96b21] hover:bg-[#e05812] text-white font-bold text-xs uppercase tracking-wider py-3 px-4 transition flex items-center justify-center gap-2">
+                    <a href="../cliente/painel-cliente/chat.php?pedido=<?= (int) $pedido['id'] ?>" class="w-full bg-[#0A2945] hover:bg-[#123653] text-white font-bold text-xs uppercase tracking-wider py-3 px-4 transition flex items-center justify-center gap-2">
                         <i class="fa-solid fa-comments"></i> Abrir Conversa
                     </a>
                 <?php else: ?>
