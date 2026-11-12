@@ -310,9 +310,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#0d233f] via-[#0d233f]/80 to-transparent"></div>
 
         <div class="relative z-10 px-16 w-full max-w-xl text-white">
-            <div class="w-12 h-12 bg-[#2F776F] flex items-center justify-center font-bold text-2xl mb-8">
-                <i class="fa-solid fa-layer-group"></i>
-            </div>
+            <div class="gpm-login-brand"><img class="gpm-auth-logo" src="../assets/img/GPMlogo.png" alt=""><span>gpm-conecta</span></div>
 
             <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tight leading-[1.1] mb-6">
                 A sua conta.<br>
