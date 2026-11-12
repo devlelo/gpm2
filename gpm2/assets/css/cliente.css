@@ -129,3 +129,5 @@ a {
 }
 .gpm-market-logo{height:76px;width:auto;max-width:100px;object-fit:contain}
 @media(max-width:640px){.gpm-market-logo{height:64px;max-width:84px}}
+
+.gpm-market-logo{width:52px;height:52px;max-width:none;object-fit:contain;flex:none}.gpm-market-wordmark{font-size:clamp(21px,2vw,27px);font-weight:900;letter-spacing:-1px;color:#0A2945;white-space:nowrap;line-height:1}.footer-wordmark{color:#fff}@media(max-width:640px){.gpm-market-logo{width:44px;height:44px}.gpm-market-wordmark{font-size:21px}}.gpm-auth-logo{width:64px;height:64px;object-fit:contain}.gpm-auth-wordmark{font-size:28px;font-weight:900;color:#0A2945}
