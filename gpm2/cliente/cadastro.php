@@ -144,8 +144,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 extend: {
                     colors: {
                         brand: {
-                            navy: '#0d233f',
-                            navyLight: '#163154',
+                            navy: '#0A2945',
+                            navyLight: '#123653',
                             teal: '#2F776F',
                             navyHover: '#0A2945',
                             offWhite: '#f8f9fa'
@@ -188,7 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
              alt="Fundo de Construção" 
              class="w-full h-full object-cover">
         <!-- Overlay escuro para garantir legibilidade -->
-        <div class="absolute inset-0 bg-[#0d233f]/85 backdrop-blur-sm"></div>
+        <div class="absolute inset-0 bg-[#0A2945]/85 backdrop-blur-sm"></div>
     </div>
 
     <!-- Botão Voltar (Canto superior esquerdo) -->
@@ -203,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         <div class="text-center mb-10">
             <div class="gpm-login-brand gpm-login-brand-center"><img class="gpm-auth-logo" src="../assets/img/GPMlogo.png" alt=""><span>gpm-conecta</span></div>
-            <h1 class="text-3xl font-black text-[#0d233f] uppercase tracking-tight mb-2">Criar Conta</h1>
+            <h1 class="text-3xl font-black text-[#0A2945] uppercase tracking-tight mb-2">Criar Conta</h1>
             <p class="text-gray-500 text-sm">Registe-se para finalizar compras e acompanhar os seus pedidos.</p>
         </div>
 
@@ -218,7 +218,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <!-- Tipo de Cliente -->
             <div>
-                <label for="customer_type" class="block text-xs font-bold text-[#0d233f] uppercase tracking-wider mb-2">Tipo de Cliente *</label>
+                <label for="customer_type" class="block text-xs font-bold text-[#0A2945] uppercase tracking-wider mb-2">Tipo de Cliente *</label>
                 <select id="customer_type" name="customer_type" required class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#2F776F] focus:ring-0 bg-gray-50 transition">
                     <option value="individual" <?= $tipoCliente === 'individual' ? 'selected' : '' ?>>Particular</option>
                     <option value="company" <?= $tipoCliente === 'company' ? 'selected' : '' ?>>Empresa</option>
@@ -227,43 +227,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <!-- Nome -->
             <div>
-                <label for="name" class="block text-xs font-bold text-[#0d233f] uppercase tracking-wider mb-2">Nome Completo / Empresa *</label>
+                <label for="name" class="block text-xs font-bold text-[#0A2945] uppercase tracking-wider mb-2">Nome Completo / Empresa *</label>
                 <input type="text" id="name" name="name" maxlength="180" value="<?= escapar($nome) ?>" autocomplete="name" required class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#2F776F] focus:ring-0 bg-gray-50 transition" placeholder="Ex: João Silva ou GPM Lda.">
             </div>
 
             <!-- NIF e Telefone -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                    <label for="nif" class="block text-xs font-bold text-[#0d233f] uppercase tracking-wider mb-2">NIF (Opcional)</label>
+                    <label for="nif" class="block text-xs font-bold text-[#0A2945] uppercase tracking-wider mb-2">NIF (Opcional)</label>
                     <input type="text" id="nif" name="nif" maxlength="50" value="<?= escapar($nif) ?>" class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#2F776F] focus:ring-0 bg-gray-50 transition" placeholder="Número de Contribuinte">
                 </div>
                 <div>
-                    <label for="phone" class="block text-xs font-bold text-[#0d233f] uppercase tracking-wider mb-2">Telefone *</label>
+                    <label for="phone" class="block text-xs font-bold text-[#0A2945] uppercase tracking-wider mb-2">Telefone *</label>
                     <input type="tel" id="phone" name="phone" maxlength="40" value="<?= escapar($telefone) ?>" autocomplete="tel" required class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#2F776F] focus:ring-0 bg-gray-50 transition" placeholder="+244 9XX XXX XXX">
                 </div>
             </div>
 
             <!-- Email -->
             <div>
-                <label for="email" class="block text-xs font-bold text-[#0d233f] uppercase tracking-wider mb-2">E-mail *</label>
+                <label for="email" class="block text-xs font-bold text-[#0A2945] uppercase tracking-wider mb-2">E-mail *</label>
                 <input type="email" id="email" name="email" maxlength="190" value="<?= escapar($email) ?>" autocomplete="email" required class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#2F776F] focus:ring-0 bg-gray-50 transition" placeholder="o.seu.email@exemplo.com">
             </div>
 
             <!-- Palavras-passe -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                    <label for="password" class="block text-xs font-bold text-[#0d233f] uppercase tracking-wider mb-2">Palavra-passe *</label>
+                    <label for="password" class="block text-xs font-bold text-[#0A2945] uppercase tracking-wider mb-2">Palavra-passe *</label>
                     <input type="password" id="password" name="password" minlength="10" autocomplete="new-password" required class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#2F776F] focus:ring-0 bg-gray-50 transition" placeholder="••••••••">
                 </div>
                 <div>
-                    <label for="password_confirmation" class="block text-xs font-bold text-[#0d233f] uppercase tracking-wider mb-2">Confirmar *</label>
+                    <label for="password_confirmation" class="block text-xs font-bold text-[#0A2945] uppercase tracking-wider mb-2">Confirmar *</label>
                     <input type="password" id="password_confirmation" name="password_confirmation" minlength="8" autocomplete="new-password" required class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#2F776F] focus:ring-0 bg-gray-50 transition" placeholder="••••••••">
                 </div>
             </div>
             <p class="text-[10px] text-gray-400 uppercase tracking-wider">Mínimo de 8 caracteres.</p>
 
             <!-- Botão -->
-            <button type="submit" class="w-full bg-[#0d233f] hover:bg-[#163154] text-white font-bold text-xs uppercase tracking-wider py-4 transition flex items-center justify-center gap-2 mt-4">
+            <button type="submit" class="w-full bg-[#0A2945] hover:bg-[#123653] text-white font-bold text-xs uppercase tracking-wider py-4 transition flex items-center justify-center gap-2 mt-4">
                 Criar Conta <i class="fa-solid fa-arrow-right"></i>
             </button>
         </form>
