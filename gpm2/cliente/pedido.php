@@ -80,7 +80,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
             <div class="inline-block bg-[#0A2945]/10 text-[#0A2945] text-[10px] font-bold uppercase tracking-widest px-3 py-1 mb-3">
                 Detalhes do Pedido
             </div>
-            <h1 class="text-3xl md:text-5xl font-black text-[#0d233f] uppercase tracking-tight">
+            <h1 class="text-3xl md:text-5xl font-black text-[#0A2945] uppercase tracking-tight">
                 <?= escapar($pedido['order_number']) ?>
             </h1>
             <p class="text-gray-500 text-sm mt-2">
@@ -89,7 +89,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
         </div>
         <div class="text-left md:text-right">
             <span class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Total a Pagar</span>
-            <span class="text-3xl font-black text-[#0d233f]"><?= escapar(money($pedido['total'])) ?></span>
+            <span class="text-3xl font-black text-[#0A2945]"><?= escapar(money($pedido['total'])) ?></span>
         </div>
     </div>
 
@@ -99,7 +99,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
             
             <!-- Linha de Estado Visual -->
             <div class="bg-white border border-gray-100 shadow-sm p-6 reveal">
-                <h2 class="text-xs font-bold text-[#0d233f] uppercase tracking-widest mb-6 flex items-center gap-2">
+                <h2 class="text-xs font-bold text-[#0A2945] uppercase tracking-widest mb-6 flex items-center gap-2">
                     <i class="fa-solid fa-truck-fast text-[#0A2945]"></i> Estado do Pedido
                 </h2>
                 <div class="flex items-center justify-between relative">
@@ -109,28 +109,28 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                         <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs <?= in_array($pedido['status'], ['pending','confirmed','preparing','shipped','completed','completed']) ? 'bg-[#0A2945] text-white' : 'bg-gray-200 text-gray-400' ?>">
                             <i class="fa-solid fa-check"></i>
                         </div>
-                        <span class="text-[10px] font-bold uppercase tracking-wider <?= in_array($pedido['status'], ['pending','confirmed','preparing','shipped','completed','completed']) ? 'text-[#0d233f]' : 'text-gray-400' ?>">Pendente</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider <?= in_array($pedido['status'], ['pending','confirmed','preparing','shipped','completed','completed']) ? 'text-[#0A2945]' : 'text-gray-400' ?>">Pendente</span>
                     </div>
 
                     <div class="flex flex-col items-center gap-2 bg-white px-2">
                         <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs <?= in_array($pedido['status'], ['preparing','shipped','completed','completed']) ? 'bg-[#0A2945] text-white' : 'bg-gray-200 text-gray-400' ?>">
                             <i class="fa-solid fa-box"></i>
                         </div>
-                        <span class="text-[10px] font-bold uppercase tracking-wider <?= in_array($pedido['status'], ['preparing','shipped','completed','completed']) ? 'text-[#0d233f]' : 'text-gray-400' ?>">Em Preparação</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider <?= in_array($pedido['status'], ['preparing','shipped','completed','completed']) ? 'text-[#0A2945]' : 'text-gray-400' ?>">Em Preparação</span>
                     </div>
 
                     <div class="flex flex-col items-center gap-2 bg-white px-2">
                         <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs <?= in_array($pedido['status'], ['shipped','completed','completed']) ? 'bg-[#0A2945] text-white' : 'bg-gray-200 text-gray-400' ?>">
                             <i class="fa-solid fa-truck"></i>
                         </div>
-                        <span class="text-[10px] font-bold uppercase tracking-wider <?= in_array($pedido['status'], ['shipped','completed','completed']) ? 'text-[#0d233f]' : 'text-gray-400' ?>">Enviado</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider <?= in_array($pedido['status'], ['shipped','completed','completed']) ? 'text-[#0A2945]' : 'text-gray-400' ?>">Enviado</span>
                     </div>
 
                     <div class="flex flex-col items-center gap-2 bg-white px-2">
                         <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs <?= in_array($pedido['status'], ['completed','completed']) ? 'bg-[#0A2945] text-white' : 'bg-gray-200 text-gray-400' ?>">
                             <i class="fa-solid fa-house-chimney"></i>
                         </div>
-                        <span class="text-[10px] font-bold uppercase tracking-wider <?= in_array($pedido['status'], ['completed','completed']) ? 'text-[#0d233f]' : 'text-gray-400' ?>">Entregue</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider <?= in_array($pedido['status'], ['completed','completed']) ? 'text-[#0A2945]' : 'text-gray-400' ?>">Entregue</span>
                     </div>
                 </div>
                 
@@ -144,14 +144,14 @@ require_once __DIR__ . '/includes/header-marketplace.php';
             <!-- Produtos -->
             <div class="bg-white border border-gray-100 shadow-sm reveal">
                 <div class="p-6 border-b border-gray-100">
-                    <h2 class="text-lg font-black text-[#0d233f] uppercase tracking-wide">Produtos Comprados</h2>
+                    <h2 class="text-lg font-black text-[#0A2945] uppercase tracking-wide">Produtos Comprados</h2>
                 </div>
                 
                 <div class="divide-y divide-gray-100">
                     <?php foreach ($itens as $item): ?>
                         <div class="p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                             <div>
-                                <span class="block font-bold text-[#0d233f] text-base"><?= escapar($item['product_name']) ?></span>
+                                <span class="block font-bold text-[#0A2945] text-base"><?= escapar($item['product_name']) ?></span>
                                 <span class="block text-xs text-gray-500 uppercase tracking-wider mt-1">
                                     <?= escapar($item['quantity']) ?> <?= escapar($item['unit']) ?>
                                     <?php if ($item['product_sku']): ?>
@@ -171,11 +171,11 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                     <div class="space-y-2 text-sm text-gray-600 max-w-xs ml-auto">
                         <div class="flex justify-between">
                             <span>Subtotal</span>
-                            <span class="font-bold text-[#0d233f]"><?= escapar(money($pedido['subtotal'])) ?></span>
+                            <span class="font-bold text-[#0A2945]"><?= escapar(money($pedido['subtotal'])) ?></span>
                         </div>
                         <div class="flex justify-between">
                             <span>Taxa de Entrega</span>
-                            <span class="font-bold text-[#0d233f]"><?= escapar(money($pedido['delivery_fee'])) ?></span>
+                            <span class="font-bold text-[#0A2945]"><?= escapar(money($pedido['delivery_fee'])) ?></span>
                         </div>
                         <?php if ((float)$pedido['discount'] > 0): ?>
                         <div class="flex justify-between text-emerald-600">
@@ -184,8 +184,8 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                         </div>
                         <?php endif; ?>
                         <div class="flex justify-between border-t border-gray-200 pt-3 mt-3">
-                            <span class="font-bold text-[#0d233f] uppercase tracking-wide">Total</span>
-                            <span class="font-black text-[#0d233f] text-xl"><?= escapar(money($pedido['total'])) ?></span>
+                            <span class="font-bold text-[#0A2945] uppercase tracking-wide">Total</span>
+                            <span class="font-black text-[#0A2945] text-xl"><?= escapar(money($pedido['total'])) ?></span>
                         </div>
                     </div>
                 </div>
@@ -197,7 +197,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
         <div class="lg:col-span-1 space-y-8 reveal" style="animation-delay: 0.2s;">
             
             <!-- Dados de Entrega -->
-            <div class="bg-[#0d233f] text-white shadow-lg p-6">
+            <div class="bg-[#0A2945] text-white shadow-lg p-6">
                 <h2 class="text-xs font-bold text-[#0A2945] uppercase tracking-widest mb-6 flex items-center gap-2">
                     <i class="fa-solid fa-location-dot"></i> Dados de Entrega
                 </h2>
@@ -232,7 +232,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
             <!-- Apoio ao Cliente -->
             <div class="bg-white border border-gray-100 shadow-sm p-6">
-                <h2 class="text-sm font-black text-[#0d233f] uppercase tracking-wide mb-2">Precisa de Ajuda?</h2>
+                <h2 class="text-sm font-black text-[#0A2945] uppercase tracking-wide mb-2">Precisa de Ajuda?</h2>
                 <p class="text-xs text-gray-500 leading-relaxed mb-6">
                     Utilize a nossa conversa privada para esclarecer dúvidas sobre este pedido ou combinar detalhes de entrega.
                 </p>
