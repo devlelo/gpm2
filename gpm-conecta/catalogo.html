@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0a2945">
+<meta name="description" content="Explore o marketplace empresarial da GPM Conecta.">
+<title>Marketplace | GPM Conecta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css"><link rel="stylesheet" href="./marketplace.css">
+</head>
+<body class="marketplace-body">
+<div class="market-topline"><span>GPM CONECTA · MARKETPLACE EMPRESARIAL</span><span>ANGOLA / FORNECIMENTO</span></div>
+<header class="market-header">
+<a class="market-brand" href="./index.html"><img src="https://raw.githubusercontent.com/devlelo/sitedemo/main/gpm/GPM%20CONECTA.png" alt="GPM Conecta"></a>
+<nav class="market-nav"><a href="./index.html">Início</a><a href="./servicos.html">Áreas de fornecimento</a><a href="./localizacao.html">Localização</a></nav>
+<div class="market-header-actions"><a class="market-cart" href="./checkout.html" aria-label="Abrir carrinho">Carrinho <span id="header-cart-count">0</span></a><a class="market-contact-link" href="./contacto.html">Contacto ↗</a></div>
+<button class="market-menu" aria-label="Abrir menu" aria-expanded="false">☰</button>
+</header>
+<main>
+<section class="market-hero">
+<div class="market-hero-top"><span>GPM / 01 — MARKETPLACE</span><span>PRODUTOS PARA EMPRESAS E PROJECTOS</span></div>
+<div class="market-carousel" aria-label="Produtos em destaque">
+<div class="market-carousel-copy"><p class="market-kicker" id="feature-kicker">SELECÇÃO GPM / DESTAQUES</p><h1 id="feature-name">Tudo para<br><em>fazer avançar</em><br>a sua operação.</h1><p id="feature-description">Explore soluções de fornecimento para construção, hotelaria, escritórios e operações profissionais.</p><div class="market-feature-price" id="feature-price">CATEGORIAS E PRODUTOS</div><a class="market-primary-btn" id="feature-link" href="#produtos">Explorar produtos <span>↗</span></a></div>
+<div class="market-carousel-visual"><div class="feature-image-wrap" id="feature-image-wrap"><img id="feature-image" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1100&q=85" alt="Materiais e ambiente de construção"><div class="feature-image-shade"></div><div class="feature-image-caption"><span>GPM CONECTA</span><span id="feature-counter">01 / 03</span></div></div><div class="carousel-controls"><button type="button" id="feature-prev" aria-label="Destaque anterior">←</button><button type="button" id="feature-next" aria-label="Próximo destaque">→</button></div></div>
+</div>
+<div class="market-hero-bottom"><span>FORNECIMENTO MULTISSETORIAL</span><span>DESCUBRA · CONSULTE · SOLICITE</span></div>
+</section>
+<section class="market-main" id="produtos">
+<div class="market-section-heading"><div><p class="market-kicker">02 / CATÁLOGO</p><h2>Encontre o que<br><em>precisa.</em></h2></div><p>Produtos e soluções organizados para facilitar a consulta e o fornecimento da sua empresa.</p></div>
+<div class="market-tools"><label class="market-search"><span aria-hidden="true">⌕</span><input id="catalog-query" type="search" placeholder="Pesquisar produtos, referências ou categorias..." autocomplete="off"><kbd>⌕</kbd></label><a class="market-cart-inline" href="./checkout.html">Ver carrinho <span id="catalog-cart-count">0</span> ↗</a></div>
+<div class="market-category-row" id="market-filters" aria-label="Filtrar por categoria">
+<button type="button" data-filter="all" aria-pressed="true">Todos os produtos</button>
+<button type="button" data-filter="construction" aria-pressed="false">Construção e materiais</button>
+<button type="button" data-filter="hospitality" aria-pressed="false">Hotelaria</button>
+<button type="button" data-filter="offices" aria-pressed="false">Escritórios</button>
+<button type="button" data-filter="worksites" aria-pressed="false">Estaleiros</button>
+<button type="button" data-filter="foodservice" aria-pressed="false">Alimentação</button>
+</div>
+<div class="market-results-line"><span id="catalog-total">CATÁLOGO GPM</span><span>PREÇOS E DISPONIBILIDADE SUJEITOS A CONFIRMAÇÃO</span></div>
+<div class="market-product-grid" id="catalog-results-list" aria-live="polite"></div>
+<section class="market-empty" id="catalog-page-empty" hidden><div class="market-empty-mark">GPM</div><div><p class="market-kicker">CATÁLOGO EM ACTUALIZAÇÃO</p><h3 id="market-empty-title">Estamos a preparar os produtos.</h3><p id="market-empty-copy">As referências serão publicadas depois de validadas pela equipa GPM. Assim, cada produto terá informação, imagem e condições comerciais corretas.</p><a href="./contacto.html" class="market-text-link">Pedir informação sobre um produto <span>↗</span></a></div></section>
+<div class="market-bottom-note"><span>GPM CONECTA / COMPRAS EMPRESARIAIS</span><span>Consulte as condições comerciais antes de confirmar qualquer encomenda.</span></div>
+</section>
+<section class="market-cta"><div><p class="market-kicker">NÃO ENCONTROU O QUE PROCURA?</p><h2>Solicite um<br><em>fornecimento.</em></h2></div><div><p>Envie a lista de artigos, quantidades e requisitos. A equipa GPM poderá analisar a necessidade e verificar as condições de fornecimento.</p><a href="./contacto.html" class="market-primary-btn">Fazer pedido personalizado <span>↗</span></a></div></section>
+</main>
+<footer class="market-footer"><a class="market-brand" href="./index.html"><img src="https://raw.githubusercontent.com/devlelo/sitedemo/main/gpm/GPM%20CONECTA.png" alt="GPM Conecta"></a><div class="market-footer-links"><a href="./sobre.html">A empresa</a><a href="./servicos.html">Áreas de fornecimento</a><a href="./localizacao.html">Localização</a><a href="./contacto.html">Contacto</a></div><span>© <span id="year">2026</span> GPM CONECTA</span></footer>
+<script src="./products.js" defer></script><script src="./catalog-data.js" defer></script><script src="./marketplace.js" defer></script>
+</body></html>
