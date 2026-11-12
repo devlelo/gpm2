@@ -180,7 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     </style>
-<style>.gpm-auth-logo{display:block;height:86px;width:auto;max-width:112px;object-fit:contain}.gpm-auth-logo-center{margin:0 auto 18px}</style>
+<style>.gpm-auth-logo{display:block;width:64px;height:64px;object-fit:contain}.gpm-login-brand{display:flex;align-items:center;gap:14px;margin:0 0 28px}.gpm-login-brand span{font-size:30px;font-weight:900;letter-spacing:-1px;color:#fff}.gpm-auth-logo-center{margin:0 auto 18px}</style>
 </head>
 
 <body class="h-screen w-full flex">
