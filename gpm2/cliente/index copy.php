@@ -395,7 +395,7 @@ $cliente = cliente_atual();
 
         .category-list a:hover,
         .category-list a.active {
-            background: #fff1d9;
+            background: #EAF0F5;
             color: #724500;
             font-weight: 700;
         }
