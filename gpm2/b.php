@@ -290,12 +290,7 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
 <!-- Header -->
 <header class="bg-white sticky top-0 z-50 border-b border-gray-100">
     <div class="max-w-site mx-auto px-6 h-20 flex items-center justify-between">
-        <a href="index.php" class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-[#0A2945] text-white flex items-center justify-center font-bold text-lg">
-                <i class="fa-solid fa-layer-group"></i>
-            </div>
-            <span class="text-2xl font-black text-[#0A2945] tracking-tighter">GPM.</span>
-        </a>
+        <a href="index.php" class="flex items-center gap-3"><img src="assets/img/GPMlogo.png" alt="" style="width:52px;height:52px;object-fit:contain"><span class="text-2xl font-black text-[#0A2945] tracking-tighter">gpm-conecta</span></a>
 
         <nav class="hidden lg:flex items-center space-x-8 text-xs font-bold uppercase tracking-wider text-[#0A2945]">
             <a href="#inicio" class="text-[#0A2945]">Início</a>
