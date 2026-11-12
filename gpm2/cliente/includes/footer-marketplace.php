@@ -1,5 +1,5 @@
 <!-- Footer Marketplace -->
-<footer class="bg-[#0d233f] text-white pt-16 pb-8 border-t-4 border-[#2F776F] mt-auto">
+<footer class="bg-[#0A2945] text-white pt-16 pb-8 border-t border-[#2F776F] mt-auto"><style>.footer-wordmark{color:#fff!important}</style>
     <div class="max-w-site mx-auto px-4 sm:px-6">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
             
