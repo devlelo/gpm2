@@ -238,7 +238,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                 </p>
 
                 <?php if ($conversa): ?>
-                    <a href="../cliente/painel-cliente/chat.php?pedido=<?= (int) $pedido['id'] ?>" class="w-full bg-[#0A2945] hover:bg-[#123653] text-white font-bold text-xs uppercase tracking-wider py-3 px-4 transition flex items-center justify-center gap-2">
+                    <a href="painel-cliente/chat.php?pedido=<?= (int) $pedido['id'] ?>" class="w-full bg-[#0A2945] hover:bg-[#123653] text-white font-bold text-xs uppercase tracking-wider py-3 px-4 transition flex items-center justify-center gap-2">
                         <i class="fa-solid fa-comments"></i> Abrir Conversa
                     </a>
                 <?php else: ?>
