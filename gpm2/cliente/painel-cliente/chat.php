@@ -37,6 +37,10 @@ $mensagens = [];
 if ($conversa) {
     $stmt = $pdo->prepare("SELECT sender_type, body, created_at FROM messages WHERE conversation_id = ? ORDER BY created_at ASC, id ASC");
     $stmt->execute([(int)$conversa['id']]); $mensagens = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Ao abrir a conversa, marcar como lidas as respostas da equipa.
+    $stmt = $pdo->prepare("UPDATE messages SET read_at = NOW() WHERE conversation_id = ? AND sender_type = 'staff' AND read_at IS NULL");
+    $stmt->execute([(int)$conversa['id']]);
 }
 function chat_e($v): string { return htmlspecialchars((string)$v, ENT_QUOTES, 'UTF-8'); }
 ?>
