@@ -315,7 +315,9 @@ function layout_start(string $title): void
     echo '<head>';
     echo '<meta charset="utf-8">';
     echo '<meta name="viewport" content="width=device-width,initial-scale=1">';
-    echo '<meta name="theme-color" content="#111827">';
+    echo '<meta name="theme-color" content="#0A2945">';
+    echo '<link rel="icon" type="image/png" href="' . BASE_URL . '/assets/img/GPMlogo.png">';
+    echo '<link rel="apple-touch-icon" href="' . BASE_URL . '/assets/img/GPMlogo.png">';
     echo '<title>' . e($title) . ' | GPM</title>';
     echo '<link rel="preconnect" href="https://fonts.googleapis.com">';
     echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
