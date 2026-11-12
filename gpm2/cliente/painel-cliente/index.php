@@ -62,7 +62,7 @@ function dinheiro_cliente($valor): string {
 <td><?= htmlspecialchars(date('d/m/Y H:i', strtotime((string)$p['ordered_at'])), ENT_QUOTES, 'UTF-8') ?></td>
 <td><?= dinheiro_cliente($p['total']) ?></td>
 <td><span class="badge"><?= htmlspecialchars(estado_pedido_cliente((string)$p['status']), ENT_QUOTES, 'UTF-8') ?></span></td>
-<td><a class="link" href="../pedido.php?id=<?= (int)$p['id'] ?>">Detalhes</a> · <a class="link" href="../chat.php?pedido=<?= (int)$p['id'] ?>">Chat</a></td>
+<td><a class="link" href="pedido.php?id=<?= (int)$p['id'] ?>">Detalhes</a> · <a class="link" href="chat.php?pedido=<?= (int)$p['id'] ?>">Chat</a></td>
 </tr>
 <?php endforeach; ?>
 </tbody></table></div>
