@@ -2,7 +2,7 @@ name: PHP security checks
 
 on:
   push:
-    branches: [main, security/foundation-hardening]
+    branches: [main, security/foundation-hardening, design/gpm-conecta-integration]
   pull_request:
     branches: [main, security/foundation-hardening]
 
