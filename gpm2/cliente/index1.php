@@ -293,6 +293,7 @@ if ($pesquisa !== '') {
             transition: transform 0.4s ease;
         }
     </style>
+<link rel="icon" type="image/png" href="../favicon.png">
 </head>
 <body class="min-h-screen flex flex-col">
 
