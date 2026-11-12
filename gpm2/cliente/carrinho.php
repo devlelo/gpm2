@@ -142,7 +142,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
     <!-- Breadcrumb / Voltar -->
     <div class="mb-8 reveal">
-        <a href="index.php" class="inline-flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-[#f96b21] transition">
+        <a href="index.php" class="inline-flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-[#0A2945] transition">
             <i class="fa-solid fa-arrow-left"></i> Continuar a comprar
         </a>
     </div>
@@ -156,7 +156,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
             <i class="fa-solid fa-cart-shopping text-gray-300 text-6xl mb-6"></i>
             <h2 class="text-xl font-bold text-[#0d233f] mb-2">O seu carrinho está vazio.</h2>
             <p class="text-gray-500 mb-8">Explora o nosso marketplace e adiciona os materiais de que precisa.</p>
-            <a href="index.php" class="inline-block bg-[#f96b21] hover:bg-[#e05812] text-white font-bold text-xs uppercase tracking-wider px-8 py-3 transition shadow-md">
+            <a href="index.php" class="inline-block bg-[#0A2945] hover:bg-[#123653] text-white font-bold text-xs uppercase tracking-wider px-8 py-3 transition shadow-md">
                 Ver Produtos
             </a>
         </section>
@@ -198,7 +198,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                             <input type="hidden" name="produto_id" value="<?= (int) $item['id'] ?>">
                             <input 
                                 type="number" 
-                                class="quantidade w-20 px-3 py-2 border border-gray-300 focus:border-[#f96b21] focus:ring-1 focus:ring-[#f96b21] text-center font-bold text-[#0d233f] text-sm" 
+                                class="quantidade w-20 px-3 py-2 border border-gray-300 focus:border-[#0A2945] focus:ring-1 focus:ring-[#0A2945] text-center font-bold text-[#0d233f] text-sm" 
                                 name="quantidade" 
                                 min="1" 
                                 max="<?= (int) $item['stock_limit'] ?>" 
@@ -214,7 +214,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                     </div>
 
                     <!-- Subtotal -->
-                    <div class="col-span-2 text-right font-black text-[#f96b21] text-lg subtotal">
+                    <div class="col-span-2 text-right font-black text-[#0A2945] text-lg subtotal">
                         <?= escapar(formatar_valor_carrinho($item['subtotal'])) ?>
                     </div>
 
