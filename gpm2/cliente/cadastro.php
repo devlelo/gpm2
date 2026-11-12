@@ -202,9 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="relative z-10 w-full max-w-2xl bg-white shadow-2xl p-8 md:p-12 reveal">
         
         <div class="text-center mb-10">
-            <div class="w-12 h-12 bg-[#2F776F] text-white flex items-center justify-center font-bold text-2xl mx-auto mb-4">
-                <img class="gpm-auth-logo" src="../assets/img/GPMlogo.png" alt="">
-            </div>
+            <div class="gpm-login-brand gpm-login-brand-center"><img class="gpm-auth-logo" src="../assets/img/GPMlogo.png" alt=""><span>gpm-conecta</span></div>
             <h1 class="text-3xl font-black text-[#0d233f] uppercase tracking-tight mb-2">Criar Conta</h1>
             <p class="text-gray-500 text-sm">Registe-se para finalizar compras e acompanhar os seus pedidos.</p>
         </div>
