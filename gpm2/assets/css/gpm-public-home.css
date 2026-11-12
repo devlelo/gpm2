@@ -1,7 +1,7 @@
 :root{
- --navy:#0c2c4c;--navy-deep:#0b2443;--navy-mid:#0b2c44;
- --gold:#ce9d53;--gold-2:#c4944c;--gold-3:#c49c53;--gold-4:#c49454;--gold-5:#bc944c;
- --sand:#cdbea5;--teal:#308478;--paper:#f2eee6;--ink:#102b43;
+ --navy:#0A2945;--navy-deep:#123653;--navy-mid:#123653;
+ --gold:#CE9E53;--gold-2:#CE9E53;--gold-3:#CE9E53;--gold-4:#CE9E53;--gold-5:#CE9E53;
+ --sand:#cdbea5;--teal:#2F776F;--paper:#f2eee6;--ink:#102b43;
  --display:'Archivo Black',Impact,sans-serif;--body:'Manrope',Arial,sans-serif;
  --serif:'Playfair Display',Georgia,serif;--mono:'DM Mono',monospace;
  --gutter:clamp(22px,5.5vw,88px);--line:rgba(12,44,76,.2);
