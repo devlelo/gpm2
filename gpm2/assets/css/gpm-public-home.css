@@ -201,3 +201,20 @@ header.scrolled .brand img{width:clamp(285px,26vw,340px);max-height:94px}
 
 /* Logo GPM Conecta: icon-only asset + wordmark legível */
 .brand{gap:11px}.brand .brand-logo{display:block;width:58px;height:58px;max-width:58px;object-fit:contain;flex:0 0 58px}.brand .brand-wordmark{display:block;font-size:clamp(22px,2vw,28px);font-weight:900;letter-spacing:-1.1px;line-height:1;white-space:nowrap;color:#fff}.brand .brand-wordmark small{display:block;margin-top:5px;font:700 9px var(--mono);letter-spacing:1.2px;color:#d8e2e9}.footer-main .brand .brand-wordmark{color:#fff}@media(max-width:760px){.brand .brand-logo{width:48px;height:48px;flex-basis:48px}.brand .brand-wordmark{font-size:21px}}
+
+
+/* Cards do catálogo da homepage alinhados ao padrão do marketplace */
+.home-products-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.home-product-card{background:#fff;border:1px solid #e5e7eb;box-shadow:0 2px 8px rgba(10,41,69,.035);transition:transform .25s ease,box-shadow .25s ease;min-height:100%;border-radius:2px}
+.home-product-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(10,41,69,.11)}
+.home-product-image{height:224px;background:#f8f9fa;padding:16px;border-bottom:1px solid #f1f3f5}
+.home-product-image img{width:100%;height:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply}
+.home-product-info{padding:20px;align-items:stretch;text-align:left}
+.home-product-label{font:700 10px var(--body);color:#f96b21;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.home-product-info h4{font:800 15px/1.45 var(--body);color:#0A2945;margin:0 0 8px;min-height:43px}
+.home-product-info p{font:400 12px/1.65 var(--body);color:#6b7280;min-height:40px;margin:0 0 14px}
+.home-product-info strong{font:900 19px/1.2 var(--body);color:#0A2945;margin-top:auto;padding-top:12px;border-top:1px solid #f1f3f5}
+.home-product-info>a{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding:12px 14px;width:100%;background:#0A2945;color:#fff;border:1px solid #0A2945;font:700 11px var(--body);letter-spacing:.08em;text-transform:uppercase;transition:background .2s ease,border-color .2s ease}
+.home-product-info>a:hover{background:#123653;border-color:#123653;color:#fff}
+@media(max-width:1050px){.home-products-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.home-products-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.home-product-image{height:145px;padding:10px}.home-product-info{padding:12px}.home-product-info h4{font-size:13px;min-height:38px}.home-product-info p{font-size:11px;min-height:48px}.home-product-info strong{font-size:15px}.home-product-info>a{font-size:9px;padding:10px 6px}}
