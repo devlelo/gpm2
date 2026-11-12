@@ -193,7 +193,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 ?>
 
 <!-- Hero Section Interna -->
-<section class="relative bg-[#0d233f] text-white overflow-hidden py-12 md:py-16">
+<section class="relative bg-[#0A2945] text-white overflow-hidden py-12 md:py-16">
     <div class="max-w-site mx-auto px-4 sm:px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
         <div class="md:w-2/3 space-y-4">
             <span class="inline-block bg-white/10 px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-[#f96b21]">
@@ -214,7 +214,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
         <!-- Barra de pesquisa -->
         <div class="md:w-1/3 w-full">
              <form action="index.php" method="GET" class="flex bg-white shadow-lg overflow-hidden">
-                <input type="search" name="q" placeholder="O que procura?" value="<?= e($pesquisa) ?>" class="flex-1 px-4 py-3 text-[#0d233f] text-sm focus:outline-none">
+                <input type="search" name="q" placeholder="O que procura?" value="<?= e($pesquisa) ?>" class="flex-1 px-4 py-3 text-[#0A2945] text-sm focus:outline-none">
                 <?php if ($categoriaId !== null): ?>
                     <input type="hidden" name="categoria" value="<?= (int)$categoriaId ?>">
                 <?php endif; ?>
@@ -234,11 +234,11 @@ require_once __DIR__ . '/includes/header-marketplace.php';
         <aside class="w-full lg:w-64 flex-shrink-0 space-y-8 lg:sticky lg:top-28 h-fit reveal">
             <!-- Categories -->
             <div>
-                <h2 class="text-lg font-black text-[#0d233f] mb-4 border-b-2 border-[#f96b21] inline-block pb-1 uppercase tracking-wide">Categorias</h2>
+                <h2 class="text-lg font-black text-[#0A2945] mb-4 border-b-2 border-[#f96b21] inline-block pb-1 uppercase tracking-wide">Categorias</h2>
                 <ul class="space-y-1 text-sm max-h-[60vh] overflow-y-auto sidebar-scroll pr-2">
                     <li>
                         <a href="index.php<?= $pesquisa !== '' ? '?q=' . urlencode($pesquisa) : '' ?>" 
-                           class="block py-2 px-3 transition <?= $categoriaId === null ? 'bg-[#f96b21]/10 text-[#f96b21] font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#0d233f]' ?>">
+                           class="block py-2 px-3 transition <?= $categoriaId === null ? 'bg-[#f96b21]/10 text-[#f96b21] font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#0A2945]' ?>">
                             Todas as Categorias
                         </a>
                     </li>
@@ -252,7 +252,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                         ?>
                         <li>
                             <a href="<?= e($urlCategoria) ?>" 
-                               class="block py-2 px-3 transition <?= $isActive ? 'bg-[#f96b21]/10 text-[#f96b21] font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#0d233f]' ?>">
+                               class="block py-2 px-3 transition <?= $isActive ? 'bg-[#f96b21]/10 text-[#f96b21] font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#0A2945]' ?>">
                                 <?= e($categoria['name']) ?>
                             </a>
                         </li>
@@ -266,7 +266,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                     <i class="fa-solid fa-truck-fast text-6xl"></i>
                 </div>
                 <div class="relative z-10">
-                    <h3 class="text-sm font-bold text-[#0d233f] mb-1">Entrega Segura</h3>
+                    <h3 class="text-sm font-bold text-[#0A2945] mb-1">Entrega Segura</h3>
                     <p class="text-xs text-gray-500">Distribuição em todo o país com rapidez e segurança.</p>
                 </div>
             </div>
@@ -275,7 +275,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
         <!-- Product Grid -->
         <div class="flex-1 min-w-0">
             <div class="flex justify-between items-end mb-8 border-b border-gray-200 pb-2 reveal">
-                <h2 class="text-xl font-black text-[#0d233f] uppercase">Top Vendas</h2>
+                <h2 class="text-xl font-black text-[#0A2945] uppercase">Top Vendas</h2>
                 <span class="text-xs font-bold text-gray-400"><?= count($produtos) ?> resultados</span>
             </div>
 
@@ -290,9 +290,9 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                 <?php if (!$produtos && $erroCatalogo === ''): ?>
                     <div class="col-span-full text-center py-16 bg-gray-50 border border-gray-100 reveal">
                         <i class="fa-solid fa-box-open text-gray-300 text-5xl mb-4"></i>
-                        <h3 class="text-lg font-bold text-[#0d233f] mb-2">Nenhum produto encontrado.</h3>
+                        <h3 class="text-lg font-bold text-[#0A2945] mb-2">Nenhum produto encontrado.</h3>
                         <p class="text-gray-500 text-sm mb-6">Tente ajustar os filtros ou pesquisar por outro termo.</p>
-                        <a href="index.php" class="inline-block bg-[#0d233f] text-white px-6 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-[#163154] transition">Ver todos os produtos</a>
+                        <a href="index.php" class="inline-block bg-[#0A2945] text-white px-6 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-[#123653] transition">Ver todos os produtos</a>
                     </div>
                 <?php endif; ?>
 
@@ -319,7 +319,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                 <div class="text-[10px] font-bold text-[#f96b21] uppercase tracking-widest mb-2">
                                     <?= e($produto['category_name'] ?? 'GPM') ?>
                                 </div>
-                                <h3 class="text-sm font-bold text-[#0d233f] mb-2 line-clamp-1 group-hover:text-[#f96b21] transition">
+                                <h3 class="text-sm font-bold text-[#0A2945] mb-2 line-clamp-1 group-hover:text-[#f96b21] transition">
                                     <?= e($produto['name']) ?>
                                 </h3>
                                 <p class="text-xs text-gray-500 mb-4 line-clamp-2 leading-relaxed">
@@ -327,7 +327,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                 </p>
                                 
                                 <div class="flex items-center justify-between mt-auto pt-2 border-t border-gray-100">
-                                    <span class="text-lg font-black text-[#0d233f]">
+                                    <span class="text-lg font-black text-[#0A2945]">
                                         <?= e(gpmKz($produto['price'])) ?>
                                     </span>
                                     <?php if ($stock > 0): ?>
@@ -345,7 +345,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
                         <!-- Actions -->
                         <div class="px-5 pb-5 pt-0 flex gap-2">
-                            <a href="produto.php?id=<?= (int) $produto['id'] ?>" class="flex-1 text-center bg-white border border-gray-200 text-[#0d233f] text-xs font-bold py-2.5 uppercase tracking-wider hover:bg-gray-50 transition">
+                            <a href="produto.php?id=<?= (int) $produto['id'] ?>" class="flex-1 text-center bg-white border border-gray-200 text-[#0A2945] text-xs font-bold py-2.5 uppercase tracking-wider hover:bg-gray-50 transition">
                                 Detalhes
                             </a>
                             
@@ -354,7 +354,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                 <input type="hidden" name="ajax_adicionar" value="1">
                                 <input type="hidden" name="produto_id" value="<?= (int)$produto['id'] ?>">
                                 <input type="hidden" name="quantidade" value="1">
-                                <button type="submit" class="w-full bg-[#0d233f] hover:bg-[#163154] text-white text-xs font-bold py-2.5 uppercase tracking-wider transition flex items-center justify-center gap-2 <?= $stock < 1 ? 'opacity-50 cursor-not-allowed' : '' ?>" <?= $stock < 1 ? 'disabled' : '' ?>>
+                                <button type="submit" class="w-full bg-[#0A2945] hover:bg-[#123653] text-white text-xs font-bold py-2.5 uppercase tracking-wider transition flex items-center justify-center gap-2 <?= $stock < 1 ? 'opacity-50 cursor-not-allowed' : '' ?>" <?= $stock < 1 ? 'disabled' : '' ?>>
                                     <i class="fa-solid fa-cart-plus"></i> <?= $stock > 0 ? 'Add' : 'Esgotado' ?>
                                 </button>
                             </form>
@@ -368,7 +368,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 </main>
 
 <!-- Notificação Estilizada (Toast) -->
-<div id="aviso-carrinho" class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 bg-[#0d233f] text-white px-6 py-4 shadow-2xl border-l-4 border-[#f96b21] pointer-events-none transition-all duration-300 flex items-center gap-4 max-w-sm" role="status" aria-live="polite">
+<div id="aviso-carrinho" class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 bg-[#0A2945] text-white px-6 py-4 shadow-2xl border-l-4 border-[#f96b21] pointer-events-none transition-all duration-300 flex items-center gap-4 max-w-sm" role="status" aria-live="polite">
     <div class="w-10 h-10 bg-[#f96b21] flex items-center justify-center flex-shrink-0">
         <i class="fa-solid fa-check text-white text-lg"></i>
     </div>
