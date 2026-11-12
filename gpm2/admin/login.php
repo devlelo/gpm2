@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body class="login-page">
 <form class="login-card" method="post" action="login.php">
-    <div class="brand-login">GPM<span>.</span></div>
+    <div class="brand-login"><img src="../assets/img/gpm-conecta.png" alt="GPM Conecta"></div>
     <h1>Painel administrativo</h1>
     <p class="muted">Entre com a sua conta interna.</p>
     <?php if ($error !== ''): ?><div class="alert error"><?= e($error) ?></div><?php endif; ?>
