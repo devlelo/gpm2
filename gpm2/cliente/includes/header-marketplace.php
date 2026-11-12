@@ -44,8 +44,8 @@ if (is_array($carrinho)) {
                 extend: {
                     colors: {
                         brand: {
-                            navy: '#0d233f',
-                            navyLight: '#163154',
+                            navy: '#0A2945',
+                            navyLight: '#123653',
                             teal: '#2F776F',
                             navyHover: '#123653',
                             offWhite: '#f8f9fa'
@@ -74,7 +74,7 @@ if (is_array($carrinho)) {
 <body class="min-h-screen flex flex-col">
 
 <!-- Top Bar -->
-<div class="bg-[#0d233f] text-white text-[11px] py-2 border-b border-gray-700">
+<div class="bg-[#0A2945] text-white text-[11px] py-2 border-b border-gray-700">
     <div class="max-w-site mx-auto px-6 flex justify-between items-center">
         <div class="flex items-center gap-6">
             <?php if ($telefoneMarketplace !== ''): ?><a href="tel:<?= htmlspecialchars($telefoneMarketplace, ENT_QUOTES, 'UTF-8') ?>"><i class="fa-solid fa-phone text-[#2F776F] mr-2"></i><?= htmlspecialchars($telefoneMarketplace, ENT_QUOTES, 'UTF-8') ?></a><?php endif; ?>
@@ -94,8 +94,8 @@ if (is_array($carrinho)) {
 
         <!-- Barra de Pesquisa (Desktop) -->
         <form action="<?= $baseMarketplace ?>/index.php" method="GET" class="hidden md:flex flex-1 max-w-md bg-gray-50 border border-gray-200 focus-within:border-[#2F776F] transition">
-            <input type="search" name="q" placeholder="Pesquisar equipamentos, materiais, ferramentas..." class="w-full px-4 py-2 text-sm text-[#0d233f] bg-transparent focus:outline-none placeholder-gray-400" value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8') : '' ?>">
-            <button type="submit" class="bg-[#0d233f] hover:bg-[#163154] text-white px-5 flex items-center justify-center transition" aria-label="Pesquisar">
+            <input type="search" name="q" placeholder="Pesquisar equipamentos, materiais, ferramentas..." class="w-full px-4 py-2 text-sm text-[#0A2945] bg-transparent focus:outline-none placeholder-gray-400" value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8') : '' ?>">
+            <button type="submit" class="bg-[#0A2945] hover:bg-[#123653] text-white px-5 flex items-center justify-center transition" aria-label="Pesquisar">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
         </form>
@@ -103,7 +103,7 @@ if (is_array($carrinho)) {
         <!-- Menu Mobile Toggle -->
         <button
             type="button"
-            class="lg:hidden text-[#0d233f] text-2xl p-2 focus:outline-none flex-shrink-0"
+            class="lg:hidden text-[#0A2945] text-2xl p-2 focus:outline-none flex-shrink-0"
             id="gpm-market-menu-btn"
             aria-label="Abrir menu"
             aria-expanded="false">
@@ -111,7 +111,7 @@ if (is_array($carrinho)) {
         </button>
 
         <!-- Navegação Desktop -->
-        <nav class="hidden lg:flex items-center space-x-8 text-xs font-bold uppercase tracking-wider text-[#0d233f] flex-shrink-0">
+        <nav class="hidden lg:flex items-center space-x-8 text-xs font-bold uppercase tracking-wider text-[#0A2945] flex-shrink-0">
             <a href="<?= $baseMarketplace ?>/index.php" class="hover:text-[#2F776F] transition">Início</a>
             <a href="<?= $baseMarketplace ?>/index.php#contactos" class="hover:text-[#2F776F] transition">Contactos</a>
             <?php if (function_exists('cliente_atual') && cliente_atual()): ?>
@@ -123,7 +123,7 @@ if (is_array($carrinho)) {
 
         <!-- Ações (Carrinho) -->
         <div class="flex items-center space-x-5 flex-shrink-0">
-            <a href="<?= $baseMarketplace ?>/carrinho.php" class="flex items-center gap-2 text-[#0d233f] hover:text-[#2F776F] transition group">
+            <a href="<?= $baseMarketplace ?>/carrinho.php" class="flex items-center gap-2 text-[#0A2945] hover:text-[#2F776F] transition group">
                 <i class="fa-solid fa-cart-shopping text-lg"></i>
                 <span class="bg-[#2F776F] text-white text-[10px] font-bold px-2 py-0.5" id="contador-carrinho">
                     <?= $quantidadeCarrinho ?>
@@ -134,11 +134,11 @@ if (is_array($carrinho)) {
 
     <!-- Navegação Mobile (Escondida por defeito) -->
     <nav class="hidden lg:hidden bg-white border-t border-gray-100" id="gpm-market-nav">
-        <div class="px-4 py-2 flex flex-col text-sm font-bold text-[#0d233f]">
+        <div class="px-4 py-2 flex flex-col text-sm font-bold text-[#0A2945]">
             <!-- Barra de Pesquisa Mobile -->
             <form action="<?= $baseMarketplace ?>/index.php" method="GET" class="flex my-3 bg-gray-50 border border-gray-200 focus-within:border-[#2F776F] transition">
-                <input type="search" name="q" placeholder="Pesquisar..." class="w-full px-4 py-2 text-sm text-[#0d233f] bg-transparent focus:outline-none placeholder-gray-400" value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8') : '' ?>">
-                <button type="submit" class="bg-[#0d233f] hover:bg-[#163154] text-white px-4 flex items-center justify-center transition" aria-label="Pesquisar">
+                <input type="search" name="q" placeholder="Pesquisar..." class="w-full px-4 py-2 text-sm text-[#0A2945] bg-transparent focus:outline-none placeholder-gray-400" value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8') : '' ?>">
+                <button type="submit" class="bg-[#0A2945] hover:bg-[#123653] text-white px-4 flex items-center justify-center transition" aria-label="Pesquisar">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
