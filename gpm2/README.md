@@ -38,3 +38,15 @@ Lê `../SECURITY.md` e `../docs/SECURITY_AUDIT.md`. Antes de produção, ainda �
 4. Aplicar a migration em produção.
 5. Publicar o código compatível com o schema.
 6. Nunca executar `migrate:fresh`, `db:wipe`, `DROP DATABASE` ou import total durante deploy.
+
+
+## Instalação XAMPP — caminho correto
+
+O conteúdo desta pasta deve ser copiado para `C:\\xampp\\htdocs\\gpm`.
+Não coloques a pasta `gpm2` dentro de outra pasta `gpm`, nem copies a subpasta interna `gpm/` para a raiz pública.
+
+- Homepage: `http://localhost/gpm/`
+- Marketplace: `http://localhost/gpm/cliente/`
+- Admin: `http://localhost/gpm/admin/`
+
+A subpasta `gpm/` dentro deste diretório é legado bloqueado por `.htaccess`. As rotas canónicas usam `cliente/`, `admin/` e `assets/` diretamente a partir da raiz.
