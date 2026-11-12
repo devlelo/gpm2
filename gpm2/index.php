@@ -117,15 +117,25 @@ $quantidadeCarrinhoHome = is_array($carrinhoHome)
 function imagemPublica(?string $imagem): string
 {
     if (!$imagem) return '';
-    $imagem = str_replace('\\', '/', $imagem);
-    $imagem = ltrim($imagem, '/');
+    $imagem = ltrim(str_replace('\\', '/', trim($imagem)), '/');
     if (str_contains($imagem, '..') || preg_match('/^[a-z]+:/i', $imagem)) return '';
-    $candidatos = [
-        $imagem, 'uploads/produtos/' . basename($imagem), 'uploads/products/' . basename($imagem),
-        'public/uploads/produtos/' . basename($imagem), 'public/uploads/products/' . basename($imagem),
-    ];
+
+    // Mesmos locais de procura do marketplace, incluindo assets/uploads e storage.
+    $nome = basename($imagem);
+    $candidatos = array_unique([
+        $imagem,
+        'uploads/produtos/' . $nome,
+        'uploads/products/' . $nome,
+        'public/uploads/produtos/' . $nome,
+        'public/uploads/products/' . $nome,
+        'assets/uploads/' . $nome,
+        'storage/' . $imagem,
+    ]);
+
     foreach ($candidatos as $caminho) {
-        if (is_file(__DIR__ . '/' . $caminho)) return $caminho;
+        if (is_file(__DIR__ . '/' . $caminho)) {
+            return implode('/', array_map('rawurlencode', explode('/', $caminho)));
+        }
     }
     return '';
 }
@@ -148,7 +158,18 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
 <article class="offer-tile reveal"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=85" alt="" loading="lazy"><div class="tile-content"><div><small>ÁREA 01</small><h3>Construção e materiais</h3></div><span class="tile-arrow">↗</span></div></article>
 <article class="offer-tile reveal"><img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1200&q=85" alt="" loading="lazy"><div class="tile-content"><div><small>ÁREA 02</small><h3>Hotelaria e alojamento</h3></div><span class="tile-arrow">↗</span></div></article>
 <article class="offer-tile reveal"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85" alt="" loading="lazy"><div class="tile-content"><div><small>ÁREA 03</small><h3>Escritórios e empresas</h3></div><span class="tile-arrow">↗</span></div></article></div><div class="home-catalog reveal" id="catalogo"><div class="home-catalog-head"><div><p class="section-kicker">CATÁLOGO / DISPONIBILIDADE</p><h3>Produtos em destaque</h3></div><a class="text-link" href="cliente/index.php">Ver catálogo completo <span>↗</span></a></div>
-<?php if ($produtos): ?><div class="home-products-grid"><?php foreach ($produtos as $produtoHome): $imagemHome = imagemPublica((string)($produtoHome['main_image'] ?? '')); ?><article class="home-product-card"><a class="home-product-image" href="cliente/produto.php?id=<?= (int)$produtoHome['id'] ?>"><img src="<?= e($imagemHome !== '' ? $imagemHome : 'assets/img/sem-imagem.svg') ?>" alt="<?= e($produtoHome['name']) ?>" loading="lazy"></a><div class="home-product-info"><span class="home-product-label">GPM CONECTA / PRODUTO</span><h4><?= e($produtoHome['name']) ?></h4><p><?= e(function_exists('mb_strimwidth') ? mb_strimwidth((string)($produtoHome['description'] ?? ''),0,92,'…','UTF-8') : substr((string)($produtoHome['description'] ?? ''),0,92)) ?></p><strong><?= e(precoKz($produtoHome['price'])) ?></strong><a href="cliente/produto.php?id=<?= (int)$produtoHome['id'] ?>">Consultar produto ↗</a></div></article><?php endforeach; ?></div><?php else: ?><div class="home-catalog-empty">O catálogo está a ser atualizado. Consulte o marketplace para ver os produtos disponíveis.</div><?php endif; ?></div><p class="provisional-note">Veja os produtos disponíveis e descubra as soluções organizadas por área no marketplace da GPM.</p><p style="text-align:center;margin:35px auto 0"><a class="btn btn-gold" href="cliente/index.php">Entrar no marketplace <span class="arrow">↗</span></a></p></section>
+<?php if ($produtos): ?><div class="home-products-grid"><?php foreach ($produtos as $produtoHome): $imagemHome = imagemPublica((string)($produtoHome['main_image'] ?? '')); ?><article class="home-product-card">
+<a class="home-product-image" href="cliente/produto.php?id=<?= (int)$produtoHome['id'] ?>" aria-label="Ver <?= e($produtoHome['name']) ?>">
+<img src="<?= e($imagemHome !== '' ? $imagemHome : 'assets/img/sem-imagem.svg') ?>" alt="<?= e($produtoHome['name']) ?>" loading="lazy" onerror="this.onerror=null;this.src='assets/img/sem-imagem.svg';">
+</a>
+<div class="home-product-info">
+<span class="home-product-label">GPM CONECTA / PRODUTO</span>
+<h4><?= e($produtoHome['name']) ?></h4>
+<p><?= e(function_exists('mb_strimwidth') ? mb_strimwidth((string)($produtoHome['description'] ?? ''),0,92,'…','UTF-8') : substr((string)($produtoHome['description'] ?? ''),0,92)) ?></p>
+<strong><?= e(precoKz($produtoHome['price'])) ?></strong>
+<a href="cliente/produto.php?id=<?= (int)$produtoHome['id'] ?>">Ver produto <span aria-hidden="true">↗</span></a>
+</div>
+</article><?php endforeach; ?></div><?php else: ?><div class="home-catalog-empty">O catálogo está a ser atualizado. Consulte o marketplace para ver os produtos disponíveis.</div><?php endif; ?></div><p class="provisional-note">Veja os produtos disponíveis e descubra as soluções organizadas por área no marketplace da GPM.</p><p style="text-align:center;margin:35px auto 0"><a class="btn btn-gold" href="cliente/index.php">Entrar no marketplace <span class="arrow">↗</span></a></p></section>
 <section class="approach"><div class="approach-inner"><div class="approach-top reveal"><div><p class="section-kicker light">05 / Como trabalhamos</p><h2>Do pedido<br>à confirmação.</h2></div><p>Uma experiência comercial começa com clareza.</p></div><div class="steps"><article class="step reveal"><span class="step-num">01</span><h3>Compreender</h3><p>Identificar a necessidade, as quantidades e o contexto de cada projeto.</p></article><article class="step reveal"><span class="step-num">02</span><h3>Verificar</h3><p>Analisar disponibilidade, especificações, condições e prazos.</p></article><article class="step reveal"><span class="step-num">03</span><h3>Apresentar</h3><p>Preparar uma proposta para análise e confirmação comercial.</p></article></div></div></section>
 <section class="values" id="principios"><div class="values-inner"><div class="values-head reveal"><div><p class="section-kicker light">06 / Princípios</p><h2>O que nos<br>orienta.</h2></div><p>Uma relação comercial sólida começa com informação transparente.</p></div><div class="value-list"><article class="value-item reveal"><b>01 / CLAREZA</b><h3>Informação objetiva</h3><p>Pedidos e propostas com informação compreensível e condições explícitas.</p></article><article class="value-item reveal"><b>02 / COORDENAÇÃO</b><h3>Um ponto de contacto</h3><p>Uma abordagem organizada às necessidades de diferentes operações.</p></article><article class="value-item reveal"><b>03 / CONFIANÇA</b><h3>Validação real</h3><p>Disponibilidade, preços e prazos sujeitos a verificação antes da confirmação.</p></article></div></div></section>
 <section class="contact" id="contactos"><div class="contact-inner"><div class="reveal"><p class="section-kicker">07 / Contacto</p><h2>Vamos<br><em>conversar?</em></h2></div><div class="contact-copy reveal"><p>Tem uma necessidade de fornecimento ou pretende conhecer melhor a GPM Conecta? Apresente o seu pedido através da área de contacto.</p><p class="contact-channels">PEDIDOS COMERCIAIS<br><strong>Materiais · Equipamentos · Soluções</strong></p><a class="text-link" href="cliente/index.php">Explorar marketplace <span>↗</span></a></div></div>
