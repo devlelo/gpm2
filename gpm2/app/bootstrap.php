@@ -39,8 +39,8 @@ if (!headers_sent()) {
 |--------------------------------------------------------------------------
 | Caminho base do projeto
 |--------------------------------------------------------------------------
-| Projeto localizado em C:\xampp\htdocs\gpm2
-| URL local: http://localhost/gpm2
+| Projeto localizado em C:\xampp\htdocs\gpm
+| URL local: http://localhost/gpm
 */
 
 if (!defined('BASE_PATH')) {
