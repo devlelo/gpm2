@@ -7,6 +7,9 @@ $tituloPagina = $tituloPagina ?? 'Marketplace';
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0A2945">
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="apple-touch-icon" href="../favicon.png">
 <title><?= e($tituloPagina) ?> | GPM — Materiais de Construção</title>
 <link rel="stylesheet" href="../assets/css/cliente.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
