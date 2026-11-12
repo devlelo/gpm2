@@ -22,7 +22,7 @@ $inicialClientePainel = strtoupper(substr($nomeClientePainel, 0, 1));
 <a class="<?= $paginaAtual === 'alterar-senha.php' ? 'active' : '' ?>" href="alterar-senha.php"><span class="customer-nav-icon">◇</span><span>Segurança</span></a>
 </nav>
 <div class="customer-sidebar-bottom">
-<a class="customer-market-link" href="../../gpm/cliente/index.php"><span class="customer-nav-icon">↗</span><span>Voltar ao marketplace</span></a>
+<a class="customer-market-link" href="../../cliente/index.php"><span class="customer-nav-icon">↗</span><span>Voltar ao marketplace</span></a>
 <div class="customer-user"><span class="customer-avatar"><?= pc_e($inicialClientePainel) ?></span><span><strong><?= pc_e($nomeClientePainel) ?></strong><small>Cliente GPM Conecta</small></span></div>
 <a class="customer-logout" href="../logout.php">Terminar sessão <span>↗</span></a>
 </div>
