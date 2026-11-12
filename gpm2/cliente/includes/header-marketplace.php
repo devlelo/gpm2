@@ -115,7 +115,7 @@ if (is_array($carrinho)) {
             <a href="<?= $baseMarketplace ?>/index.php" class="hover:text-[#2F776F] transition">Início</a>
             <a href="<?= $baseMarketplace ?>/index.php#contactos" class="hover:text-[#2F776F] transition">Contactos</a>
             <?php if (function_exists('cliente_atual') && cliente_atual()): ?>
-                <a href="../cliente/painel-cliente/index.php" class="hover:text-[#2F776F] transition">Minha Conta</a>
+                <a href="painel-cliente/index.php" class="hover:text-[#2F776F] transition">Minha Conta</a>
             <?php else: ?>
                 <a href="<?= $baseMarketplace ?>/login.php" class="hover:text-[#2F776F] transition">Entrar</a>
             <?php endif; ?>
@@ -146,7 +146,7 @@ if (is_array($carrinho)) {
             <a href="<?= $baseMarketplace ?>/index.php" class="py-3 border-b border-gray-100 hover:text-[#2F776F]">Início</a>
             <a href="<?= $baseMarketplace ?>/index.php#contactos" class="py-3 border-b border-gray-100 hover:text-[#2F776F]">Contactos</a>
             <?php if (function_exists('cliente_atual') && cliente_atual()): ?>
-                <a href="../cliente/painel-cliente/index.php" class="py-3 border-b border-gray-100 hover:text-[#2F776F]">Minha Conta</a>
+                <a href="painel-cliente/index.php" class="py-3 border-b border-gray-100 hover:text-[#2F776F]">Minha Conta</a>
             <?php else: ?>
                 <a href="<?= $baseMarketplace ?>/login.php" class="py-3 border-b border-gray-100 hover:text-[#2F776F]">Entrar</a>
             <?php endif; ?>
