@@ -89,7 +89,7 @@ button {
 }
 
 button:hover {
-    background: #ed970b;
+    background: #2F776F;
 }
 
 .alert {
@@ -115,7 +115,7 @@ button:hover {
 }
 
 a {
-    color: #9a5b00;
+    color: #0A2945;
 }
 
 @media (max-width: 480px) {

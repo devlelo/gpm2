@@ -143,8 +143,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         brand: {
                             navy: '#0d233f',
                             navyLight: '#163154',
-                            orange: '#f96b21',
-                            orangeHover: '#e05812',
+                            orange: '#2F776F',
+                            orangeHover: '#0A2945',
                             offWhite: '#f8f9fa'
                         }
                     },
@@ -180,6 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     </style>
+<style>.gpm-auth-logo{display:block;height:86px;width:auto;max-width:112px;object-fit:contain}.gpm-auth-logo-center{margin:0 auto 18px}</style>
 </head>
 
 <body class="h-screen w-full flex">
@@ -190,7 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="p-8 flex justify-start">
             <a
                 href="index.php"
-                class="inline-flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-[#f96b21] transition uppercase tracking-wider"
+                class="inline-flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-[#2F776F] transition uppercase tracking-wider"
             >
                 <i class="fa-solid fa-arrow-left"></i>
                 Voltar ao Marketplace
@@ -238,7 +239,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             value="<?= escapar($email) ?>"
                             autocomplete="email"
                             required
-                            class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#f96b21] focus:ring-0 bg-gray-50 transition"
+                            class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#2F776F] focus:ring-0 bg-gray-50 transition"
                             placeholder="o.seu.email@exemplo.com"
                         >
                     </div>
@@ -254,7 +255,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                             <a
                                 href="#"
-                                class="text-[10px] font-bold text-[#f96b21] hover:underline uppercase tracking-wider"
+                                class="text-[10px] font-bold text-[#2F776F] hover:underline uppercase tracking-wider"
                             >
                                 Esqueceu-se?
                             </a>
@@ -266,7 +267,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             name="password"
                             autocomplete="current-password"
                             required
-                            class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#f96b21] focus:ring-0 bg-gray-50 transition"
+                            class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#2F776F] focus:ring-0 bg-gray-50 transition"
                             placeholder="••••••••"
                         >
                     </div>
@@ -286,7 +287,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         <a
                             href="cadastro.php"
-                            class="text-[#f96b21] font-bold hover:underline ml-1"
+                            class="text-[#2F776F] font-bold hover:underline ml-1"
                         >
                             Criar conta
                         </a>
@@ -309,7 +310,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#0d233f] via-[#0d233f]/80 to-transparent"></div>
 
         <div class="relative z-10 px-16 w-full max-w-xl text-white">
-            <div class="w-12 h-12 bg-[#f96b21] flex items-center justify-center font-bold text-2xl mb-8">
+            <div class="w-12 h-12 bg-[#2F776F] flex items-center justify-center font-bold text-2xl mb-8">
                 <i class="fa-solid fa-layer-group"></i>
             </div>
 
