@@ -94,13 +94,13 @@ $stmt->execute([$conversaId]);
         .cabecalho, .chat, .escrever { background:#fff; border-radius:12px; padding:18px; margin-bottom:15px; }
         .mensagens { display:flex; flex-direction:column; gap:12px; }
         .mensagem { max-width:80%; padding:12px 15px; border-radius:12px; overflow-wrap:anywhere; }
-        .cliente { background:#fff0d6; align-self:flex-end; }
+        .cliente { background:#EAF0F5; align-self:flex-end; }
         .equipa { background:#edf0f3; align-self:flex-start; }
         .autor { font-weight:bold; font-size:13px; margin-bottom:5px; }
         .data { color:#666; font-size:12px; margin-top:7px; }
         textarea { width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; box-sizing:border-box; }
         .btn { margin-top:10px; background:#FEA619; padding:11px 16px; border:0; border-radius:8px; font-weight:bold; cursor:pointer; }
-        .erro { background:#fff0e6; padding:12px; border-radius:8px; }
+        .erro { background:#EAF0F5; padding:12px; border-radius:8px; }
         .fechada { background:#eee; padding:12px; border-radius:8px; }
     </style>
 </head>
