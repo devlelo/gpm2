@@ -529,12 +529,7 @@ $carrinhoTotalItens = array_sum(
             
             <!-- Logo & Desc -->
             <div class="md:col-span-2">
-                <a href="index.php" class="flex items-center gap-2 mb-4">
-                    <div class="w-8 h-8 bg-[#0A2945] text-white flex items-center justify-center font-bold text-lg">
-                        <i class="fa-solid fa-layer-group"></i>
-                    </div>
-                    <span class="text-2xl font-black tracking-tighter">GPM.</span>
-                </a>
+                <a href="index.php" class="flex items-center gap-3 mb-4"><img src="../assets/img/GPMlogo.png" alt="" style="width:52px;height:52px;object-fit:contain"><span class="text-2xl font-black tracking-tighter">gpm-conecta</span></a>
                 <p class="text-gray-400 text-sm max-w-sm leading-relaxed mb-6">
                     Parceiro estratégico no fornecimento de equipamentos, materiais, insumos e serviços para empresas do setor de obras, engenharia e construção civil.
                 </p>
