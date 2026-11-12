@@ -130,8 +130,8 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
                         brand: {
                             navy: '#0d233f',
                             navyLight: '#163154',
-                            orange: '#f96b21',
-                            orangeHover: '#e05812',
+                            teal: '#0A2945',
+                            navyHover: '#123653',
                             offWhite: '#f8f9fa'
                         }
                     },
@@ -191,7 +191,7 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
 
         /* Hover nos cards de serviço */
         .service-card:hover {
-            border-bottom-color: #f96b21;
+            border-bottom-color: #0A2945;
         }
 
         /* Slider Horizontal */
@@ -273,15 +273,15 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
 <div class="bg-[#0d233f] text-white text-[11px] py-2 border-b border-gray-700">
     <div class="max-w-site mx-auto px-6 flex justify-between items-center">
         <div class="flex items-center gap-6">
-            <span><i class="fa-solid fa-phone text-[#f96b21] mr-2"></i> (+244) 923 000 111</span>
-            <span class="hidden sm:inline"><i class="fa-solid fa-envelope text-[#f96b21] mr-2"></i> geral@gpmconecta.ao</span>
+            <span><i class="fa-solid fa-phone text-[#0A2945] mr-2"></i> (+244) 923 000 111</span>
+            <span class="hidden sm:inline"><i class="fa-solid fa-envelope text-[#0A2945] mr-2"></i> geral@gpmconecta.ao</span>
         </div>
         <div class="flex items-center gap-4">
             <span class="hidden md:inline">Seg - Sáb: 08:00 - 18:00</span>
             <div class="flex gap-3 border-l border-gray-600 pl-4">
-                <span class="hover:text-[#f96b21] cursor-pointer transition"><i class="fa-brands fa-facebook-f"></i></span>
-                <span class="hover:text-[#f96b21] cursor-pointer transition"><i class="fa-brands fa-instagram"></i></span>
-                <span class="hover:text-[#f96b21] cursor-pointer transition"><i class="fa-brands fa-linkedin-in"></i></span>
+                <span class="hover:text-[#0A2945] cursor-pointer transition"><i class="fa-brands fa-facebook-f"></i></span>
+                <span class="hover:text-[#0A2945] cursor-pointer transition"><i class="fa-brands fa-instagram"></i></span>
+                <span class="hover:text-[#0A2945] cursor-pointer transition"><i class="fa-brands fa-linkedin-in"></i></span>
             </div>
         </div>
     </div>
@@ -291,25 +291,25 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
 <header class="bg-white sticky top-0 z-50 border-b border-gray-100">
     <div class="max-w-site mx-auto px-6 h-20 flex items-center justify-between">
         <a href="index.php" class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-[#f96b21] text-white flex items-center justify-center font-bold text-lg">
+            <div class="w-8 h-8 bg-[#0A2945] text-white flex items-center justify-center font-bold text-lg">
                 <i class="fa-solid fa-layer-group"></i>
             </div>
             <span class="text-2xl font-black text-[#0d233f] tracking-tighter">GPM.</span>
         </a>
 
         <nav class="hidden lg:flex items-center space-x-8 text-xs font-bold uppercase tracking-wider text-[#0d233f]">
-            <a href="#inicio" class="text-[#f96b21]">Início</a>
-            <a href="#servicos" class="hover:text-[#f96b21] transition">Serviços</a>
-            <a href="#solucoes" class="hover:text-[#f96b21] transition">Soluções</a>
-            <a href="#projetos" class="hover:text-[#f96b21] transition">Projetos</a>
-            <a href="#sobre" class="hover:text-[#f96b21] transition">Sobre Nós</a>
+            <a href="#inicio" class="text-[#0A2945]">Início</a>
+            <a href="#servicos" class="hover:text-[#0A2945] transition">Serviços</a>
+            <a href="#solucoes" class="hover:text-[#0A2945] transition">Soluções</a>
+            <a href="#projetos" class="hover:text-[#0A2945] transition">Projetos</a>
+            <a href="#sobre" class="hover:text-[#0A2945] transition">Sobre Nós</a>
         </nav>
 
         <div class="flex items-center space-x-5">
-            <button class="text-[#0d233f] hover:text-[#f96b21] transition"><i class="fa-solid fa-magnifying-glass"></i></button>
-            <a href="cliente/index.php" class="flex items-center gap-2 text-[#0d233f] hover:text-[#f96b21] transition">
+            <button class="text-[#0d233f] hover:text-[#0A2945] transition"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <a href="cliente/index.php" class="flex items-center gap-2 text-[#0d233f] hover:text-[#0A2945] transition">
                 <i class="fa-solid fa-cart-shopping"></i>
-                <span class="bg-[#f96b21] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">0</span>
+                <span class="bg-[#0A2945] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">0</span>
             </a>
             <button class="lg:hidden text-[#0d233f] text-xl"><i class="fa-solid fa-bars"></i></button>
         </div>
@@ -337,7 +337,7 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
                     Atuamos como representante comercial e especialista em procurement, conectando a sua empresa às melhores soluções nacionais e importadas. Desde materiais e equipamentos até insumos industriais e fogões profissionais.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#contactos" class="bg-[#f96b21] hover:bg-[#e05812] text-white font-bold text-xs uppercase tracking-wider px-8 py-4 transition shadow-lg">
+                    <a href="#contactos" class="bg-[#0A2945] hover:bg-[#123653] text-white font-bold text-xs uppercase tracking-wider px-8 py-4 transition shadow-lg">
                         Falar Connosco
                     </a>
                     <a href="#sobre" class="border border-[#0d233f] text-[#0d233f] hover:bg-[#0d233f] hover:text-white font-bold text-xs uppercase tracking-wider px-8 py-4 transition">
@@ -359,25 +359,25 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
                     <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">GPM CONECTA</span>
                     <h3 class="text-lg font-bold text-[#0d233f] mb-4">Procurement e Gestão</h3>
                     <p class="text-xs text-gray-500 leading-relaxed mb-6">Gerenciamos todo o processo de cotação e negociação para a sua empresa.</p>
-                    <span class="text-[#f96b21] font-bold text-xl">+</span>
+                    <span class="text-[#0A2945] font-bold text-xl">+</span>
                 </div>
                 <div class="bg-white p-8 border border-gray-100 border-b-4 border-transparent service-card shadow-sm transition-all reveal" style="transition-delay: 100ms;">
                     <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">GPM CONECTA</span>
                     <h3 class="text-lg font-bold text-[#0d233f] mb-4">Fornecimento B2B</h3>
                     <p class="text-xs text-gray-500 leading-relaxed mb-6">Fornecimento de equipamentos, materiais, insumos e artigos profissionais.</p>
-                    <span class="text-[#f96b21] font-bold text-xl">+</span>
+                    <span class="text-[#0A2945] font-bold text-xl">+</span>
                 </div>
                 <div class="bg-white p-8 border border-gray-100 border-b-4 border-transparent service-card shadow-sm transition-all reveal" style="transition-delay: 200ms;">
                     <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">GPM CONECTA</span>
                     <h3 class="text-lg font-bold text-[#0d233f] mb-4">Representação</h3>
                     <p class="text-xs text-gray-500 leading-relaxed mb-6">Representação comercial de equipamentos nacionais e importados.</p>
-                    <span class="text-[#f96b21] font-bold text-xl">+</span>
+                    <span class="text-[#0A2945] font-bold text-xl">+</span>
                 </div>
                 <div class="bg-white p-8 border border-gray-100 border-b-4 border-transparent service-card shadow-sm transition-all reveal" style="transition-delay: 300ms;">
                     <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">GPM CONECTA</span>
                     <h3 class="text-lg font-bold text-[#0d233f] mb-4">Importação</h3>
                     <p class="text-xs text-gray-500 leading-relaxed mb-6">Importação de insumos industriais e materiais especializados.</p>
-                    <span class="text-[#f96b21] font-bold text-xl">+</span>
+                    <span class="text-[#0A2945] font-bold text-xl">+</span>
                 </div>
             </div>
         </div>
@@ -397,7 +397,7 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
                 <p class="text-gray-500 text-sm leading-relaxed mb-8">
                     Seja para suprimentos industriais, materiais de construção, equipamentos especializados ou artigos para o setor alimentar (como fogões industriais), a GPM Conecta oferece um atendimento corporativo completo para suprir todas as demandas do seu projeto. Conte com a nossa expertise para simplificar suas aquisições com segurança e agilidade.
                 </p>
-                <a href="#contactos" class="bg-[#f96b21] hover:bg-[#e05812] text-white font-bold text-xs uppercase tracking-wider px-8 py-3 transition inline-block shadow-md">
+                <a href="#contactos" class="bg-[#0A2945] hover:bg-[#123653] text-white font-bold text-xs uppercase tracking-wider px-8 py-3 transition inline-block shadow-md">
                     Solicitar Cotação
                 </a>
             </div>
@@ -415,10 +415,10 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
                     <div class="lg:col-span-4 space-y-8">
                         <div class="space-y-6">
                             <div>
-                                <span id="project-sector" class="text-[10px] font-bold text-[#f96b21] uppercase tracking-widest block mb-2"></span>
+                                <span id="project-sector" class="text-[10px] font-bold text-[#0A2945] uppercase tracking-widest block mb-2"></span>
                                 <h3 id="project-title" class="text-2xl font-bold text-white mb-3"></h3>
                                 <p id="project-description" class="text-sm text-gray-300 leading-relaxed mb-6"></p>
-                                <a href="cliente/index.php" class="inline-block bg-[#f96b21] hover:bg-[#e05812] text-white font-bold text-xs uppercase tracking-wider px-6 py-3 transition">
+                                <a href="cliente/index.php" class="inline-block bg-[#0A2945] hover:bg-[#123653] text-white font-bold text-xs uppercase tracking-wider px-6 py-3 transition">
                                     Ver Produtos no Marketplace
                                 </a>
                             </div>
@@ -430,10 +430,10 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
                 </div>
 
                 <div class="flex gap-2 mt-8 justify-start">
-                    <button id="prev-project" class="border border-gray-600 text-gray-400 hover:text-white hover:border-[#f96b21] px-4 py-2 text-xs font-bold uppercase transition flex items-center gap-2">
+                    <button id="prev-project" class="border border-gray-600 text-gray-400 hover:text-white hover:border-[#0A2945] px-4 py-2 text-xs font-bold uppercase transition flex items-center gap-2">
                         <i class="fa-solid fa-arrow-left"></i> Anterior
                     </button>
-                    <button id="next-project" class="bg-[#f96b21] hover:bg-[#e05812] text-white px-4 py-2 text-xs font-bold uppercase transition flex items-center gap-2">
+                    <button id="next-project" class="bg-[#0A2945] hover:bg-[#123653] text-white px-4 py-2 text-xs font-bold uppercase transition flex items-center gap-2">
                         Próximo <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
@@ -442,7 +442,7 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
     </section>
 
     <!-- Logos Strip Animada -->
-    <section class="bg-[#f96b21] py-10 overflow-hidden logos-container">
+    <section class="bg-[#0A2945] py-10 overflow-hidden logos-container">
         <div class="logos-track">
             <div class="logos-half">
                 <div class="logo-item"><i class="fa-brands fa-aws text-white text-4xl opacity-90"></i></div>
@@ -479,7 +479,7 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
                 </div>
                 
                 <div class="bg-white border border-gray-100 p-8 flex flex-col justify-center items-center text-center reveal h-[400px]" style="transition-delay: 100ms;">
-                    <i class="fa-solid fa-fire-burner text-[#f96b21] text-4xl mb-4"></i>
+                    <i class="fa-solid fa-fire-burner text-[#0A2945] text-4xl mb-4"></i>
                     <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Indústria e Restauração</span>
                     <h3 class="text-lg font-bold text-[#0d233f] mb-2">Fogões e Equipamentos</h3>
                     <p class="text-xs text-gray-500">Soluções completas para cozinhas industriais e restauração.</p>
@@ -490,7 +490,7 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
                 </div>
 
                 <div class="bg-white border border-gray-100 p-8 flex flex-col justify-center items-center text-center reveal h-[250px]" style="transition-delay: 300ms;">
-                    <i class="fa-solid fa-boxes-stacked text-[#f96b21] text-4xl mb-4"></i>
+                    <i class="fa-solid fa-boxes-stacked text-[#0A2945] text-4xl mb-4"></i>
                     <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Materiais</span>
                     <h3 class="text-lg font-bold text-[#0d233f] mb-2">Materiais e Insumos</h3>
                     <p class="text-xs text-gray-500">Tudo o que precisa para as suas operações.</p>
@@ -504,7 +504,7 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
     </section>
 
     <!-- Full Project Management Banner (Orange) -->
-    <section class="relative py-24 bg-[#f96b21] overflow-hidden">
+    <section class="relative py-24 bg-[#0A2945] overflow-hidden">
         <div class="max-w-site mx-auto px-6 flex flex-col md:flex-row items-center relative z-10">
             <div class="md:w-1/2 mb-10 md:mb-0 reveal">
                 <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=800&auto=format&fit=crop" class="w-full shadow-2xl" alt="Equipa GPM">
@@ -517,7 +517,7 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
                 <p class="text-white/90 text-sm leading-relaxed mb-8">
                     Do planeamento à entrega. Acompanhamos o processo de cotação, negociação e entrega com foco em eficiência, prazos e otimização de custos.
                 </p>
-                <a href="#contactos" class="bg-white text-[#f96b21] font-bold text-xs uppercase tracking-wider px-8 py-3 hover:bg-gray-100 transition inline-block shadow-md">
+                <a href="#contactos" class="bg-white text-[#0A2945] font-bold text-xs uppercase tracking-wider px-8 py-3 hover:bg-gray-100 transition inline-block shadow-md">
                     Ler Mais
                 </a>
             </div>
@@ -528,19 +528,19 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
     <section class="py-20 bg-white">
         <div class="max-w-site mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div class="reveal">
-                <span class="block text-5xl font-black text-[#f96b21] mb-2 counter" data-target="34">0</span>
+                <span class="block text-5xl font-black text-[#0A2945] mb-2 counter" data-target="34">0</span>
                 <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Projetos</span>
             </div>
             <div class="reveal" style="transition-delay: 100ms;">
-                <span class="block text-5xl font-black text-[#f96b21] mb-2 counter" data-target="97">0</span>
+                <span class="block text-5xl font-black text-[#0A2945] mb-2 counter" data-target="97">0</span>
                 <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Clientes Satisfeitos</span>
             </div>
             <div class="reveal" style="transition-delay: 200ms;">
-                <span class="block text-5xl font-black text-[#f96b21] mb-2 counter" data-target="15">0</span>
+                <span class="block text-5xl font-black text-[#0A2945] mb-2 counter" data-target="15">0</span>
                 <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Anos de Experiência</span>
             </div>
             <div class="reveal" style="transition-delay: 300ms;">
-                <span class="block text-5xl font-black text-[#f96b21] mb-2 counter" data-target="62">0</span>
+                <span class="block text-5xl font-black text-[#0A2945] mb-2 counter" data-target="62">0</span>
                 <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Parceiros</span>
             </div>
         </div>
@@ -551,7 +551,7 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
         <div class="max-w-site mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="bg-[#0d233f] p-10 text-white relative reveal">
                 <i class="fa-solid fa-quote-right absolute top-8 right-8 text-4xl text-white/10"></i>
-                <span class="text-[10px] font-bold text-[#f96b21] uppercase tracking-widest block mb-4">Diretor de Operações</span>
+                <span class="text-[10px] font-bold text-[#0A2945] uppercase tracking-widest block mb-4">Diretor de Operações</span>
                 <h3 class="text-xl font-bold mb-4">A GPM Conecta simplificou as nossas aquisições.</h3>
                 <p class="text-sm text-gray-300 leading-relaxed mb-6 italic">
                     "A expertise da equipa em procurement permitiu-nos otimizar custos e garantir prazos de entrega. Um parceiro essencial para o nosso negócio."
@@ -567,7 +567,7 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
 
             <div class="bg-white p-10 border border-gray-100 relative shadow-sm reveal" style="transition-delay: 150ms;">
                 <i class="fa-solid fa-quote-right absolute top-8 right-8 text-4xl text-gray-100"></i>
-                <span class="text-[10px] font-bold text-[#f96b21] uppercase tracking-widest block mb-4">Gestora de Projetos</span>
+                <span class="text-[10px] font-bold text-[#0A2945] uppercase tracking-widest block mb-4">Gestora de Projetos</span>
                 <h3 class="text-xl font-bold text-[#0d233f] mb-4">Equipamentos e materiais de alta qualidade.</h3>
                 <p class="text-sm text-gray-500 leading-relaxed mb-6 italic">
                     "Desde a representação comercial até à entrega, o atendimento é impecável. Recomendo a GPM Conecta para qualquer empresa que precise de fornecimento."
@@ -646,7 +646,7 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
                 <div class="relative w-32 h-32 flex items-center justify-center mb-4">
                     <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
                         <circle cx="50" cy="50" r="45" fill="none" stroke="#e5e7eb" stroke-width="6" />
-                        <circle cx="50" cy="50" r="45" fill="none" stroke="#f96b21" stroke-width="6" stroke-linecap="round"
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="#0A2945" stroke-width="6" stroke-linecap="round"
                                 class="progress-circle" data-percent="36" style="stroke-dasharray: 283; stroke-dashoffset: 283;" />
                     </svg>
                     <div class="absolute flex items-baseline justify-center">
@@ -654,14 +654,14 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
                         <span class="text-xl font-black text-[#0d233f] ml-0.5">%</span>
                     </div>
                 </div>
-                <span class="text-xs font-bold text-[#f96b21] uppercase tracking-widest mb-1">PROCUREMENT</span>
+                <span class="text-xs font-bold text-[#0A2945] uppercase tracking-widest mb-1">PROCUREMENT</span>
                 <p class="text-xs text-gray-500">Otimização de custos e prazos.</p>
             </div>
             <div class="flex flex-col items-center reveal" style="transition-delay: 100ms;">
                 <div class="relative w-32 h-32 flex items-center justify-center mb-4">
                     <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
                         <circle cx="50" cy="50" r="45" fill="none" stroke="#e5e7eb" stroke-width="6" />
-                        <circle cx="50" cy="50" r="45" fill="none" stroke="#f96b21" stroke-width="6" stroke-linecap="round"
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="#0A2945" stroke-width="6" stroke-linecap="round"
                                 class="progress-circle" data-percent="75" style="stroke-dasharray: 283; stroke-dashoffset: 283;" />
                     </svg>
                     <div class="absolute flex items-baseline justify-center">
@@ -669,14 +669,14 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
                         <span class="text-xl font-black text-[#0d233f] ml-0.5">%</span>
                     </div>
                 </div>
-                <span class="text-xs font-bold text-[#f96b21] uppercase tracking-widest mb-1">CLIENTES</span>
+                <span class="text-xs font-bold text-[#0A2945] uppercase tracking-widest mb-1">CLIENTES</span>
                 <p class="text-xs text-gray-500">Satisfação e fidelização.</p>
             </div>
             <div class="flex flex-col items-center reveal" style="transition-delay: 200ms;">
                 <div class="relative w-32 h-32 flex items-center justify-center mb-4">
                     <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
                         <circle cx="50" cy="50" r="45" fill="none" stroke="#e5e7eb" stroke-width="6" />
-                        <circle cx="50" cy="50" r="45" fill="none" stroke="#f96b21" stroke-width="6" stroke-linecap="round"
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="#0A2945" stroke-width="6" stroke-linecap="round"
                                 class="progress-circle" data-percent="68" style="stroke-dasharray: 283; stroke-dashoffset: 283;" />
                     </svg>
                     <div class="absolute flex items-baseline justify-center">
@@ -684,7 +684,7 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
                         <span class="text-xl font-black text-[#0d233f] ml-0.5">%</span>
                     </div>
                 </div>
-                <span class="text-xs font-bold text-[#f96b21] uppercase tracking-widest mb-1">PROJETOS</span>
+                <span class="text-xs font-bold text-[#0A2945] uppercase tracking-widest mb-1">PROJETOS</span>
                 <p class="text-xs text-gray-500">Concluídos com sucesso.</p>
             </div>
         </div>
@@ -697,9 +697,9 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
             
             <div class="max-w-3xl mx-auto space-y-0 reveal">
                 <div class="accordion-item border-b border-gray-200">
-                    <button class="accordion-header w-full flex justify-between items-center py-5 text-left font-bold text-[#0d233f] hover:text-[#f96b21] focus:outline-none transition">
+                    <button class="accordion-header w-full flex justify-between items-center py-5 text-left font-bold text-[#0d233f] hover:text-[#0A2945] focus:outline-none transition">
                         <span>Como funciona o processo de procurement?</span>
-                        <span class="accordion-icon text-[#f96b21] font-bold text-xl">+</span>
+                        <span class="accordion-icon text-[#0A2945] font-bold text-xl">+</span>
                     </button>
                     <div class="accordion-content text-sm text-gray-500">
                         <p class="pb-5">Nós gerimos todo o ciclo de compras da sua empresa, desde a identificação da necessidade até à negociação com fornecedores e entrega final no seu armazém. Isto garante melhores preços e menos burocracia.</p>
@@ -707,9 +707,9 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
                 </div>
 
                 <div class="accordion-item border-b border-gray-200">
-                    <button class="accordion-header w-full flex justify-between items-center py-5 text-left font-bold text-[#0d233f] hover:text-[#f96b21] focus:outline-none transition">
+                    <button class="accordion-header w-full flex justify-between items-center py-5 text-left font-bold text-[#0d233f] hover:text-[#0A2945] focus:outline-none transition">
                         <span>Que tipos de equipamentos e materiais fornecem?</span>
-                        <span class="accordion-icon text-[#f96b21] font-bold text-xl">+</span>
+                        <span class="accordion-icon text-[#0A2945] font-bold text-xl">+</span>
                     </button>
                     <div class="accordion-content text-sm text-gray-500">
                         <p class="pb-5">Fornecemos uma vasta gama de produtos. Vai desde materiais de construção civil, insumos industriais, ferramentas, até equipamentos especializados e fogões industriais para o setor alimentar.</p>
@@ -717,9 +717,9 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
                 </div>
 
                 <div class="accordion-item border-b border-gray-200">
-                    <button class="accordion-header w-full flex justify-between items-center py-5 text-left font-bold text-[#0d233f] hover:text-[#f96b21] focus:outline-none transition">
+                    <button class="accordion-header w-full flex justify-between items-center py-5 text-left font-bold text-[#0d233f] hover:text-[#0A2945] focus:outline-none transition">
                         <span>Fazem importação de produtos?</span>
-                        <span class="accordion-icon text-[#f96b21] font-bold text-xl">+</span>
+                        <span class="accordion-icon text-[#0A2945] font-bold text-xl">+</span>
                     </button>
                     <div class="accordion-content text-sm text-gray-500">
                         <p class="pb-5">Sim. Atuamos como representantes comerciais e facilitamos a importação de equipamentos e materiais específicos que não estejam disponíveis no mercado nacional, tratando de toda a logística.</p>
@@ -727,9 +727,9 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
                 </div>
 
                 <div class="accordion-item border-b border-gray-200">
-                    <button class="accordion-header w-full flex justify-between items-center py-5 text-left font-bold text-[#0d233f] hover:text-[#f96b21] focus:outline-none transition">
+                    <button class="accordion-header w-full flex justify-between items-center py-5 text-left font-bold text-[#0d233f] hover:text-[#0A2945] focus:outline-none transition">
                         <span>Como posso solicitar uma cotação (orçamento)?</span>
-                        <span class="accordion-icon text-[#f96b21] font-bold text-xl">+</span>
+                        <span class="accordion-icon text-[#0A2945] font-bold text-xl">+</span>
                     </button>
                     <div class="accordion-content text-sm text-gray-500">
                         <p class="pb-5">Pode preencher o formulário de contacto abaixo, enviar-nos um e-mail ou contactar-nos através do WhatsApp. A nossa equipa responderá no prazo máximo de 24 horas úteis.</p>
@@ -766,14 +766,14 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
                         
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <input id="nome" name="nome" type="text" maxlength="150" required placeholder="Nome *" value="<?= e((string) ($_POST['nome'] ?? '')) ?>" class="w-full text-sm border border-gray-300 focus:border-[#f96b21] focus:ring-[#f96b21] p-3 bg-white">
+                                <input id="nome" name="nome" type="text" maxlength="150" required placeholder="Nome *" value="<?= e((string) ($_POST['nome'] ?? '')) ?>" class="w-full text-sm border border-gray-300 focus:border-[#0A2945] focus:ring-[#0A2945] p-3 bg-white">
                             </div>
                             <div>
-                                <input id="email" name="email" type="email" maxlength="190" required placeholder="E-mail *" value="<?= e((string) ($_POST['email'] ?? '')) ?>" class="w-full text-sm border border-gray-300 focus:border-[#f96b21] focus:ring-[#f96b21] p-3 bg-white">
+                                <input id="email" name="email" type="email" maxlength="190" required placeholder="E-mail *" value="<?= e((string) ($_POST['email'] ?? '')) ?>" class="w-full text-sm border border-gray-300 focus:border-[#0A2945] focus:ring-[#0A2945] p-3 bg-white">
                             </div>
                         </div>
                         <div>
-                            <textarea id="mensagem" name="mensagem" maxlength="5000" required placeholder="Mensagem *" class="w-full text-sm border border-gray-300 focus:border-[#f96b21] focus:ring-[#f96b21] p-3 bg-white min-h-[150px]"><?= e((string) ($_POST['mensagem'] ?? '')) ?></textarea>
+                            <textarea id="mensagem" name="mensagem" maxlength="5000" required placeholder="Mensagem *" class="w-full text-sm border border-gray-300 focus:border-[#0A2945] focus:ring-[#0A2945] p-3 bg-white min-h-[150px]"><?= e((string) ($_POST['mensagem'] ?? '')) ?></textarea>
                         </div>
                         <button type="submit" class="bg-[#0d233f] hover:bg-[#163154] text-white font-bold text-xs uppercase tracking-wider px-8 py-4 transition w-full">
                             Enviar Mensagem
@@ -789,7 +789,7 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
                     <div class="space-y-8">
                         <!-- Morada -->
                         <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-[#f96b21]/10 text-[#f96b21] flex items-center justify-center rounded-full flex-shrink-0">
+                            <div class="w-12 h-12 bg-[#0A2945]/10 text-[#0A2945] flex items-center justify-center rounded-full flex-shrink-0">
                                 <i class="fa-solid fa-location-dot text-xl"></i>
                             </div>
                             <div>
@@ -800,7 +800,7 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
 
                         <!-- Telefone e Email -->
                         <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-[#f96b21]/10 text-[#f96b21] flex items-center justify-center rounded-full flex-shrink-0">
+                            <div class="w-12 h-12 bg-[#0A2945]/10 text-[#0A2945] flex items-center justify-center rounded-full flex-shrink-0">
                                 <i class="fa-solid fa-phone text-xl"></i>
                             </div>
                             <div>
@@ -811,7 +811,7 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
                         </div>
 
                         <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-[#f96b21]/10 text-[#f96b21] flex items-center justify-center rounded-full flex-shrink-0">
+                            <div class="w-12 h-12 bg-[#0A2945]/10 text-[#0A2945] flex items-center justify-center rounded-full flex-shrink-0">
                                 <i class="fa-solid fa-envelope text-xl"></i>
                             </div>
                             <div>
@@ -822,22 +822,22 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
 
                         <!-- Redes Sociais -->
                         <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-[#f96b21]/10 text-[#f96b21] flex items-center justify-center rounded-full flex-shrink-0">
+                            <div class="w-12 h-12 bg-[#0A2945]/10 text-[#0A2945] flex items-center justify-center rounded-full flex-shrink-0">
                                 <i class="fa-solid fa-share-nodes text-xl"></i>
                             </div>
                             <div>
                                 <h3 class="font-bold text-[#0d233f] text-lg mb-2">Redes Sociais</h3>
                                 <div class="flex gap-3">
-                                    <a href="#" class="w-10 h-10 bg-white border border-gray-200 flex items-center justify-center rounded text-gray-600 hover:text-[#f96b21] hover:border-[#f96b21] transition">
+                                    <a href="#" class="w-10 h-10 bg-white border border-gray-200 flex items-center justify-center rounded text-gray-600 hover:text-[#0A2945] hover:border-[#0A2945] transition">
                                         <i class="fa-brands fa-facebook-f"></i>
                                     </a>
-                                    <a href="#" class="w-10 h-10 bg-white border border-gray-200 flex items-center justify-center rounded text-gray-600 hover:text-[#f96b21] hover:border-[#f96b21] transition">
+                                    <a href="#" class="w-10 h-10 bg-white border border-gray-200 flex items-center justify-center rounded text-gray-600 hover:text-[#0A2945] hover:border-[#0A2945] transition">
                                         <i class="fa-brands fa-instagram"></i>
                                     </a>
-                                    <a href="#" class="w-10 h-10 bg-white border border-gray-200 flex items-center justify-center rounded text-gray-600 hover:text-[#f96b21] hover:border-[#f96b21] transition">
+                                    <a href="#" class="w-10 h-10 bg-white border border-gray-200 flex items-center justify-center rounded text-gray-600 hover:text-[#0A2945] hover:border-[#0A2945] transition">
                                         <i class="fa-brands fa-linkedin-in"></i>
                                     </a>
-                                    <a href="#" class="w-10 h-10 bg-white border border-gray-200 flex items-center justify-center rounded text-gray-600 hover:text-[#f96b21] hover:border-[#f96b21] transition">
+                                    <a href="#" class="w-10 h-10 bg-white border border-gray-200 flex items-center justify-center rounded text-gray-600 hover:text-[#0A2945] hover:border-[#0A2945] transition">
                                         <i class="fa-brands fa-whatsapp"></i>
                                     </a>
                                 </div>
@@ -867,11 +867,11 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
 </main>
 
 <!-- Footer -->
-<footer class="bg-[#0d233f] text-white py-16 border-t-4 border-[#f96b21]">
+<footer class="bg-[#0d233f] text-white py-16 border-t-4 border-[#0A2945]">
     <div class="max-w-site mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
         <div class="md:col-span-2">
             <a href="index.php" class="flex items-center gap-2 mb-6">
-                <div class="w-8 h-8 bg-[#f96b21] text-white flex items-center justify-center font-bold text-lg">
+                <div class="w-8 h-8 bg-[#0A2945] text-white flex items-center justify-center font-bold text-lg">
                     <i class="fa-solid fa-layer-group"></i>
                 </div>
                 <span class="text-2xl font-black tracking-tighter">GPM.</span>
@@ -881,7 +881,7 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
             </p>
         </div>
         <div>
-            <h3 class="text-xs font-bold uppercase tracking-widest text-[#f96b21] mb-6">Navegação</h3>
+            <h3 class="text-xs font-bold uppercase tracking-widest text-[#0A2945] mb-6">Navegação</h3>
             <ul class="space-y-3 text-sm text-gray-300">
                 <li><a href="#inicio" class="hover:text-white transition">Início</a></li>
                 <li><a href="#servicos" class="hover:text-white transition">Serviços</a></li>
@@ -891,7 +891,7 @@ $seoDescription = 'GPM Conecta: procurement, representação comercial, fornecim
             </ul>
         </div>
         <div>
-            <h3 class="text-xs font-bold uppercase tracking-widest text-[#f96b21] mb-6">Marketplace</h3>
+            <h3 class="text-xs font-bold uppercase tracking-widest text-[#0A2945] mb-6">Marketplace</h3>
             <ul class="space-y-3 text-sm text-gray-300">
                 <li><a href="cliente/index.php" class="hover:text-white transition">Entrar</a></li>
                 <li><a href="cliente/index.php" class="hover:text-white transition">Ver Catálogo</a></li>
