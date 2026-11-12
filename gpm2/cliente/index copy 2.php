@@ -193,7 +193,7 @@ $totalCarrinho = array_sum(
 <meta name="description" content="Marketplace GPM — materiais de construção.">
 <title>Marketplace | GPM — Materiais de Construção</title>
 <style>
-:root{--laranja:#FEA619;--azul:#0d233f;--texto:#596575;--fundo:#f5f7fa;--borda:#e3e8ef;--branco:#fff}
+:root{--laranja:#FEA619;--azul:#0A2945;--texto:#596575;--fundo:#f5f7fa;--borda:#e3e8ef;--branco:#fff}
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--azul);background:var(--fundo)}
 a{color:inherit;text-decoration:none}
@@ -206,7 +206,7 @@ header{background:#fff;border-bottom:1px solid var(--borda)}
 .logo span{color:var(--laranja)}
 .links{display:flex;gap:18px;align-items:center;flex-wrap:wrap;font-size:14px;font-weight:bold}
 .links a:hover{color:#9a6200}
-.hero{background:linear-gradient(120deg,#0d233f,#193b60);color:white;padding:42px 0}
+.hero{background:linear-gradient(120deg,#0A2945,#193b60);color:white;padding:42px 0}
 .hero h1{font-size:clamp(27px,4vw,42px);margin:0 0 12px}
 .hero p{color:#dce5f0;line-height:1.6;margin:0 0 22px}
 .search{display:flex;gap:10px;max-width:720px}
@@ -227,7 +227,7 @@ header{background:#fff;border-bottom:1px solid var(--borda)}
 .heading p{margin:0;color:#6b7280;font-size:13px}
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
 .card{display:flex;flex-direction:column;min-width:0;transition:transform .15s,box-shadow .15s}
-.card:hover{transform:translateY(-2px);box-shadow:0 8px 22px #0d233f12}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 22px #0A294512}
 .card-image{height:185px;background:#f1f4f7;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .card-image img{width:100%;height:100%;object-fit:contain;padding:12px}
 .no-image{color:#aeb8c5;font-size:45px}
