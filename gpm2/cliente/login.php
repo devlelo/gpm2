@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0A2945"><link rel="icon" type="image/png" href="../assets/img/GPMlogo.png">
 
     <title>Entrar na conta | GPM</title>
 
