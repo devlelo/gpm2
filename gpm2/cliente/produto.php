@@ -412,11 +412,11 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                 <?= e($produto['category_name'] ?? 'Materiais de Construção') ?>
             </span>
 
-            <h1 class="text-3xl md:text-4xl font-black text-[#0d233f] mt-3 mb-5">
+            <h1 class="text-3xl md:text-4xl font-black text-[#0A2945] mt-3 mb-5">
                 <?= e($produto['name']) ?>
             </h1>
 
-            <div class="text-3xl font-black text-[#0d233f] mb-6">
+            <div class="text-3xl font-black text-[#0A2945] mb-6">
                 <?= e(gpmKzDetalhe($produto['price'])) ?>
             </div>
 
@@ -445,7 +445,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                     <div class="flex justify-between text-sm">
                         <span class="text-gray-500">Unidade</span>
 
-                        <span class="font-bold text-[#0d233f]">
+                        <span class="font-bold text-[#0A2945]">
                             <?= e($produto['unit']) ?>
                         </span>
                     </div>
@@ -455,14 +455,14 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                 <div class="flex justify-between text-sm">
                     <span class="text-gray-500">Quantidade disponível</span>
 
-                    <span class="font-bold text-[#0d233f]">
+                    <span class="font-bold text-[#0A2945]">
                         <?= $stockPrincipal ?>
                     </span>
                 </div>
 
             </div>
 
-            <h2 class="font-bold text-[#0d233f] mb-3">
+            <h2 class="font-bold text-[#0A2945] mb-3">
                 Descrição do produto
             </h2>
 
@@ -498,7 +498,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                         <button
                             type="button"
                             onclick="alterarQuantidade(-1)"
-                            class="px-4 py-3 text-[#0d233f] hover:bg-gray-100"
+                            class="px-4 py-3 text-[#0A2945] hover:bg-gray-100"
                         >
                             -
                         </button>
@@ -516,7 +516,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                         <button
                             type="button"
                             onclick="alterarQuantidade(1)"
-                            class="px-4 py-3 text-[#0d233f] hover:bg-gray-100"
+                            class="px-4 py-3 text-[#0A2945] hover:bg-gray-100"
                         >
                             +
                         </button>
@@ -525,7 +525,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
                     <button
                         type="submit"
-                        class="flex-1 bg-[#0d233f] hover:bg-[#163154] text-white font-bold py-3 px-6 uppercase text-sm transition"
+                        class="flex-1 bg-[#0A2945] hover:bg-[#123653] text-white font-bold py-3 px-6 uppercase text-sm transition"
                     >
                         <i class="fa-solid fa-cart-plus mr-2"></i>
                         Adicionar ao carrinho
@@ -561,7 +561,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                         Continue a explorar
                     </span>
 
-                    <h2 class="text-2xl md:text-3xl font-black text-[#0d233f] mt-2 uppercase">
+                    <h2 class="text-2xl md:text-3xl font-black text-[#0A2945] mt-2 uppercase">
                         Produtos da mesma categoria
                     </h2>
                 </div>
@@ -616,11 +616,11 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                             <!-- Informações -->
                             <div class="p-4">
 
-                                <h3 class="text-sm font-bold text-[#0d233f] mb-2 line-clamp-2">
+                                <h3 class="text-sm font-bold text-[#0A2945] mb-2 line-clamp-2">
                                     <?= e($relacionado['name']) ?>
                                 </h3>
 
-                                <p class="text-lg font-black text-[#0d233f] mb-3">
+                                <p class="text-lg font-black text-[#0A2945] mb-3">
                                     <?= e(gpmKzDetalhe($relacionado['price'])) ?>
                                 </p>
 
@@ -647,7 +647,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
                             <a
                                 href="produto.php?id=<?= (int)$relacionado['id'] ?>"
-                                class="block text-center border border-gray-200 text-[#0d233f] font-bold text-xs py-2.5 uppercase hover:bg-gray-50 transition"
+                                class="block text-center border border-gray-200 text-[#0A2945] font-bold text-xs py-2.5 uppercase hover:bg-gray-50 transition"
                             >
                                 Ver mais informação
                             </a>
@@ -682,7 +682,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
                                     <button
                                         type="submit"
-                                        class="w-full bg-[#0d233f] hover:bg-[#163154] text-white font-bold text-xs py-2.5 uppercase transition"
+                                        class="w-full bg-[#0A2945] hover:bg-[#123653] text-white font-bold text-xs py-2.5 uppercase transition"
                                     >
                                         <i class="fa-solid fa-cart-plus mr-2"></i>
                                         Add ao carrinho
@@ -719,7 +719,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 <!-- Notificação do carrinho -->
 <div
     id="aviso-carrinho"
-    class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 bg-[#0d233f] text-white px-6 py-4 shadow-2xl border-l-4 border-[#0A2945] pointer-events-none transition-all duration-300 flex items-center gap-4 max-w-sm"
+    class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 bg-[#0A2945] text-white px-6 py-4 shadow-2xl border-l-4 border-[#0A2945] pointer-events-none transition-all duration-300 flex items-center gap-4 max-w-sm"
     role="status"
     aria-live="polite"
 >
