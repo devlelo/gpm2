@@ -320,7 +320,7 @@ if ($pesquisa !== '') {
 
         <!-- Nav -->
         <nav class="hidden md:flex items-center space-x-8 text-xs font-bold uppercase tracking-wider text-[#0A2945]">
-            <a href="#" class="text-[#0A2945]">Produtos</a>
+            <a href="index.php#produtos" class="text-[#0A2945]">Produtos</a>
             <a href="#" class="hover:text-[#0A2945] transition">Serviços</a>
             <a href="#" class="hover:text-[#0A2945] transition">Garantia</a>
             <a href="#" class="hover:text-[#0A2945] transition">Sobre Nós</a>
