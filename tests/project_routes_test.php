@@ -17,6 +17,7 @@ $read = static function (string $path) use ($project): string {
 
 $home = $read('index.php');
 $marketHeader = $read('cliente/includes/header-marketplace.php');
+$marketFooter = $read('cliente/includes/footer-marketplace.php');
 $customerHeader = $read('cliente/includes/header.php');
 $customerLogin = $read('cliente/login.php');
 $checkout = $read('cliente/finalizar-pedido.php');
@@ -28,8 +29,14 @@ $assert(str_contains($home, 'href="cliente/index.php"'), 'homepage marketplace l
 $assert(!str_contains($home, 'gpm/cliente/'), 'homepage has no duplicated legacy /gpm/cliente route');
 $assert(!str_contains($home, 'gpm/assets/'), 'homepage assets do not point into the nested legacy tree');
 $assert(str_contains($marketHeader, "rtrim(BASE_URL, '/') . '/cliente'"), 'marketplace derives its URL from canonical BASE_URL');
-$assert(str_contains($marketHeader, 'href="painel-cliente/index.php"'), 'marketplace account link opens the customer panel');
-$assert(str_contains($marketHeader, '<?= e(BASE_URL) ?>/assets/img/GPMlogo.png'), 'marketplace logo uses the canonical asset root');
+$assert(str_contains($marketHeader, 'href="<?= $baseMarketplace ?>/painel-cliente/index.php"'), 'marketplace account link opens the customer panel from every customer route');
+$assert(str_contains($marketHeader, '<?= e(BASE_URL) ?>/assets/img/GPMlogo.png?v=3'), 'marketplace logo uses the canonical GPMlogo asset');
+$assert(str_contains($marketHeader, '<?= e(BASE_URL) ?>/contacto.php'), 'marketplace contact links open the real contact page');
+$assert(!str_contains($marketHeader, '#contactos'), 'marketplace header has no dead contact anchor');
+$assert(!str_contains($marketFooter, 'href="#"'), 'marketplace footer has no placeholder social links');
+$assert(str_contains($marketFooter, '<?= e(BASE_URL) ?>/contacto.php'), 'marketplace footer contact button opens the real contact page');
+$assert(is_file($project . '/assets/img/GPMlogo.png'), 'official GPMlogo image exists');
+$assert(!is_file($project . '/assets/img/gpm-conecta.png'), 'unused gpm-conecta image has been removed');
 $assert(str_contains($customerHeader, '<?= e(BASE_URL) ?>/cliente/index.php'), 'customer panel returns to the canonical marketplace');
 $assert(str_contains($customerLogin, "redirect('painel-cliente/index.php')"), 'customer login redirects to the panel without duplicating /cliente');
 $assert(str_contains($checkout, "redirect('painel-cliente/pedido.php?id='"), 'checkout opens order details inside the customer panel');
