@@ -108,9 +108,9 @@ if (is_array($carrinho)) {
         <!-- Navegação Desktop -->
         <nav class="hidden lg:flex items-center space-x-8 text-xs font-bold uppercase tracking-wider text-[#0A2945] flex-shrink-0">
             <a href="<?= $baseMarketplace ?>/index.php" class="hover:text-[#2F776F] transition">Início</a>
-            <a href="<?= $baseMarketplace ?>/index.php#contactos" class="hover:text-[#2F776F] transition">Contactos</a>
+            <a href="<?= e(BASE_URL) ?>/contacto.php" class="hover:text-[#2F776F] transition">Contactos</a>
             <?php if (function_exists('cliente_atual') && cliente_atual()): ?>
-                <a href="painel-cliente/index.php" class="hover:text-[#2F776F] transition">Minha Conta</a>
+                <a href="<?= $baseMarketplace ?>/painel-cliente/index.php" class="hover:text-[#2F776F] transition">Minha Conta</a>
             <?php else: ?>
                 <a href="<?= $baseMarketplace ?>/login.php" class="hover:text-[#2F776F] transition">Entrar</a>
             <?php endif; ?>
@@ -139,9 +139,9 @@ if (is_array($carrinho)) {
             </form>
 
             <a href="<?= $baseMarketplace ?>/index.php" class="py-3 border-b border-gray-100 hover:text-[#2F776F]">Início</a>
-            <a href="<?= $baseMarketplace ?>/index.php#contactos" class="py-3 border-b border-gray-100 hover:text-[#2F776F]">Contactos</a>
+            <a href="<?= e(BASE_URL) ?>/contacto.php" class="py-3 border-b border-gray-100 hover:text-[#2F776F]">Contactos</a>
             <?php if (function_exists('cliente_atual') && cliente_atual()): ?>
-                <a href="painel-cliente/index.php" class="py-3 border-b border-gray-100 hover:text-[#2F776F]">Minha Conta</a>
+                <a href="<?= $baseMarketplace ?>/painel-cliente/index.php" class="py-3 border-b border-gray-100 hover:text-[#2F776F]">Minha Conta</a>
             <?php else: ?>
                 <a href="<?= $baseMarketplace ?>/login.php" class="py-3 border-b border-gray-100 hover:text-[#2F776F]">Entrar</a>
             <?php endif; ?>
