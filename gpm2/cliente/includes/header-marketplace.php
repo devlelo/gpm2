@@ -22,7 +22,7 @@ if (is_array($carrinho)) {
 <head><style>.gpm-market-logo{display:block;width:52px;height:52px;object-fit:contain;flex:none}.gpm-market-wordmark{font-size:clamp(21px,2vw,27px);font-weight:900;letter-spacing:-1px;color:#0A2945;white-space:nowrap;line-height:1}@media(max-width:640px){.gpm-market-logo{width:44px;height:44px}.gpm-market-wordmark{font-size:21px}}</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0A2945"><link rel="icon" type="image/png" href="<?= e(BASE_URL) ?>/assets/img/GPMlogo.png">
+    <meta name="theme-color" content="#0A2945"><link rel="icon" type="image/png" href="<?= e(BASE_URL) ?>/assets/img/GPMlogo.png?v=3">
 
     <title><?= isset($tituloPagina) ? htmlspecialchars($tituloPagina, ENT_QUOTES, 'UTF-8') . ' | GPM' : 'GPM — Equipamentos e Suprimentos' ?></title>
 
@@ -85,7 +85,7 @@ if (is_array($carrinho)) {
 <header class="bg-white sticky top-0 z-50 border-b border-gray-100">
     <div class="max-w-site mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4">
         <!-- Logo -->
-        <a href="<?= $baseMarketplace ?>/index.php" class="flex items-center gap-2 cursor-pointer flex-shrink-0"><img class="gpm-market-logo" src="<?= e(BASE_URL) ?>/assets/img/GPMlogo.png" alt=""><span class="gpm-market-wordmark">gpm-conecta</span></a>
+        <a href="<?= $baseMarketplace ?>/index.php" class="flex items-center gap-2 cursor-pointer flex-shrink-0"><img class="gpm-market-logo" src="<?= e(BASE_URL) ?>/assets/img/GPMlogo.png?v=3" alt=""><span class="gpm-market-wordmark">gpm-conecta</span></a>
 
         <!-- Barra de Pesquisa (Desktop) -->
         <form action="<?= $baseMarketplace ?>/index.php" method="GET" class="hidden md:flex flex-1 max-w-md bg-gray-50 border border-gray-200 focus-within:border-[#2F776F] transition">
