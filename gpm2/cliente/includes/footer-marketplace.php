@@ -22,7 +22,7 @@
                 <h3 class="text-xs font-bold uppercase tracking-widest text-[#2F776F] mb-6">Links Úteis</h3>
                 <ul class="space-y-3 text-sm text-gray-300">
                     <li><a href="<?= $baseMarketplace ?>/index.php" class="hover:text-white transition">Início</a></li>
-                    <li><a href="<?= $baseMarketplace ?>/index.php#produtos" class="hover:text-white transition">Produtos</a></li>
+                    <li><a href="<?= $baseMarketplace ?>/index.php" class="hover:text-white transition">Produtos</a></li>
                     <li><a href="<?= $baseMarketplace ?>/carrinho.php" class="hover:text-white transition">Meu Carrinho</a></li>
                     <li><a href="<?= $baseMarketplace ?>/login.php" class="hover:text-white transition">Minha Conta</a></li>
                 </ul>
@@ -34,7 +34,7 @@
                 <p class="text-sm text-gray-400 mb-4 leading-relaxed">
                     Entre em contacto connosco para obter informações sobre produtos, preços e entregas.
                 </p>
-                <a href="<?= $baseMarketplace ?>/index.php#contactos" class="inline-block bg-[#2F776F] hover:bg-[#0A2945] text-[#0d233f] font-bold text-xs uppercase tracking-wider px-6 py-3 transition shadow-md">
+                <a href="<?= e(BASE_URL) ?>/contacto.php" class="inline-block bg-[#2F776F] hover:bg-[#0A2945] text-[#0d233f] font-bold text-xs uppercase tracking-wider px-6 py-3 transition shadow-md">
                     Fale Connosco
                 </a>
             </div>
