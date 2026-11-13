@@ -102,6 +102,7 @@ $categoriaId = ($categoriaId && $categoriaId > 0) ? $categoriaId : null;
 
 $categorias = [];
 $produtos = [];
+$maisVendidos = [];
 $erroCatalogo = '';
 
 function gpmKz(mixed $valor): string
@@ -178,6 +179,23 @@ try {
     $stmt = $pdo->prepare($sql);
     $stmt->execute($parametros);
     $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $stmtMaisVendidos = $pdo->query(
+        "SELECT p.id, p.category_id, p.name, p.description, p.price,
+                p.stock_quantity, p.unit, p.main_image,
+                c.name AS category_name, SUM(oi.quantity) AS unidades_vendidas
+         FROM order_items oi
+         INNER JOIN orders o ON o.id = oi.order_id
+         INNER JOIN products p ON p.id = oi.product_id
+         LEFT JOIN categories c ON c.id = p.category_id
+         WHERE p.active = 1
+           AND o.status IN ('confirmed', 'preparing', 'shipped', 'completed')
+         GROUP BY p.id, p.category_id, p.name, p.description, p.price,
+                  p.stock_quantity, p.unit, p.main_image, c.name
+         ORDER BY unidades_vendidas DESC, p.name ASC
+         LIMIT 4"
+    );
+    $maisVendidos = $stmtMaisVendidos->fetchAll(PDO::FETCH_ASSOC);
 } catch (Throwable $erro) {
     error_log('Erro no marketplace GPM: ' . $erro->getMessage());
     $erroCatalogo = 'Não foi possível carregar o catálogo. Verifique a base de dados.';
@@ -190,6 +208,55 @@ $totalCarrinho = array_sum(
 
 // Incluir o Header (Menu) unificado do Marketplace
 require_once __DIR__ . '/includes/header-marketplace.php';
+?>
+
+<style>
+.gpm-sales-section{background:#fff;padding:38px 0 42px;border-bottom:1px solid #e3eaf0}
+.gpm-sales-inner{max-width:1280px;margin:auto;padding:0 24px}
+.gpm-sales-heading{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:22px}
+.gpm-sales-kicker{font-size:10px;font-weight:800;letter-spacing:.16em;color:#2F776F;text-transform:uppercase;margin:0 0 8px}
+.gpm-sales-heading h2{margin:0;color:#0A2945;font-size:clamp(23px,3vw,32px);font-weight:900;letter-spacing:-.04em}
+.gpm-sales-heading p{margin:0;color:#607285;font-size:12px}
+.gpm-sales-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.gpm-sales-card{min-width:0;background:#fff;border:1px solid #e3eaf0;display:flex;flex-direction:column;transition:transform .22s ease,box-shadow .22s ease}
+.gpm-sales-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(10,41,69,.10)}
+.gpm-sales-card-image{height:175px;background:#fff;border-bottom:1px solid #edf1f4;display:grid;place-items:center;padding:16px}
+.gpm-sales-card-image img{width:100%;height:100%;object-fit:contain}
+.gpm-sales-card-body{padding:16px;display:flex;flex:1;flex-direction:column}
+.gpm-sales-card-category{color:#2F776F;font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.gpm-sales-card h3{margin:8px 0;color:#0A2945;font-size:14px;font-weight:800;line-height:1.45}
+.gpm-sales-card-price{margin-top:auto;padding-top:10px;border-top:1px solid #edf1f4;color:#0A2945;font-size:17px;font-weight:900}
+.gpm-sales-card-link{display:block;margin-top:12px;padding:10px;text-align:center;background:#0A2945;color:#fff;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.gpm-sales-card-link:hover{background:#123653}
+.product-card{background:#fff!important;border:1px solid #e3eaf0!important;box-shadow:0 2px 8px rgba(10,41,69,.035)}
+@media(max-width:900px){.gpm-sales-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.gpm-sales-inner{padding:0 14px}.gpm-sales-grid{gap:10px}.gpm-sales-card-image{height:135px;padding:10px}.gpm-sales-card-body{padding:11px}.gpm-sales-card h3{font-size:12px}.gpm-sales-card-price{font-size:14px}.gpm-sales-heading{align-items:flex-start;flex-direction:column}}
+</style>
+<?php if ($maisVendidos): ?>
+<section class="gpm-sales-section" aria-labelledby="gpm-sales-title">
+ <div class="gpm-sales-inner">
+  <div class="gpm-sales-heading">
+   <div><p class="gpm-sales-kicker">Escolhas dos clientes</p><h2 id="gpm-sales-title">Mais vendidos</h2></div>
+   <p>Ordenados pelas unidades vendidas em pedidos confirmados.</p>
+  </div>
+  <div class="gpm-sales-grid">
+   <?php foreach ($maisVendidos as $produto): $imagemMaisVendido = gpmImagem($produto['main_image'] ?? null); ?>
+    <article class="gpm-sales-card">
+     <a class="gpm-sales-card-image" href="produto.php?id=<?= (int)$produto['id'] ?>">
+      <?php if ($imagemMaisVendido !== ''): ?><img src="<?= e($imagemMaisVendido) ?>" alt="<?= e($produto['name']) ?>" loading="lazy"><?php else: ?><i class="fa-solid fa-box text-4xl" style="color:#B9C9D6"></i><?php endif; ?>
+     </a>
+     <div class="gpm-sales-card-body">
+      <span class="gpm-sales-card-category"><?= e($produto['category_name'] ?? 'GPM Conecta') ?></span>
+      <h3><?= e($produto['name']) ?></h3>
+      <div class="gpm-sales-card-price"><?= e(gpmKz($produto['price'])) ?></div>
+      <a class="gpm-sales-card-link" href="produto.php?id=<?= (int)$produto['id'] ?>">Ver produto ↗</a>
+     </div>
+    </article>
+   <?php endforeach; ?>
+  </div>
+ </div>
+</section>
+<?php endif; ?>
 ?>
 
 <!-- Hero Section Interna -->
@@ -275,7 +342,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
         <!-- Product Grid -->
         <div class="flex-1 min-w-0">
             <div class="flex justify-between items-end mb-8 border-b border-gray-200 pb-2 reveal">
-                <h2 class="text-xl font-black text-[#0A2945] uppercase">Top Vendas</h2>
+                <h2 class="text-xl font-black text-[#0A2945] uppercase">Catálogo completo</h2>
                 <span class="text-xs font-bold text-gray-400"><?= count($produtos) ?> resultados</span>
             </div>
 
