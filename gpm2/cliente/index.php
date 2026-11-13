@@ -103,6 +103,7 @@ $categoriaId = ($categoriaId && $categoriaId > 0) ? $categoriaId : null;
 $categorias = [];
 $produtos = [];
 $maisVendidos = [];
+$novidades = [];
 $erroCatalogo = '';
 
 function gpmKz(mixed $valor): string
@@ -196,6 +197,17 @@ try {
          LIMIT 4"
     );
     $maisVendidos = $stmtMaisVendidos->fetchAll(PDO::FETCH_ASSOC);
+
+    $stmtNovidades = $pdo->query(
+        "SELECT p.id, p.name, p.description, p.price, p.stock_quantity,
+                p.main_image, c.name AS category_name
+         FROM products p
+         LEFT JOIN categories c ON c.id = p.category_id
+         WHERE p.active = 1
+         ORDER BY p.created_at DESC, p.id DESC
+         LIMIT 4"
+    );
+    $novidades = $stmtNovidades->fetchAll(PDO::FETCH_ASSOC);
 } catch (Throwable $erro) {
     error_log('Erro no marketplace GPM: ' . $erro->getMessage());
     $erroCatalogo = 'Não foi possível carregar o catálogo. Verifique a base de dados.';
@@ -229,6 +241,14 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 .gpm-sales-card-link{display:block;margin-top:12px;padding:10px;text-align:center;background:#0A2945;color:#fff;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
 .gpm-sales-card-link:hover{background:#123653}
 .product-card{background:#fff!important;border:1px solid #e3eaf0!important;box-shadow:0 2px 8px rgba(10,41,69,.035)}
+.product-card [class*="text-[#f96b21]"]{color:#CE9E53!important}
+.product-card [class*="group-hover:text-[#f96b21]"]:hover{color:#CE9E53!important}
+.product-card [class*="bg-[#f8f9fa]"]{background:#fff!important}
+.product-card [class*="text-emerald-600"]{color:#2F776F!important}
+.product-card [class*="bg-emerald-50"]{background:#EAF3F1!important}
+.product-card [class*="text-red-500"]{color:#607285!important}
+.product-card [class*="bg-red-50"]{background:#F1F4F6!important}
+
 @media(max-width:900px){.gpm-sales-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.gpm-sales-inner{padding:0 14px}.gpm-sales-grid{gap:10px}.gpm-sales-card-image{height:135px;padding:10px}.gpm-sales-card-body{padding:11px}.gpm-sales-card h3{font-size:12px}.gpm-sales-card-price{font-size:14px}.gpm-sales-heading{align-items:flex-start;flex-direction:column}}
 </style>
@@ -257,7 +277,32 @@ require_once __DIR__ . '/includes/header-marketplace.php';
  </div>
 </section>
 <?php endif; ?>
-?>
+
+<?php if ($novidades): ?>
+<section class="gpm-sales-section" aria-labelledby="gpm-new-title">
+ <div class="gpm-sales-inner">
+  <div class="gpm-sales-heading">
+   <div><p class="gpm-sales-kicker">Acabados de chegar</p><h2 id="gpm-new-title">Novidades</h2></div>
+   <p>Os produtos adicionados mais recentemente ao catálogo.</p>
+  </div>
+  <div class="gpm-sales-grid">
+   <?php foreach ($novidades as $produtoNovo): $imagemNovo = gpmImagem($produtoNovo['main_image'] ?? null); ?>
+    <article class="gpm-sales-card">
+     <a class="gpm-sales-card-image" href="produto.php?id=<?= (int)$produtoNovo['id'] ?>">
+      <?php if ($imagemNovo !== ''): ?><img src="<?= e($imagemNovo) ?>" alt="<?= e($produtoNovo['name']) ?>" loading="lazy"><?php else: ?><i class="fa-solid fa-box text-4xl" style="color:#B9C9D6"></i><?php endif; ?>
+     </a>
+     <div class="gpm-sales-card-body">
+      <span class="gpm-sales-card-category"><?= e($produtoNovo['category_name'] ?? 'GPM Conecta') ?></span>
+      <h3><?= e($produtoNovo['name']) ?></h3>
+      <div class="gpm-sales-card-price"><?= e(gpmKz($produtoNovo['price'])) ?></div>
+      <a class="gpm-sales-card-link" href="produto.php?id=<?= (int)$produtoNovo['id'] ?>">Ver produto ↗</a>
+     </div>
+    </article>
+   <?php endforeach; ?>
+  </div>
+ </div>
+</section>
+<?php endif; ?>
 
 <!-- Hero Section Interna -->
 <section class="relative bg-[#0A2945] text-white overflow-hidden py-12 md:py-16">
