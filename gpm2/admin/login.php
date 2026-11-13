@@ -61,13 +61,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="#0A2945"><link rel="icon" type="image/png" href="../assets/img/GPMlogo.png">
+    <meta name="theme-color" content="#0A2945"><link rel="icon" type="image/png" href="../assets/img/GPMlogo.png?v=3">
     <title>Entrar | GPM</title>
     <link rel="stylesheet" href="assets/css/admin.css">
 </head>
 <body class="login-page">
 <form class="login-card" method="post" action="login.php">
-    <div class="brand-login"><img src="../assets/img/GPMlogo.png?v=2" alt="GPM Conecta"><span class="brand-wordmark">gpm-conecta<small>PAINEL DE GESTÃO</small></span></div>
+    <div class="brand-login"><img src="../assets/img/GPMlogo.png?v=3" alt="GPM Conecta"><span class="brand-wordmark">gpm-conecta<small>PAINEL DE GESTÃO</small></span></div>
     <h1>Painel administrativo</h1>
     <p class="muted">Entre com a sua conta interna.</p>
     <?php if ($error !== ''): ?><div class="alert error"><?= e($error) ?></div><?php endif; ?>
