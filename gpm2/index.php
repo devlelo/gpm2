@@ -94,13 +94,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&
     }
 }
 
-// Carregar produtos para a página inicial (ex: os 4 mais recentes ou em destaque)
+// Homepage: apresentar apenas produtos com maior volume de vendas confirmadas.
 try {
     $stmt = $pdo->query(
-        "SELECT id, name, slug, description, price, main_image
-         FROM products
-         WHERE active = 1
-         ORDER BY featured DESC, created_at DESC
+        "SELECT p.id, p.name, p.slug, p.description, p.price, p.main_image,
+                SUM(oi.quantity) AS unidades_vendidas
+         FROM order_items oi
+         INNER JOIN orders o ON o.id = oi.order_id
+         INNER JOIN products p ON p.id = oi.product_id
+         WHERE p.active = 1
+           AND o.status IN ('confirmed', 'preparing', 'shipped', 'completed')
+         GROUP BY p.id, p.name, p.slug, p.description, p.price, p.main_image
+         ORDER BY unidades_vendidas DESC, p.name ASC
          LIMIT 4"
     );
 
