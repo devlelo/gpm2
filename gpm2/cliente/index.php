@@ -223,14 +223,18 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 ?>
 
 <style>
-.gpm-sales-section{background:#fff;padding:38px 0 42px;border-bottom:1px solid #e3eaf0}
-.gpm-sales-inner{max-width:1280px;margin:auto;padding:0 24px}
-.gpm-sales-heading{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:22px}
-.gpm-sales-kicker{font-size:10px;font-weight:800;letter-spacing:.16em;color:#2F776F;text-transform:uppercase;margin:0 0 8px}
-.gpm-sales-heading h2{margin:0;color:#0A2945;font-size:clamp(23px,3vw,32px);font-weight:900;letter-spacing:-.04em}
-.gpm-sales-heading p{margin:0;color:#607285;font-size:12px}
-.gpm-sales-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
-.gpm-sales-card{min-width:0;background:#fff;border:1px solid #e3eaf0;display:flex;flex-direction:column;transition:transform .22s ease,box-shadow .22s ease}
+.gpm-featured{position:relative;padding:42px 0 46px;overflow:hidden}
+.gpm-featured--best{background:#fff;border-bottom:1px solid #e5ebf0}
+.gpm-featured--new{background:#eef4f5;border-bottom:1px solid #dce7e8}
+.gpm-featured-inner{max-width:1280px;margin:auto;padding:0 24px}
+.gpm-featured-heading{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:22px}
+.gpm-featured-kicker{font-size:10px;font-weight:800;letter-spacing:.16em;color:#2F776F;text-transform:uppercase;margin:0 0 8px}
+.gpm-featured-heading h2{margin:0;color:#0A2945;font-size:clamp(23px,3vw,32px);font-weight:900;letter-spacing:-.04em}
+.gpm-featured-heading p{margin:0;color:#607285;font-size:12px}
+.gpm-carousel-wrap{position:relative;padding:0 2px}
+.gpm-carousel-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:4px 2px 14px;scrollbar-width:none}
+.gpm-carousel-track::-webkit-scrollbar{display:none}
+.gpm-sales-card{flex:0 0 calc((100% - 54px)/4);min-width:0;background:#fff;border:1px solid #e0e8ed;display:flex;flex-direction:column;scroll-snap-align:start;transition:transform .22s ease,box-shadow .22s ease}
 .gpm-sales-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(10,41,69,.10)}
 .gpm-sales-card-image{height:190px;background:#fff;border-bottom:1px solid #edf1f4;display:grid;place-items:center;padding:16px;overflow:hidden}
 .gpm-sales-card-image img{display:block;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain}
@@ -240,15 +244,22 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 .gpm-sales-card-price{margin-top:auto;padding-top:10px;border-top:1px solid #edf1f4;color:#0A2945;font-size:17px;font-weight:900}
 .gpm-sales-card-link{display:block;margin-top:12px;padding:10px;text-align:center;background:#0A2945;color:#fff;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
 .gpm-sales-card-link:hover{background:#123653}
+.gpm-carousel-arrow{position:absolute;z-index:2;top:42%;width:42px;height:42px;border:1px solid #d9e2e8;background:#fff;color:#0A2945;display:grid;place-items:center;border-radius:50%;box-shadow:0 5px 18px rgba(10,41,69,.13);cursor:pointer;transition:background .2s,color .2s,transform .2s}
+.gpm-carousel-arrow:hover{background:#0A2945;color:#fff;transform:scale(1.06)}
+.gpm-carousel-arrow:disabled{opacity:.35;cursor:default}
+.gpm-carousel-arrow--prev{left:-12px}
+.gpm-carousel-arrow--next{right:-12px}
+.gpm-featured--new .gpm-sales-card{border-color:#dce7e8}
 .product-card{background:#fff!important;border:1px solid #e3eaf0!important;box-shadow:0 2px 8px rgba(10,41,69,.035)}
 .product-card [class*="bg-[#f8f9fa]"]{background:#fff!important}
 .product-card [class*="text-emerald-600"]{color:#2F776F!important}
 .product-card [class*="bg-emerald-50"]{background:#EAF3F1!important}
 .product-card [class*="text-red-500"]{color:#607285!important}
 .product-card [class*="bg-red-50"]{background:#F1F4F6!important}
-
-@media(max-width:900px){.gpm-sales-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:520px){.gpm-sales-inner{padding:0 14px}.gpm-sales-grid{gap:10px}.gpm-sales-card-image{height:135px;padding:10px}.gpm-sales-card-body{padding:11px}.gpm-sales-card h3{font-size:12px}.gpm-sales-card-price{font-size:14px}.gpm-sales-heading{align-items:flex-start;flex-direction:column}}
+@media(max-width:900px){.gpm-sales-card{flex-basis:calc((100% - 36px)/3)}}
+@media(max-width:650px){.gpm-featured{padding:30px 0 34px}.gpm-featured-inner{padding:0 16px}.gpm-featured-heading{align-items:flex-start;flex-direction:column;gap:6px;margin-bottom:16px}.gpm-sales-card{flex-basis:calc((100% - 14px)/2)}.gpm-carousel-track{gap:14px}.gpm-sales-card-image{height:150px;padding:10px}.gpm-sales-card-body{padding:12px}.gpm-sales-card h3{font-size:12px}.gpm-sales-card-price{font-size:14px}.gpm-carousel-arrow{width:34px;height:34px;top:40%}.gpm-carousel-arrow--prev{left:-7px}.gpm-carousel-arrow--next{right:-7px}}
+@media(max-width:390px){.gpm-sales-card{flex-basis:82%}}
+@media(prefers-reduced-motion:reduce){.gpm-carousel-track{scroll-behavior:auto}.gpm-sales-card{transition:none}}
 </style>
 <!-- Hero Section Interna -->
 <section class="relative bg-[#0A2945] text-white overflow-hidden py-12 md:py-16">
@@ -287,17 +298,34 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
 
 <?php if ($maisVendidos): ?>
-<section class="gpm-sales-section" aria-labelledby="gpm-sales-title">
- <div class="gpm-sales-inner">
-  <div class="gpm-sales-heading">
-   <div><p class="gpm-sales-kicker">Escolhas dos clientes</p><h2 id="gpm-sales-title">Mais vendidos</h2></div>
-   <p>Ordenados pelas unidades vendidas em pedidos confirmados.</p>
+<section class="gpm-featured gpm-featured--best" aria-labelledby="gpm-sales-title">
+ <div class="gpm-featured-inner">
+  <div class="gpm-featured-heading">
+   <div><p class="gpm-featured-kicker">Escolhas dos clientes</p><h2 id="gpm-sales-title">Mais vendidos</h2></div>
+   <p>Os produtos preferidos pelos nossos clientes.</p>
   </div>
-  <div class="gpm-sales-grid">
+  <div class="gpm-carousel-wrap" data-gpm-carousel>
+   <button class="gpm-carousel-arrow gpm-carousel-arrow--prev" type="button" aria-label="Produtos anteriores"><i class="fa-solid fa-chevron-left"></i></button>
+   <div class="gpm-carousel-track" id="gpm-best-track">
    <?php foreach ($maisVendidos as $produto): $imagemMaisVendido = gpmImagem($produto['main_image'] ?? null); ?>
     <article class="gpm-sales-card">
      <a class="gpm-sales-card-image" href="produto.php?id=<?= (int)$produto['id'] ?>">
       <?php if ($imagemMaisVendido !== ''): ?><img src="<?= e($imagemMaisVendido) ?>" alt="<?= e($produto['name']) ?>" loading="lazy"><?php else: ?><i class="fa-solid fa-box text-4xl" style="color:#B9C9D6"></i><?php endif; ?>
+     </a>
+     <div class="gpm-sales-card-body">
+      <span class="gpm-sales-card-category"><?= e($produto['category_name'] ?? 'GPM Conecta') ?></span>
+      <h3><?= e($produto['name']) ?></h3>
+      <div class="gpm-sales-card-price"><?= e(gpmKz($produto['price'])) ?></div>
+      <a class="gpm-sales-card-link" href="produto.php?id=<?= (int)$produto['id'] ?>">Ver produto <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+     </div>
+    </article>
+   <?php endforeach; ?>
+   </div>
+   <button class="gpm-carousel-arrow gpm-carousel-arrow--next" type="button" aria-label="Próximos produtos"><i class="fa-solid fa-chevron-right"></i></button>
+  </div>
+ </div>
+</section>
+<?php endif; ?>
      </a>
      <div class="gpm-sales-card-body">
       <span class="gpm-sales-card-category"><?= e($produto['category_name'] ?? 'GPM Conecta') ?></span>
@@ -313,17 +341,34 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 <?php endif; ?>
 
 <?php if ($novidades): ?>
-<section class="gpm-sales-section" aria-labelledby="gpm-new-title">
- <div class="gpm-sales-inner">
-  <div class="gpm-sales-heading">
-   <div><p class="gpm-sales-kicker">Acabados de chegar</p><h2 id="gpm-new-title">Novidades</h2></div>
-   <p>Os produtos adicionados mais recentemente ao catálogo.</p>
+<section class="gpm-featured gpm-featured--new" aria-labelledby="gpm-new-title">
+ <div class="gpm-featured-inner">
+  <div class="gpm-featured-heading">
+   <div><p class="gpm-featured-kicker">Acabados de chegar</p><h2 id="gpm-new-title">Novidades</h2></div>
+   <p>Descubra os produtos mais recentes do catálogo.</p>
   </div>
-  <div class="gpm-sales-grid">
+  <div class="gpm-carousel-wrap" data-gpm-carousel>
+   <button class="gpm-carousel-arrow gpm-carousel-arrow--prev" type="button" aria-label="Novidades anteriores"><i class="fa-solid fa-chevron-left"></i></button>
+   <div class="gpm-carousel-track" id="gpm-new-track">
    <?php foreach ($novidades as $produtoNovo): $imagemNovo = gpmImagem($produtoNovo['main_image'] ?? null); ?>
     <article class="gpm-sales-card">
      <a class="gpm-sales-card-image" href="produto.php?id=<?= (int)$produtoNovo['id'] ?>">
       <?php if ($imagemNovo !== ''): ?><img src="<?= e($imagemNovo) ?>" alt="<?= e($produtoNovo['name']) ?>" loading="lazy"><?php else: ?><i class="fa-solid fa-box text-4xl" style="color:#B9C9D6"></i><?php endif; ?>
+     </a>
+     <div class="gpm-sales-card-body">
+      <span class="gpm-sales-card-category"><?= e($produtoNovo['category_name'] ?? 'GPM Conecta') ?></span>
+      <h3><?= e($produtoNovo['name']) ?></h3>
+      <div class="gpm-sales-card-price"><?= e(gpmKz($produtoNovo['price'])) ?></div>
+      <a class="gpm-sales-card-link" href="produto.php?id=<?= (int)$produtoNovo['id'] ?>">Ver produto <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+     </div>
+    </article>
+   <?php endforeach; ?>
+   </div>
+   <button class="gpm-carousel-arrow gpm-carousel-arrow--next" type="button" aria-label="Próximas novidades"><i class="fa-solid fa-chevron-right"></i></button>
+  </div>
+ </div>
+</section>
+<?php endif; ?>
      </a>
      <div class="gpm-sales-card-body">
       <span class="gpm-sales-card-category"><?= e($produtoNovo['category_name'] ?? 'GPM Conecta') ?></span>
@@ -572,6 +617,63 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                 botao.disabled = false;
             }
         });
+    });
+
+    // Carrosséis de destaques: setas e avanço automático.
+    document.querySelectorAll('[data-gpm-carousel]').forEach(function (carousel) {
+        const track = carousel.querySelector('.gpm-carousel-track');
+        const anterior = carousel.querySelector('.gpm-carousel-arrow--prev');
+        const proximo = carousel.querySelector('.gpm-carousel-arrow--next');
+        if (!track || !anterior || !proximo) return;
+
+        const passo = function () {
+            const card = track.querySelector('.gpm-sales-card');
+            if (!card) return track.clientWidth;
+            const estilos = window.getComputedStyle(track);
+            const gap = parseFloat(estilos.columnGap || estilos.gap) || 0;
+            return card.getBoundingClientRect().width + gap;
+        };
+
+        const atualizarSetas = function () {
+            const maximo = track.scrollWidth - track.clientWidth;
+            anterior.disabled = track.scrollLeft <= 3;
+            proximo.disabled = track.scrollLeft >= maximo - 3;
+        };
+
+        anterior.addEventListener('click', function () {
+            track.scrollBy({ left: -passo(), behavior: 'smooth' });
+        });
+        proximo.addEventListener('click', function () {
+            const noFim = track.scrollLeft + track.clientWidth >= track.scrollWidth - 5;
+            track.scrollTo({ left: noFim ? 0 : track.scrollLeft + passo(), behavior: 'smooth' });
+        });
+        track.addEventListener('scroll', atualizarSetas, { passive: true });
+        window.addEventListener('resize', atualizarSetas);
+        atualizarSetas();
+
+        let intervalo = null;
+        const movimentoReduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const iniciar = function () {
+            if (movimentoReduzido || intervalo || track.scrollWidth <= track.clientWidth + 5) return;
+            intervalo = window.setInterval(function () {
+                if (carousel.matches(':hover') || document.hidden) return;
+                const fim = track.scrollLeft + track.clientWidth >= track.scrollWidth - 5;
+                track.scrollTo({ left: fim ? 0 : track.scrollLeft + passo(), behavior: 'smooth' });
+            }, 4200);
+        };
+        const parar = function () {
+            if (intervalo) window.clearInterval(intervalo);
+            intervalo = null;
+        };
+        carousel.addEventListener('mouseenter', parar);
+        carousel.addEventListener('mouseleave', iniciar);
+        carousel.addEventListener('focusin', parar);
+        carousel.addEventListener('focusout', iniciar);
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden) parar();
+            else iniciar();
+        });
+        iniciar();
     });
 
     // Animação de entrada dos cards
