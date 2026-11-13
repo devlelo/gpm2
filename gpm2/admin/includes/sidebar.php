@@ -29,7 +29,7 @@ $roleLabels = [
 <div class="sidebar-overlay" id="gpmSidebarOverlay"></div>
 <aside class="sidebar" id="gpmSidebar" aria-label="Navegação principal">
     <a class="brand" href="<?= e(BASE_URL) ?>/admin/index.php">
-        <img class="brand-logo" src="<?= e(BASE_URL) ?>/assets/img/GPMlogo.png" alt="">
+        <img class="brand-logo" src="<?= e(BASE_URL) ?>/assets/img/GPMlogo.png?v=2" alt="GPM Conecta">
         <span class="brand-wordmark">gpm-conecta<small>PAINEL DE GESTÃO</small></span>
     </a>
     <div class="sidebar-section-label">MENU PRINCIPAL</div>
