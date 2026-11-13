@@ -241,8 +241,6 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 .gpm-sales-card-link{display:block;margin-top:12px;padding:10px;text-align:center;background:#0A2945;color:#fff;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
 .gpm-sales-card-link:hover{background:#123653}
 .product-card{background:#fff!important;border:1px solid #e3eaf0!important;box-shadow:0 2px 8px rgba(10,41,69,.035)}
-.product-card [class*="text-[#f96b21]"]{color:#CE9E53!important}
-.product-card [class*="group-hover:text-[#f96b21]"]:hover{color:#CE9E53!important}
 .product-card [class*="bg-[#f8f9fa]"]{background:#fff!important}
 .product-card [class*="text-emerald-600"]{color:#2F776F!important}
 .product-card [class*="bg-emerald-50"]{background:#EAF3F1!important}
@@ -308,12 +306,12 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 <section class="relative bg-[#0A2945] text-white overflow-hidden py-12 md:py-16">
     <div class="max-w-site mx-auto px-4 sm:px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
         <div class="md:w-2/3 space-y-4">
-            <span class="inline-block bg-white/10 px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-[#f96b21]">
+            <span class="inline-block bg-white/10 px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-[#CE9E53]">
                 Catálogo Completo
             </span>
             <h1 class="text-3xl md:text-5xl font-black leading-[1.1] uppercase tracking-tight">
                 <?php if ($pesquisa !== ''): ?>
-                    Resultados para: <span class="text-[#f96b21]">"<?= e($pesquisa) ?>"</span>
+                    Resultados para: <span class="text-[#CE9E53]">"<?= e($pesquisa) ?>"</span>
                 <?php else: ?>
                     Explore as Nossas <br>Soluções
                 <?php endif; ?>
@@ -330,7 +328,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                 <?php if ($categoriaId !== null): ?>
                     <input type="hidden" name="categoria" value="<?= (int)$categoriaId ?>">
                 <?php endif; ?>
-                <button type="submit" class="bg-[#f96b21] hover:bg-[#e05812] text-white px-6 font-bold text-sm transition">
+                <button type="submit" class="bg-[#CE9E53] hover:bg-[#B58A45] text-white px-6 font-bold text-sm transition">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
@@ -346,11 +344,11 @@ require_once __DIR__ . '/includes/header-marketplace.php';
         <aside class="w-full lg:w-64 flex-shrink-0 space-y-8 lg:sticky lg:top-28 h-fit reveal">
             <!-- Categories -->
             <div>
-                <h2 class="text-lg font-black text-[#0A2945] mb-4 border-b-2 border-[#f96b21] inline-block pb-1 uppercase tracking-wide">Categorias</h2>
+                <h2 class="text-lg font-black text-[#0A2945] mb-4 border-b-2 border-[#CE9E53] inline-block pb-1 uppercase tracking-wide">Categorias</h2>
                 <ul class="space-y-1 text-sm max-h-[60vh] overflow-y-auto sidebar-scroll pr-2">
                     <li>
                         <a href="index.php<?= $pesquisa !== '' ? '?q=' . urlencode($pesquisa) : '' ?>" 
-                           class="block py-2 px-3 transition <?= $categoriaId === null ? 'bg-[#f96b21]/10 text-[#f96b21] font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#0A2945]' ?>">
+                           class="block py-2 px-3 transition <?= $categoriaId === null ? 'bg-[#CE9E53]/10 text-[#CE9E53] font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#0A2945]' ?>">
                             Todas as Categorias
                         </a>
                     </li>
@@ -364,7 +362,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                         ?>
                         <li>
                             <a href="<?= e($urlCategoria) ?>" 
-                               class="block py-2 px-3 transition <?= $isActive ? 'bg-[#f96b21]/10 text-[#f96b21] font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#0A2945]' ?>">
+                               class="block py-2 px-3 transition <?= $isActive ? 'bg-[#CE9E53]/10 text-[#CE9E53] font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#0A2945]' ?>">
                                 <?= e($categoria['name']) ?>
                             </a>
                         </li>
@@ -428,10 +426,10 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
                             <!-- Info -->
                             <div class="p-5 text-left">
-                                <div class="text-[10px] font-bold text-[#f96b21] uppercase tracking-widest mb-2">
+                                <div class="text-[10px] font-bold text-[#CE9E53] uppercase tracking-widest mb-2">
                                     <?= e($produto['category_name'] ?? 'GPM') ?>
                                 </div>
-                                <h3 class="text-sm font-bold text-[#0A2945] mb-2 line-clamp-1 group-hover:text-[#f96b21] transition">
+                                <h3 class="text-sm font-bold text-[#0A2945] mb-2 line-clamp-1 group-hover:text-[#CE9E53] transition">
                                     <?= e($produto['name']) ?>
                                 </h3>
                                 <p class="text-xs text-gray-500 mb-4 line-clamp-2 leading-relaxed">
@@ -480,8 +478,8 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 </main>
 
 <!-- Notificação Estilizada (Toast) -->
-<div id="aviso-carrinho" class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 bg-[#0A2945] text-white px-6 py-4 shadow-2xl border-l-4 border-[#f96b21] pointer-events-none transition-all duration-300 flex items-center gap-4 max-w-sm" role="status" aria-live="polite">
-    <div class="w-10 h-10 bg-[#f96b21] flex items-center justify-center flex-shrink-0">
+<div id="aviso-carrinho" class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 bg-[#0A2945] text-white px-6 py-4 shadow-2xl border-l-4 border-[#CE9E53] pointer-events-none transition-all duration-300 flex items-center gap-4 max-w-sm" role="status" aria-live="polite">
+    <div class="w-10 h-10 bg-[#CE9E53] flex items-center justify-center flex-shrink-0">
         <i class="fa-solid fa-check text-white text-lg"></i>
     </div>
     <div>
@@ -499,18 +497,18 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
     function mostrarAviso(mensagem, erro = false) {
         if (erro) {
-            aviso.classList.remove('border-[#f96b21]');
+            aviso.classList.remove('border-[#CE9E53]');
             aviso.classList.add('border-red-500');
             avisoTitulo.textContent = 'Atenção';
-            avisoTitulo.classList.remove('text-[#f96b21]');
+            avisoTitulo.classList.remove('text-[#CE9E53]');
             avisoTitulo.classList.add('text-red-500');
             aviso.querySelector('.fa-check').className = 'fa-solid fa-triangle-exclamation text-white text-lg';
         } else {
             aviso.classList.remove('border-red-500');
-            aviso.classList.add('border-[#f96b21]');
+            aviso.classList.add('border-[#CE9E53]');
             avisoTitulo.textContent = 'Adicionado';
             avisoTitulo.classList.remove('text-red-500');
-            avisoTitulo.classList.add('text-[#f96b21]');
+            avisoTitulo.classList.add('text-[#CE9E53]');
             aviso.querySelector('i').className = 'fa-solid fa-check text-white text-lg';
         }
 
