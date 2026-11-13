@@ -420,7 +420,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                             <!-- Imagem -->
                             <a href="produto.php?id=<?= (int) $produto['id'] ?>" class="block relative bg-[#f8f9fa] h-56 overflow-hidden flex items-center justify-center border-b border-gray-100">
                                 <?php if ($imagem !== ''): ?>
-                                    <img src="<?= e($imagem) ?>" alt="<?= e($produto['name']) ?>" loading="lazy" class="product-img max-h-full max-w-full object-contain p-4 mix-blend-multiply">
+                                    <img src="<?= e($imagem) ?>" alt="<?= e($produto['name']) ?>" loading="lazy" class="product-img w-full h-full max-w-full max-h-full object-contain p-4">
                                 <?php else: ?>
                                     <i class="fa-solid fa-box text-gray-300 text-5xl"></i>
                                 <?php endif; ?>
