@@ -232,8 +232,8 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 .gpm-sales-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
 .gpm-sales-card{min-width:0;background:#fff;border:1px solid #e3eaf0;display:flex;flex-direction:column;transition:transform .22s ease,box-shadow .22s ease}
 .gpm-sales-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(10,41,69,.10)}
-.gpm-sales-card-image{height:175px;background:#fff;border-bottom:1px solid #edf1f4;display:grid;place-items:center;padding:16px}
-.gpm-sales-card-image img{width:100%;height:100%;object-fit:contain}
+.gpm-sales-card-image{height:190px;background:#fff;border-bottom:1px solid #edf1f4;display:grid;place-items:center;padding:16px;overflow:hidden}
+.gpm-sales-card-image img{display:block;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain}
 .gpm-sales-card-body{padding:16px;display:flex;flex:1;flex-direction:column}
 .gpm-sales-card-category{color:#2F776F;font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
 .gpm-sales-card h3{margin:8px 0;color:#0A2945;font-size:14px;font-weight:800;line-height:1.45}
@@ -250,6 +250,42 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 @media(max-width:900px){.gpm-sales-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.gpm-sales-inner{padding:0 14px}.gpm-sales-grid{gap:10px}.gpm-sales-card-image{height:135px;padding:10px}.gpm-sales-card-body{padding:11px}.gpm-sales-card h3{font-size:12px}.gpm-sales-card-price{font-size:14px}.gpm-sales-heading{align-items:flex-start;flex-direction:column}}
 </style>
+<!-- Hero Section Interna -->
+<section class="relative bg-[#0A2945] text-white overflow-hidden py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 sm:px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="md:w-2/3 space-y-4">
+            <span class="inline-block bg-white/10 px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-[#CE9E53]">
+                Catálogo Completo
+            </span>
+            <h1 class="text-3xl md:text-5xl font-black leading-[1.1] uppercase tracking-tight">
+                <?php if ($pesquisa !== ''): ?>
+                    Resultados para: <span class="text-[#CE9E53]">"<?= e($pesquisa) ?>"</span>
+                <?php else: ?>
+                    Explore as Nossas <br>Soluções
+                <?php endif; ?>
+            </h1>
+            <p class="text-gray-400 text-sm max-w-lg leading-relaxed">
+                Encontre materiais, ferramentas e equipamentos de alto rendimento para o seu negócio.
+            </p>
+        </div>
+        
+        <!-- Barra de pesquisa -->
+        <div class="md:w-1/3 w-full">
+             <form action="index.php" method="GET" class="flex bg-white shadow-lg overflow-hidden">
+                <input type="search" name="q" placeholder="O que procura?" value="<?= e($pesquisa) ?>" class="flex-1 px-4 py-3 text-[#0A2945] text-sm focus:outline-none">
+                <?php if ($categoriaId !== null): ?>
+                    <input type="hidden" name="categoria" value="<?= (int)$categoriaId ?>">
+                <?php endif; ?>
+                <button type="submit" class="bg-[#CE9E53] hover:bg-[#B58A45] text-white px-6 font-bold text-sm transition">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+
 <?php if ($maisVendidos): ?>
 <section class="gpm-sales-section" aria-labelledby="gpm-sales-title">
  <div class="gpm-sales-inner">
@@ -301,40 +337,6 @@ require_once __DIR__ . '/includes/header-marketplace.php';
  </div>
 </section>
 <?php endif; ?>
-
-<!-- Hero Section Interna -->
-<section class="relative bg-[#0A2945] text-white overflow-hidden py-12 md:py-16">
-    <div class="max-w-site mx-auto px-4 sm:px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
-        <div class="md:w-2/3 space-y-4">
-            <span class="inline-block bg-white/10 px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-[#CE9E53]">
-                Catálogo Completo
-            </span>
-            <h1 class="text-3xl md:text-5xl font-black leading-[1.1] uppercase tracking-tight">
-                <?php if ($pesquisa !== ''): ?>
-                    Resultados para: <span class="text-[#CE9E53]">"<?= e($pesquisa) ?>"</span>
-                <?php else: ?>
-                    Explore as Nossas <br>Soluções
-                <?php endif; ?>
-            </h1>
-            <p class="text-gray-400 text-sm max-w-lg leading-relaxed">
-                Encontre materiais, ferramentas e equipamentos de alto rendimento para o seu negócio.
-            </p>
-        </div>
-        
-        <!-- Barra de pesquisa -->
-        <div class="md:w-1/3 w-full">
-             <form action="index.php" method="GET" class="flex bg-white shadow-lg overflow-hidden">
-                <input type="search" name="q" placeholder="O que procura?" value="<?= e($pesquisa) ?>" class="flex-1 px-4 py-3 text-[#0A2945] text-sm focus:outline-none">
-                <?php if ($categoriaId !== null): ?>
-                    <input type="hidden" name="categoria" value="<?= (int)$categoriaId ?>">
-                <?php endif; ?>
-                <button type="submit" class="bg-[#CE9E53] hover:bg-[#B58A45] text-white px-6 font-bold text-sm transition">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </form>
-        </div>
-    </div>
-</section>
 
 <!-- Main Content -->
 <main class="max-w-site mx-auto px-4 sm:px-6 py-12 flex-1 relative">
