@@ -72,8 +72,8 @@ textarea {
 input:focus,
 select:focus,
 textarea:focus {
-    outline: 2px solid #fea619;
-    border-color: #fea619;
+    outline: 2px solid #2F776F;
+    border-color: #2F776F;
 }
 
 button {
@@ -81,7 +81,7 @@ button {
     padding: 14px;
     border: 0;
     border-radius: 8px;
-    background: #fea619;
+    background: #2F776F;
     color: #202020;
     font-size: 16px;
     font-weight: 700;
@@ -89,7 +89,7 @@ button {
 }
 
 button:hover {
-    background: #ed970b;
+    background: #2F776F;
 }
 
 .alert {
@@ -115,7 +115,7 @@ button:hover {
 }
 
 a {
-    color: #9a5b00;
+    color: #0A2945;
 }
 
 @media (max-width: 480px) {
@@ -127,3 +127,7 @@ a {
         padding: 22px;
     }
 }
+.gpm-market-logo{height:76px;width:auto;max-width:100px;object-fit:contain}
+@media(max-width:640px){.gpm-market-logo{height:64px;max-width:84px}}
+
+.gpm-market-logo{width:52px;height:52px;max-width:none;object-fit:contain;flex:none}.gpm-market-wordmark{font-size:clamp(21px,2vw,27px);font-weight:900;letter-spacing:-1px;color:#0A2945;white-space:nowrap;line-height:1}.footer-wordmark{color:#fff}@media(max-width:640px){.gpm-market-logo{width:44px;height:44px}.gpm-market-wordmark{font-size:21px}}.gpm-auth-logo{width:64px;height:64px;object-fit:contain}.gpm-auth-wordmark{font-size:28px;font-weight:900;color:#0A2945}

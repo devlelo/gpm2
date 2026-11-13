@@ -7,6 +7,9 @@ $tituloPagina = $tituloPagina ?? 'Marketplace';
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0A2945">
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="apple-touch-icon" href="../favicon.png">
 <title><?= e($tituloPagina) ?> | GPM — Materiais de Construção</title>
 <link rel="stylesheet" href="../assets/css/cliente.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -15,7 +18,7 @@ $tituloPagina = $tituloPagina ?? 'Marketplace';
 <div class="topbar"><div class="container topbar-inner"><span>GPM — Materiais de Construção</span><span>Angola · Preços em Kz</span></div></div>
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="index.php"><span class="brand-mark">G</span><span>GPM<span class="brand-dot">.</span></span></a>
+    <a class="brand" href="index.php"><img class="brand-logo" src="../assets/img/GPMlogo.png" alt=""><span class="brand-wordmark">gpm-conecta</span></a>
     <button class="menu-toggle" type="button" aria-label="Abrir menu" onclick="document.querySelector('.main-nav').classList.toggle('open')"><i class="fa-solid fa-bars"></i></button>
     <nav class="main-nav">
       <a href="index.php">Marketplace</a>

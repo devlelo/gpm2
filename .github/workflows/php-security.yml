@@ -1,10 +1,11 @@
 name: PHP security checks
+# Validates the security base and the GPM Conecta design integration branch.
 
 on:
   push:
-    branches: [main, security/foundation-hardening]
+    branches: [main, security/foundation-hardening, design/gpm-conecta-integration]
   pull_request:
-    branches: [main]
+    branches: [main, security/foundation-hardening]
 
 jobs:
   php-lint-and-tests:

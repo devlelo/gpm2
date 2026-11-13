@@ -37,9 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 function dados_e($v): string { return htmlspecialchars((string)($v ?? ''), ENT_QUOTES, 'UTF-8'); }
 ?>
-<!doctype html><html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Meus dados | GPM</title><style>
-*{box-sizing:border-box}body{margin:0;background:#f5f7fb;font-family:Arial,sans-serif;color:#172033}header{background:#fff;padding:18px max(20px,calc((100% - 850px)/2));border-bottom:1px solid #e7eaf0;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}a{color:#172033;text-decoration:none;font-weight:700}.brand{font-size:21px}.brand span{color:#FEA619}nav{display:flex;gap:15px;flex-wrap:wrap}main{max-width:850px;margin:30px auto;padding:0 20px}h1{margin:0 0 8px}.muted{color:#697386;font-size:14px}.card{background:#fff;border:1px solid #e7eaf0;border-radius:14px;padding:22px;margin-top:20px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.field{display:flex;flex-direction:column;gap:7px;margin-bottom:15px}label{font-weight:700;font-size:13px}input,textarea{width:100%;padding:12px;border:1px solid #d7dce5;border-radius:8px;font:inherit}.btn{border:0;background:#FEA619;padding:12px 17px;border-radius:8px;font-weight:700;cursor:pointer}.success,.error{padding:12px;border-radius:8px;margin:14px 0}.success{background:#e9f9ef;color:#176536}.error{background:#fff0f0;color:#9b1c1c}@media(max-width:600px){.grid{grid-template-columns:1fr}}
-</style></head><body><header><a class="brand" href="index.php">G<span>PM</span> · Área do Cliente</a><nav><a href="index.php">Painel</a><a href="pedidos.php">Minhas compras</a><a href="dados.php">Meus dados</a><a href="../logout.php">Sair</a></nav></header><main><h1>Meus dados</h1><div class="muted">Mantém os teus dados e contactos atualizados para facilitar as entregas.</div><section class="card">
+<?php $tituloPagina = 'Meus dados'; require __DIR__ . '/../includes/header.php'; ?>
+<h1>Meus dados</h1><div class="muted">Mantém os teus dados e contactos atualizados para facilitar as entregas.</div><section class="card">
 <?php if($erro): ?><div class="error"><?= dados_e($erro) ?></div><?php endif; ?><?php if($sucesso): ?><div class="success"><?= dados_e($sucesso) ?></div><?php endif; ?>
 <form method="post"><?= csrf_field() ?><div class="grid">
 <div class="field"><label for="name">Nome completo / empresa *</label><input id="name" name="name" maxlength="180" required value="<?= dados_e($dados['name']) ?>"></div>
@@ -49,4 +48,4 @@ function dados_e($v): string { return htmlspecialchars((string)($v ?? ''), ENT_Q
 <div class="field"><label for="province">Província</label><input id="province" name="province" maxlength="100" value="<?= dados_e($dados['province']) ?>"></div>
 <div class="field"><label for="city">Cidade / Município</label><input id="city" name="city" maxlength="100" value="<?= dados_e($dados['city']) ?>"></div>
 </div><div class="field"><label for="address">Endereço habitual</label><textarea id="address" name="address" rows="3" maxlength="2000"><?= dados_e($dados['address']) ?></textarea></div><button class="btn" type="submit">Guardar alterações</button> <a href="alterar-senha.php" style="margin-left:12px">Alterar palavra-passe</a></form>
-</section></main></body></html>
+</section><?php require __DIR__ . '/../includes/footer.php'; ?>

@@ -3,9 +3,9 @@ GPM CONECTA — INSTALAÇÃO LOCAL E ATUALIZAÇÕES SEGURAS
 
 ESTRUTURA
 ---------
-A aplicação PHP está em gpm2/. Copia essa pasta para C:\xampp\htdocs\gpm2.
+A aplicação PHP está no diretório gpm2/ deste repositório. Copia o CONTEÚDO dessa pasta para C:\xampp\htdocs\gpm (não cries gpm\gpm).
 A configuração PDO canónica está em gpm2\config\database.php.
-A árvore gpm2\gpm\ mantém compatibilidade temporária e delega para a mesma configuração.
+A subpasta gpm\ dentro do código é legado bloqueado por .htaccess. Não a publiques nem uses rotas /gpm/gpm/.
 
 BASE DE DADOS EXISTENTE
 -----------------------
@@ -28,7 +28,7 @@ INSTALAÇÃO / VERIFICAÇÃO
 1. Inicia Apache e MySQL.
 2. Confirma que a base gpm_mvp_nova já existe e contém as tabelas atuais.
 3. Configura as variáveis de ambiente, se necessário.
-4. Abre http://localhost/gpm2/admin/login.php.
+4. Abre http://localhost/gpm/admin/login.php.
 5. Confirma login, catálogo, stock, pedidos, proformas e área de cliente.
 
 MIGRATIONS

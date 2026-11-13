@@ -102,6 +102,8 @@ $categoriaId = ($categoriaId && $categoriaId > 0) ? $categoriaId : null;
 
 $categorias = [];
 $produtos = [];
+$maisVendidos = [];
+$novidades = [];
 $erroCatalogo = '';
 
 function gpmKz(mixed $valor): string
@@ -178,6 +180,34 @@ try {
     $stmt = $pdo->prepare($sql);
     $stmt->execute($parametros);
     $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $stmtMaisVendidos = $pdo->query(
+        "SELECT p.id, p.category_id, p.name, p.description, p.price,
+                p.stock_quantity, p.unit, p.main_image,
+                c.name AS category_name, SUM(oi.quantity) AS unidades_vendidas
+         FROM order_items oi
+         INNER JOIN orders o ON o.id = oi.order_id
+         INNER JOIN products p ON p.id = oi.product_id
+         LEFT JOIN categories c ON c.id = p.category_id
+         WHERE p.active = 1
+           AND o.status IN ('confirmed', 'preparing', 'shipped', 'completed')
+         GROUP BY p.id, p.category_id, p.name, p.description, p.price,
+                  p.stock_quantity, p.unit, p.main_image, c.name
+         ORDER BY unidades_vendidas DESC, p.name ASC
+         LIMIT 4"
+    );
+    $maisVendidos = $stmtMaisVendidos->fetchAll(PDO::FETCH_ASSOC);
+
+    $stmtNovidades = $pdo->query(
+        "SELECT p.id, p.name, p.description, p.price, p.stock_quantity,
+                p.main_image, c.name AS category_name
+         FROM products p
+         LEFT JOIN categories c ON c.id = p.category_id
+         WHERE p.active = 1
+         ORDER BY p.created_at DESC, p.id DESC
+         LIMIT 4"
+    );
+    $novidades = $stmtNovidades->fetchAll(PDO::FETCH_ASSOC);
 } catch (Throwable $erro) {
     error_log('Erro no marketplace GPM: ' . $erro->getMessage());
     $erroCatalogo = 'Não foi possível carregar o catálogo. Verifique a base de dados.';
@@ -192,16 +222,55 @@ $totalCarrinho = array_sum(
 require_once __DIR__ . '/includes/header-marketplace.php';
 ?>
 
+<style>
+.gpm-featured{position:relative;padding:42px 0 46px;overflow:hidden}
+.gpm-featured--best{background:#fff;border-bottom:1px solid #e5ebf0}
+.gpm-featured--new{background:#eef4f5;border-bottom:1px solid #dce7e8}
+.gpm-featured-inner{max-width:1280px;margin:auto;padding:0 24px}
+.gpm-featured-heading{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:22px}
+.gpm-featured-kicker{font-size:10px;font-weight:800;letter-spacing:.16em;color:#2F776F;text-transform:uppercase;margin:0 0 8px}
+.gpm-featured-heading h2{margin:0;color:#0A2945;font-size:clamp(23px,3vw,32px);font-weight:900;letter-spacing:-.04em}
+.gpm-featured-heading p{margin:0;color:#607285;font-size:12px}
+.gpm-carousel-wrap{position:relative;padding:0 2px}
+.gpm-carousel-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:4px 2px 14px;scrollbar-width:none}
+.gpm-carousel-track::-webkit-scrollbar{display:none}
+.gpm-sales-card{flex:0 0 calc((100% - 54px)/4);min-width:0;background:#fff;border:1px solid #e0e8ed;display:flex;flex-direction:column;scroll-snap-align:start;transition:transform .22s ease,box-shadow .22s ease}
+.gpm-sales-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(10,41,69,.10)}
+.gpm-sales-card-image{height:190px;background:#fff;border-bottom:1px solid #edf1f4;display:grid;place-items:center;padding:16px;overflow:hidden}
+.gpm-sales-card-image img{display:block;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain}
+.gpm-sales-card-body{padding:16px;display:flex;flex:1;flex-direction:column}
+.gpm-sales-card-category{color:#2F776F;font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.gpm-sales-card h3{margin:8px 0;color:#0A2945;font-size:14px;font-weight:800;line-height:1.45}
+.gpm-sales-card-price{margin-top:auto;padding-top:10px;border-top:1px solid #edf1f4;color:#0A2945;font-size:17px;font-weight:900}
+.gpm-sales-card-link{display:block;margin-top:12px;padding:10px;text-align:center;background:#0A2945;color:#fff;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.gpm-sales-card-link:hover{background:#123653}
+.gpm-carousel-arrow{position:absolute;z-index:2;top:42%;width:42px;height:42px;border:1px solid #d9e2e8;background:#fff;color:#0A2945;display:grid;place-items:center;border-radius:50%;box-shadow:0 5px 18px rgba(10,41,69,.13);cursor:pointer;transition:background .2s,color .2s,transform .2s}
+.gpm-carousel-arrow:hover{background:#0A2945;color:#fff;transform:scale(1.06)}
+.gpm-carousel-arrow:disabled{opacity:.35;cursor:default}
+.gpm-carousel-arrow--prev{left:-12px}
+.gpm-carousel-arrow--next{right:-12px}
+.gpm-featured--new .gpm-sales-card{border-color:#dce7e8}
+.product-card{background:#fff!important;border:1px solid #e3eaf0!important;box-shadow:0 2px 8px rgba(10,41,69,.035)}
+.product-card [class*="bg-[#f8f9fa]"]{background:#fff!important}
+.product-card [class*="text-emerald-600"]{color:#2F776F!important}
+.product-card [class*="bg-emerald-50"]{background:#EAF3F1!important}
+.product-card [class*="text-red-500"]{color:#607285!important}
+.product-card [class*="bg-red-50"]{background:#F1F4F6!important}
+@media(max-width:900px){.gpm-sales-card{flex-basis:calc((100% - 36px)/3)}}
+@media(max-width:650px){.gpm-featured{padding:30px 0 34px}.gpm-featured-inner{padding:0 16px}.gpm-featured-heading{align-items:flex-start;flex-direction:column;gap:6px;margin-bottom:16px}.gpm-sales-card{flex-basis:calc((100% - 14px)/2)}.gpm-carousel-track{gap:14px}.gpm-sales-card-image{height:150px;padding:10px}.gpm-sales-card-body{padding:12px}.gpm-sales-card h3{font-size:12px}.gpm-sales-card-price{font-size:14px}.gpm-carousel-arrow{width:34px;height:34px;top:40%}.gpm-carousel-arrow--prev{left:-7px}.gpm-carousel-arrow--next{right:-7px}}
+@media(max-width:390px){.gpm-sales-card{flex-basis:82%}}
+@media(prefers-reduced-motion:reduce){.gpm-carousel-track{scroll-behavior:auto}.gpm-sales-card{transition:none}}
+</style>
 <!-- Hero Section Interna -->
-<section class="relative bg-[#0d233f] text-white overflow-hidden py-12 md:py-16">
+<section class="relative bg-[#0A2945] text-white overflow-hidden py-12 md:py-16">
     <div class="max-w-site mx-auto px-4 sm:px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
         <div class="md:w-2/3 space-y-4">
-            <span class="inline-block bg-white/10 px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-[#f96b21]">
+            <span class="inline-block bg-white/10 px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-[#CE9E53]">
                 Catálogo Completo
             </span>
             <h1 class="text-3xl md:text-5xl font-black leading-[1.1] uppercase tracking-tight">
                 <?php if ($pesquisa !== ''): ?>
-                    Resultados para: <span class="text-[#f96b21]">"<?= e($pesquisa) ?>"</span>
+                    Resultados para: <span class="text-[#CE9E53]">"<?= e($pesquisa) ?>"</span>
                 <?php else: ?>
                     Explore as Nossas <br>Soluções
                 <?php endif; ?>
@@ -214,17 +283,105 @@ require_once __DIR__ . '/includes/header-marketplace.php';
         <!-- Barra de pesquisa -->
         <div class="md:w-1/3 w-full">
              <form action="index.php" method="GET" class="flex bg-white shadow-lg overflow-hidden">
-                <input type="search" name="q" placeholder="O que procura?" value="<?= e($pesquisa) ?>" class="flex-1 px-4 py-3 text-[#0d233f] text-sm focus:outline-none">
+                <input type="search" name="q" placeholder="O que procura?" value="<?= e($pesquisa) ?>" class="flex-1 px-4 py-3 text-[#0A2945] text-sm focus:outline-none">
                 <?php if ($categoriaId !== null): ?>
                     <input type="hidden" name="categoria" value="<?= (int)$categoriaId ?>">
                 <?php endif; ?>
-                <button type="submit" class="bg-[#f96b21] hover:bg-[#e05812] text-white px-6 font-bold text-sm transition">
+                <button type="submit" class="bg-[#CE9E53] hover:bg-[#B58A45] text-white px-6 font-bold text-sm transition">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
         </div>
     </div>
 </section>
+
+
+
+<?php if ($maisVendidos): ?>
+<section class="gpm-featured gpm-featured--best" aria-labelledby="gpm-sales-title">
+ <div class="gpm-featured-inner">
+  <div class="gpm-featured-heading">
+   <div><p class="gpm-featured-kicker">Escolhas dos clientes</p><h2 id="gpm-sales-title">Mais vendidos</h2></div>
+   <p>Os produtos preferidos pelos nossos clientes.</p>
+  </div>
+  <div class="gpm-carousel-wrap" data-gpm-carousel>
+   <button class="gpm-carousel-arrow gpm-carousel-arrow--prev" type="button" aria-label="Produtos anteriores"><i class="fa-solid fa-chevron-left"></i></button>
+   <div class="gpm-carousel-track" id="gpm-best-track">
+   <?php foreach ($maisVendidos as $produto): $imagemMaisVendido = gpmImagem($produto['main_image'] ?? null); ?>
+    <article class="gpm-sales-card">
+     <a class="gpm-sales-card-image" href="produto.php?id=<?= (int)$produto['id'] ?>">
+      <?php if ($imagemMaisVendido !== ''): ?><img src="<?= e($imagemMaisVendido) ?>" alt="<?= e($produto['name']) ?>" loading="lazy"><?php else: ?><i class="fa-solid fa-box text-4xl" style="color:#B9C9D6"></i><?php endif; ?>
+     </a>
+     <div class="gpm-sales-card-body">
+      <span class="gpm-sales-card-category"><?= e($produto['category_name'] ?? 'GPM Conecta') ?></span>
+      <h3><?= e($produto['name']) ?></h3>
+      <div class="gpm-sales-card-price"><?= e(gpmKz($produto['price'])) ?></div>
+      <a class="gpm-sales-card-link" href="produto.php?id=<?= (int)$produto['id'] ?>">Ver produto <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+     </div>
+    </article>
+   <?php endforeach; ?>
+   </div>
+   <button class="gpm-carousel-arrow gpm-carousel-arrow--next" type="button" aria-label="Próximos produtos"><i class="fa-solid fa-chevron-right"></i></button>
+  </div>
+ </div>
+</section>
+<?php endif; ?>
+     </a>
+     <div class="gpm-sales-card-body">
+      <span class="gpm-sales-card-category"><?= e($produto['category_name'] ?? 'GPM Conecta') ?></span>
+      <h3><?= e($produto['name']) ?></h3>
+      <div class="gpm-sales-card-price"><?= e(gpmKz($produto['price'])) ?></div>
+      <a class="gpm-sales-card-link" href="produto.php?id=<?= (int)$produto['id'] ?>">Ver produto ↗</a>
+     </div>
+    </article>
+   <?php endforeach; ?>
+  </div>
+ </div>
+</section>
+<?php endif; ?>
+
+<?php if ($novidades): ?>
+<section class="gpm-featured gpm-featured--new" aria-labelledby="gpm-new-title">
+ <div class="gpm-featured-inner">
+  <div class="gpm-featured-heading">
+   <div><p class="gpm-featured-kicker">Acabados de chegar</p><h2 id="gpm-new-title">Novidades</h2></div>
+   <p>Descubra os produtos mais recentes do catálogo.</p>
+  </div>
+  <div class="gpm-carousel-wrap" data-gpm-carousel>
+   <button class="gpm-carousel-arrow gpm-carousel-arrow--prev" type="button" aria-label="Novidades anteriores"><i class="fa-solid fa-chevron-left"></i></button>
+   <div class="gpm-carousel-track" id="gpm-new-track">
+   <?php foreach ($novidades as $produtoNovo): $imagemNovo = gpmImagem($produtoNovo['main_image'] ?? null); ?>
+    <article class="gpm-sales-card">
+     <a class="gpm-sales-card-image" href="produto.php?id=<?= (int)$produtoNovo['id'] ?>">
+      <?php if ($imagemNovo !== ''): ?><img src="<?= e($imagemNovo) ?>" alt="<?= e($produtoNovo['name']) ?>" loading="lazy"><?php else: ?><i class="fa-solid fa-box text-4xl" style="color:#B9C9D6"></i><?php endif; ?>
+     </a>
+     <div class="gpm-sales-card-body">
+      <span class="gpm-sales-card-category"><?= e($produtoNovo['category_name'] ?? 'GPM Conecta') ?></span>
+      <h3><?= e($produtoNovo['name']) ?></h3>
+      <div class="gpm-sales-card-price"><?= e(gpmKz($produtoNovo['price'])) ?></div>
+      <a class="gpm-sales-card-link" href="produto.php?id=<?= (int)$produtoNovo['id'] ?>">Ver produto <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+     </div>
+    </article>
+   <?php endforeach; ?>
+   </div>
+   <button class="gpm-carousel-arrow gpm-carousel-arrow--next" type="button" aria-label="Próximas novidades"><i class="fa-solid fa-chevron-right"></i></button>
+  </div>
+ </div>
+</section>
+<?php endif; ?>
+     </a>
+     <div class="gpm-sales-card-body">
+      <span class="gpm-sales-card-category"><?= e($produtoNovo['category_name'] ?? 'GPM Conecta') ?></span>
+      <h3><?= e($produtoNovo['name']) ?></h3>
+      <div class="gpm-sales-card-price"><?= e(gpmKz($produtoNovo['price'])) ?></div>
+      <a class="gpm-sales-card-link" href="produto.php?id=<?= (int)$produtoNovo['id'] ?>">Ver produto ↗</a>
+     </div>
+    </article>
+   <?php endforeach; ?>
+  </div>
+ </div>
+</section>
+<?php endif; ?>
 
 <!-- Main Content -->
 <main class="max-w-site mx-auto px-4 sm:px-6 py-12 flex-1 relative">
@@ -234,11 +391,11 @@ require_once __DIR__ . '/includes/header-marketplace.php';
         <aside class="w-full lg:w-64 flex-shrink-0 space-y-8 lg:sticky lg:top-28 h-fit reveal">
             <!-- Categories -->
             <div>
-                <h2 class="text-lg font-black text-[#0d233f] mb-4 border-b-2 border-[#f96b21] inline-block pb-1 uppercase tracking-wide">Categorias</h2>
+                <h2 class="text-lg font-black text-[#0A2945] mb-4 border-b-2 border-[#CE9E53] inline-block pb-1 uppercase tracking-wide">Categorias</h2>
                 <ul class="space-y-1 text-sm max-h-[60vh] overflow-y-auto sidebar-scroll pr-2">
                     <li>
                         <a href="index.php<?= $pesquisa !== '' ? '?q=' . urlencode($pesquisa) : '' ?>" 
-                           class="block py-2 px-3 transition <?= $categoriaId === null ? 'bg-[#f96b21]/10 text-[#f96b21] font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#0d233f]' ?>">
+                           class="block py-2 px-3 transition <?= $categoriaId === null ? 'bg-[#CE9E53]/10 text-[#CE9E53] font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#0A2945]' ?>">
                             Todas as Categorias
                         </a>
                     </li>
@@ -252,7 +409,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                         ?>
                         <li>
                             <a href="<?= e($urlCategoria) ?>" 
-                               class="block py-2 px-3 transition <?= $isActive ? 'bg-[#f96b21]/10 text-[#f96b21] font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#0d233f]' ?>">
+                               class="block py-2 px-3 transition <?= $isActive ? 'bg-[#CE9E53]/10 text-[#CE9E53] font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#0A2945]' ?>">
                                 <?= e($categoria['name']) ?>
                             </a>
                         </li>
@@ -266,7 +423,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                     <i class="fa-solid fa-truck-fast text-6xl"></i>
                 </div>
                 <div class="relative z-10">
-                    <h3 class="text-sm font-bold text-[#0d233f] mb-1">Entrega Segura</h3>
+                    <h3 class="text-sm font-bold text-[#0A2945] mb-1">Entrega Segura</h3>
                     <p class="text-xs text-gray-500">Distribuição em todo o país com rapidez e segurança.</p>
                 </div>
             </div>
@@ -275,7 +432,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
         <!-- Product Grid -->
         <div class="flex-1 min-w-0">
             <div class="flex justify-between items-end mb-8 border-b border-gray-200 pb-2 reveal">
-                <h2 class="text-xl font-black text-[#0d233f] uppercase">Top Vendas</h2>
+                <h2 class="text-xl font-black text-[#0A2945] uppercase">Catálogo completo</h2>
                 <span class="text-xs font-bold text-gray-400"><?= count($produtos) ?> resultados</span>
             </div>
 
@@ -290,9 +447,9 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                 <?php if (!$produtos && $erroCatalogo === ''): ?>
                     <div class="col-span-full text-center py-16 bg-gray-50 border border-gray-100 reveal">
                         <i class="fa-solid fa-box-open text-gray-300 text-5xl mb-4"></i>
-                        <h3 class="text-lg font-bold text-[#0d233f] mb-2">Nenhum produto encontrado.</h3>
+                        <h3 class="text-lg font-bold text-[#0A2945] mb-2">Nenhum produto encontrado.</h3>
                         <p class="text-gray-500 text-sm mb-6">Tente ajustar os filtros ou pesquisar por outro termo.</p>
-                        <a href="index.php" class="inline-block bg-[#0d233f] text-white px-6 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-[#163154] transition">Ver todos os produtos</a>
+                        <a href="index.php" class="inline-block bg-[#0A2945] text-white px-6 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-[#123653] transition">Ver todos os produtos</a>
                     </div>
                 <?php endif; ?>
 
@@ -308,7 +465,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                             <!-- Imagem -->
                             <a href="produto.php?id=<?= (int) $produto['id'] ?>" class="block relative bg-[#f8f9fa] h-56 overflow-hidden flex items-center justify-center border-b border-gray-100">
                                 <?php if ($imagem !== ''): ?>
-                                    <img src="<?= e($imagem) ?>" alt="<?= e($produto['name']) ?>" loading="lazy" class="product-img max-h-full max-w-full object-contain p-4 mix-blend-multiply">
+                                    <img src="<?= e($imagem) ?>" alt="<?= e($produto['name']) ?>" loading="lazy" class="product-img w-full h-full max-w-full max-h-full object-contain p-4">
                                 <?php else: ?>
                                     <i class="fa-solid fa-box text-gray-300 text-5xl"></i>
                                 <?php endif; ?>
@@ -316,10 +473,10 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
                             <!-- Info -->
                             <div class="p-5 text-left">
-                                <div class="text-[10px] font-bold text-[#f96b21] uppercase tracking-widest mb-2">
+                                <div class="text-[10px] font-bold text-[#CE9E53] uppercase tracking-widest mb-2">
                                     <?= e($produto['category_name'] ?? 'GPM') ?>
                                 </div>
-                                <h3 class="text-sm font-bold text-[#0d233f] mb-2 line-clamp-1 group-hover:text-[#f96b21] transition">
+                                <h3 class="text-sm font-bold text-[#0A2945] mb-2 line-clamp-1 group-hover:text-[#CE9E53] transition">
                                     <?= e($produto['name']) ?>
                                 </h3>
                                 <p class="text-xs text-gray-500 mb-4 line-clamp-2 leading-relaxed">
@@ -327,7 +484,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                 </p>
                                 
                                 <div class="flex items-center justify-between mt-auto pt-2 border-t border-gray-100">
-                                    <span class="text-lg font-black text-[#0d233f]">
+                                    <span class="text-lg font-black text-[#0A2945]">
                                         <?= e(gpmKz($produto['price'])) ?>
                                     </span>
                                     <?php if ($stock > 0): ?>
@@ -345,7 +502,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
                         <!-- Actions -->
                         <div class="px-5 pb-5 pt-0 flex gap-2">
-                            <a href="produto.php?id=<?= (int) $produto['id'] ?>" class="flex-1 text-center bg-white border border-gray-200 text-[#0d233f] text-xs font-bold py-2.5 uppercase tracking-wider hover:bg-gray-50 transition">
+                            <a href="produto.php?id=<?= (int) $produto['id'] ?>" class="flex-1 text-center bg-white border border-gray-200 text-[#0A2945] text-xs font-bold py-2.5 uppercase tracking-wider hover:bg-gray-50 transition">
                                 Detalhes
                             </a>
                             
@@ -354,7 +511,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                 <input type="hidden" name="ajax_adicionar" value="1">
                                 <input type="hidden" name="produto_id" value="<?= (int)$produto['id'] ?>">
                                 <input type="hidden" name="quantidade" value="1">
-                                <button type="submit" class="w-full bg-[#0d233f] hover:bg-[#163154] text-white text-xs font-bold py-2.5 uppercase tracking-wider transition flex items-center justify-center gap-2 <?= $stock < 1 ? 'opacity-50 cursor-not-allowed' : '' ?>" <?= $stock < 1 ? 'disabled' : '' ?>>
+                                <button type="submit" class="w-full bg-[#0A2945] hover:bg-[#123653] text-white text-xs font-bold py-2.5 uppercase tracking-wider transition flex items-center justify-center gap-2 <?= $stock < 1 ? 'opacity-50 cursor-not-allowed' : '' ?>" <?= $stock < 1 ? 'disabled' : '' ?>>
                                     <i class="fa-solid fa-cart-plus"></i> <?= $stock > 0 ? 'Add' : 'Esgotado' ?>
                                 </button>
                             </form>
@@ -368,8 +525,8 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 </main>
 
 <!-- Notificação Estilizada (Toast) -->
-<div id="aviso-carrinho" class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 bg-[#0d233f] text-white px-6 py-4 shadow-2xl border-l-4 border-[#f96b21] pointer-events-none transition-all duration-300 flex items-center gap-4 max-w-sm" role="status" aria-live="polite">
-    <div class="w-10 h-10 bg-[#f96b21] flex items-center justify-center flex-shrink-0">
+<div id="aviso-carrinho" class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 bg-[#0A2945] text-white px-6 py-4 shadow-2xl border-l-4 border-[#CE9E53] pointer-events-none transition-all duration-300 flex items-center gap-4 max-w-sm" role="status" aria-live="polite">
+    <div class="w-10 h-10 bg-[#CE9E53] flex items-center justify-center flex-shrink-0">
         <i class="fa-solid fa-check text-white text-lg"></i>
     </div>
     <div>
@@ -387,18 +544,18 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
     function mostrarAviso(mensagem, erro = false) {
         if (erro) {
-            aviso.classList.remove('border-[#f96b21]');
+            aviso.classList.remove('border-[#CE9E53]');
             aviso.classList.add('border-red-500');
             avisoTitulo.textContent = 'Atenção';
-            avisoTitulo.classList.remove('text-[#f96b21]');
+            avisoTitulo.classList.remove('text-[#CE9E53]');
             avisoTitulo.classList.add('text-red-500');
             aviso.querySelector('.fa-check').className = 'fa-solid fa-triangle-exclamation text-white text-lg';
         } else {
             aviso.classList.remove('border-red-500');
-            aviso.classList.add('border-[#f96b21]');
+            aviso.classList.add('border-[#CE9E53]');
             avisoTitulo.textContent = 'Adicionado';
             avisoTitulo.classList.remove('text-red-500');
-            avisoTitulo.classList.add('text-[#f96b21]');
+            avisoTitulo.classList.add('text-[#CE9E53]');
             aviso.querySelector('i').className = 'fa-solid fa-check text-white text-lg';
         }
 
@@ -460,6 +617,63 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                 botao.disabled = false;
             }
         });
+    });
+
+    // Carrosséis de destaques: setas e avanço automático.
+    document.querySelectorAll('[data-gpm-carousel]').forEach(function (carousel) {
+        const track = carousel.querySelector('.gpm-carousel-track');
+        const anterior = carousel.querySelector('.gpm-carousel-arrow--prev');
+        const proximo = carousel.querySelector('.gpm-carousel-arrow--next');
+        if (!track || !anterior || !proximo) return;
+
+        const passo = function () {
+            const card = track.querySelector('.gpm-sales-card');
+            if (!card) return track.clientWidth;
+            const estilos = window.getComputedStyle(track);
+            const gap = parseFloat(estilos.columnGap || estilos.gap) || 0;
+            return card.getBoundingClientRect().width + gap;
+        };
+
+        const atualizarSetas = function () {
+            const maximo = track.scrollWidth - track.clientWidth;
+            anterior.disabled = track.scrollLeft <= 3;
+            proximo.disabled = track.scrollLeft >= maximo - 3;
+        };
+
+        anterior.addEventListener('click', function () {
+            track.scrollBy({ left: -passo(), behavior: 'smooth' });
+        });
+        proximo.addEventListener('click', function () {
+            const noFim = track.scrollLeft + track.clientWidth >= track.scrollWidth - 5;
+            track.scrollTo({ left: noFim ? 0 : track.scrollLeft + passo(), behavior: 'smooth' });
+        });
+        track.addEventListener('scroll', atualizarSetas, { passive: true });
+        window.addEventListener('resize', atualizarSetas);
+        atualizarSetas();
+
+        let intervalo = null;
+        const movimentoReduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const iniciar = function () {
+            if (movimentoReduzido || intervalo || track.scrollWidth <= track.clientWidth + 5) return;
+            intervalo = window.setInterval(function () {
+                if (carousel.matches(':hover') || document.hidden) return;
+                const fim = track.scrollLeft + track.clientWidth >= track.scrollWidth - 5;
+                track.scrollTo({ left: fim ? 0 : track.scrollLeft + passo(), behavior: 'smooth' });
+            }, 4200);
+        };
+        const parar = function () {
+            if (intervalo) window.clearInterval(intervalo);
+            intervalo = null;
+        };
+        carousel.addEventListener('mouseenter', parar);
+        carousel.addEventListener('mouseleave', iniciar);
+        carousel.addEventListener('focusin', parar);
+        carousel.addEventListener('focusout', iniciar);
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden) parar();
+            else iniciar();
+        });
+        iniciar();
     });
 
     // Animação de entrada dos cards
