@@ -21,3 +21,6 @@
 
 /* Identidade: ícone e wordmark lado a lado no painel do cliente */
 .customer-brand{flex-direction:row;align-items:center;gap:12px;min-width:0}.customer-brand img{width:58px;height:58px;max-width:58px;flex:0 0 58px;object-fit:contain}.customer-brand .brand-wordmark{display:block;font-size:24px;font-weight:900;letter-spacing:-.8px;line-height:1.1;color:#fff;white-space:nowrap}.customer-brand .brand-wordmark small{display:block;margin-top:5px;font-size:9px;letter-spacing:1.3px;color:#C5D2DD}@media(max-width:560px){.customer-brand img{width:50px;height:50px;max-width:50px;flex-basis:50px}.customer-brand .brand-wordmark{font-size:21px}}
+
+/* Logout now submits a CSRF-protected form. */
+.customer-logout-form{margin:0}.customer-logout{width:100%;border:0;background:transparent;text-align:left;cursor:pointer}
