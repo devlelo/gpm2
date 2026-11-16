@@ -334,7 +334,13 @@ function layout_start(string $title): void
     echo '<button class="sidebar-toggle" type="button" aria-label="Abrir menu" aria-controls="gpmSidebar" aria-expanded="false" id="gpmSidebarToggle"><span></span><span></span><span></span></button>';
     echo '<div><span class="eyebrow">GESTÃO COMERCIAL</span><h1>' . e($title) . '</h1></div>';
     echo '</div>';
-    echo '<div class="user-chip"><span class="user-avatar">' . e(strtoupper(substr((string)($user['name'] ?? 'U'), 0, 1))) . '</span><span><strong>' . e($user['name'] ?? 'Utilizador') . '</strong><small>Administrador</small></span></div>';
+    $roleLabel = match ((string) ($user['role'] ?? '')) {
+        'admin' => 'Administrador',
+        'seller' => 'Vendedor',
+        'stock_manager' => 'Gestor de stock',
+        default => 'Utilizador',
+    };
+    echo '<div class="user-chip"><span class="user-avatar">' . e(strtoupper(substr((string)($user['name'] ?? 'U'), 0, 1))) . '</span><span><strong>' . e($user['name'] ?? 'Utilizador') . '</strong><small>' . e($roleLabel) . '</small></span></div>';
     echo '</header>';
 
     if ($flash !== null) {
