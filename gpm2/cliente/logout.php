@@ -3,12 +3,15 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/includes/iniciar.php';
 
-// Limpar os dados da sessão do cliente.
-unset($_SESSION['gpm_customer']);
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    header('Allow: POST');
+    exit('Método não permitido.');
+}
 
-// Regenerar o identificador da sessão para maior segurança.
+verify_csrf();
+
+unset($_SESSION['gpm_customer']);
 session_regenerate_id(true);
 
-// Encaminhar o cliente para o login.
 redirect('login.php');
-exit;

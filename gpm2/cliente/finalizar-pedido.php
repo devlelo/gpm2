@@ -86,7 +86,7 @@ if (
     && (!$carrinho || !is_array($carrinho))
     && !empty($_SESSION['gpm_ultimo_pedido_id'])
 ) {
-    redirect('pedido.php?id=' . (int) $_SESSION['gpm_ultimo_pedido_id']);
+    redirect('painel-cliente/pedido.php?id=' . (int) $_SESSION['gpm_ultimo_pedido_id']);
     exit;
 }
 
@@ -436,7 +436,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             flash('success', 'Pedido criado com sucesso.');
 
-            redirect('pedido.php?id=' . $pedidoId);
+            redirect('painel-cliente/pedido.php?id=' . $pedidoId);
             exit;
 
         } catch (Throwable $e) {
@@ -461,17 +461,17 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
     <!-- Voltar -->
     <div class="mb-8 reveal">
-        <a href="carrinho.php" class="inline-flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-[#f96b21] transition">
+        <a href="carrinho.php" class="inline-flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-[#0A2945] transition">
             <i class="fa-solid fa-arrow-left"></i> Voltar ao carrinho
         </a>
     </div>
 
     <!-- Cabeçalho -->
     <div class="mb-10 reveal">
-        <span class="inline-block bg-[#f96b21]/10 text-[#f96b21] text-[10px] font-bold uppercase tracking-widest px-3 py-1 mb-3">
+        <span class="inline-block bg-[#0A2945]/10 text-[#0A2945] text-[10px] font-bold uppercase tracking-widest px-3 py-1 mb-3">
             Checkout
         </span>
-        <h1 class="text-3xl md:text-5xl font-black text-[#0d233f] uppercase tracking-tight">Finalizar Compra</h1>
+        <h1 class="text-3xl md:text-5xl font-black text-[#0A2945] uppercase tracking-tight">Finalizar Compra</h1>
         <p class="text-gray-500 text-sm mt-2">Escolha a localização de entrega e confirme os dados para concluir o seu pedido.</p>
     </div>
 
@@ -489,7 +489,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                 <?= csrf_field() ?>
 
                 <!-- Secção 1: Localização -->
-                <h2 class="text-lg font-black text-[#0d233f] uppercase tracking-wide border-b border-gray-100 pb-3 mb-6">Localização de Entrega</h2>
+                <h2 class="text-lg font-black text-[#0A2945] uppercase tracking-wide border-b border-gray-100 pb-3 mb-6">Localização de Entrega</h2>
 
                 <div class="space-y-4 mb-8">
                     <?php if (!empty($localizacoes)): ?>
@@ -508,11 +508,11 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                         data-province="<?= escapar($loc['province'] ?? '') ?>"
                                         <?= $localizacaoSelecionada === (string) $loc['id'] ? 'checked' : '' ?>
                                     >
-                                    <div class="border border-gray-300 p-4 transition peer-checked:border-[#f96b21] peer-checked:bg-[#f96b21]/5 hover:border-gray-400">
+                                    <div class="border border-gray-300 p-4 transition peer-checked:border-[#0A2945] peer-checked:bg-[#0A2945]/5 hover:border-gray-400">
                                         <div class="flex justify-between items-start mb-2">
-                                            <span class="font-bold text-[#0d233f] text-sm"><?= escapar($loc['neighborhood'] ?: 'Localização') ?></span>
+                                            <span class="font-bold text-[#0A2945] text-sm"><?= escapar($loc['neighborhood'] ?: 'Localização') ?></span>
                                             <?php if ((int) $loc['is_default'] === 1): ?>
-                                                <span class="text-[9px] font-bold text-[#f96b21] bg-[#f96b21]/10 px-1.5 py-0.5 uppercase">Principal</span>
+                                                <span class="text-[9px] font-bold text-[#0A2945] bg-[#0A2945]/10 px-1.5 py-0.5 uppercase">Principal</span>
                                             <?php endif; ?>
                                         </div>
                                         <p class="text-xs text-gray-500 line-clamp-1"><?= escapar($loc['street'] ?? '') ?></p>
@@ -531,10 +531,10 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                             class="peer sr-only localizacao-radio"
                             <?= $localizacaoSelecionada === 'nova' ? 'checked' : '' ?>
                         >
-                        <div class="border border-dashed border-gray-400 p-4 transition peer-checked:border-[#f96b21] peer-checked:bg-[#f96b21]/5 hover:border-gray-500">
+                        <div class="border border-dashed border-gray-400 p-4 transition peer-checked:border-[#0A2945] peer-checked:bg-[#0A2945]/5 hover:border-gray-500">
                             <div class="flex items-center gap-2">
-                                <i class="fa-solid fa-plus text-[#f96b21]"></i>
-                                <span class="font-bold text-[#0d233f] text-sm">Introduzir nova localização</span>
+                                <i class="fa-solid fa-plus text-[#0A2945]"></i>
+                                <span class="font-bold text-[#0A2945] text-sm">Introduzir nova localização</span>
                             </div>
                             <p class="text-xs text-gray-500 mt-1">Preencha os campos abaixo com a nova morada de entrega.</p>
                         </div>
@@ -542,13 +542,13 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                 </div>
 
                 <!-- Secção 2: Dados -->
-                <h2 class="text-lg font-black text-[#0d233f] uppercase tracking-wide border-b border-gray-100 pb-3 mb-6">Dados de Contacto & Morada</h2>
+                <h2 class="text-lg font-black text-[#0A2945] uppercase tracking-wide border-b border-gray-100 pb-3 mb-6">Dados de Contacto & Morada</h2>
 
                 <div class="space-y-5">
 
                     <!-- Telefone -->
                     <div>
-                        <label for="customer_phone" class="block text-xs font-bold text-[#0d233f] uppercase tracking-wider mb-2">Telefone *</label>
+                        <label for="customer_phone" class="block text-xs font-bold text-[#0A2945] uppercase tracking-wider mb-2">Telefone *</label>
                         <input
                             type="text"
                             name="customer_phone"
@@ -556,19 +556,19 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                             maxlength="40"
                             required
                             value="<?= escapar($telefoneFormulario) ?>"
-                            class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#f96b21] focus:ring-0 bg-gray-50 transition"
+                            class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#0A2945] focus:ring-0 bg-gray-50 transition"
                         >
                     </div>
 
                     <!-- Província e Cidade -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
-                            <label for="delivery_province" class="block text-xs font-bold text-[#0d233f] uppercase tracking-wider mb-2">Província *</label>
+                            <label for="delivery_province" class="block text-xs font-bold text-[#0A2945] uppercase tracking-wider mb-2">Província *</label>
                             <select
                                 name="delivery_province"
                                 id="delivery_province"
                                 required
-                                class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#f96b21] focus:ring-0 bg-gray-50 transition"
+                                class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#0A2945] focus:ring-0 bg-gray-50 transition"
                             >
                                 <option value="">Seleciona a província</option>
                                 <?php foreach ($provinciasAngola as $provincia): ?>
@@ -579,7 +579,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                             </select>
                         </div>
                         <div>
-                            <label for="delivery_city" class="block text-xs font-bold text-[#0d233f] uppercase tracking-wider mb-2">Cidade / Município *</label>
+                            <label for="delivery_city" class="block text-xs font-bold text-[#0A2945] uppercase tracking-wider mb-2">Cidade / Município *</label>
                             <input
                                 type="text"
                                 name="delivery_city"
@@ -587,7 +587,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                 maxlength="100"
                                 required
                                 value="<?= escapar($cidadeFormulario) ?>"
-                                class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#f96b21] focus:ring-0 bg-gray-50 transition"
+                                class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#0A2945] focus:ring-0 bg-gray-50 transition"
                             >
                         </div>
                     </div>
@@ -595,7 +595,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                     <!-- Rua e Bairro -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
-                            <label for="delivery_street" class="block text-xs font-bold text-[#0d233f] uppercase tracking-wider mb-2">Rua *</label>
+                            <label for="delivery_street" class="block text-xs font-bold text-[#0A2945] uppercase tracking-wider mb-2">Rua *</label>
                             <input
                                 type="text"
                                 name="delivery_street"
@@ -603,11 +603,11 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                 maxlength="180"
                                 required
                                 value="<?= escapar($ruaFormulario) ?>"
-                                class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#f96b21] focus:ring-0 bg-gray-50 transition"
+                                class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#0A2945] focus:ring-0 bg-gray-50 transition"
                             >
                         </div>
                         <div>
-                            <label for="delivery_neighborhood" class="block text-xs font-bold text-[#0d233f] uppercase tracking-wider mb-2">Bairro *</label>
+                            <label for="delivery_neighborhood" class="block text-xs font-bold text-[#0A2945] uppercase tracking-wider mb-2">Bairro *</label>
                             <input
                                 type="text"
                                 name="delivery_neighborhood"
@@ -615,20 +615,20 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                 maxlength="120"
                                 required
                                 value="<?= escapar($bairroFormulario) ?>"
-                                class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#f96b21] focus:ring-0 bg-gray-50 transition"
+                                class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#0A2945] focus:ring-0 bg-gray-50 transition"
                             >
                         </div>
                     </div>
 
                     <!-- Referência -->
                     <div>
-                        <label for="delivery_reference" class="block text-xs font-bold text-[#0d233f] uppercase tracking-wider mb-2">Ponto de Referência</label>
+                        <label for="delivery_reference" class="block text-xs font-bold text-[#0A2945] uppercase tracking-wider mb-2">Ponto de Referência</label>
                         <textarea
                             name="delivery_reference"
                             id="delivery_reference"
                             rows="2"
                             maxlength="255"
-                            class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#f96b21] focus:ring-0 bg-gray-50 transition"
+                            class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#0A2945] focus:ring-0 bg-gray-50 transition"
                         ><?= escapar($referenciaFormulario) ?></textarea>
                     </div>
 
@@ -641,24 +641,24 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                 name="save_delivery_address"
                                 value="1"
                                 <?= $guardarLocalizacao ? 'checked' : '' ?>
-                                class="w-4 h-4 text-[#f96b21] focus:ring-[#f96b21] border-gray-300"
+                                class="w-4 h-4 text-[#0A2945] focus:ring-[#0A2945] border-gray-300"
                             >
-                            <span class="text-sm font-bold text-[#0d233f]">Guardar esta localização para próximas compras</span>
+                            <span class="text-sm font-bold text-[#0A2945]">Guardar esta localização para próximas compras</span>
                         </label>
                     </div>
 
                 </div>
 
                 <!-- Secção 3: Pagamento -->
-                <h2 class="text-lg font-black text-[#0d233f] uppercase tracking-wide border-b border-gray-100 pb-3 mb-6 mt-10">Pagamento</h2>
+                <h2 class="text-lg font-black text-[#0A2945] uppercase tracking-wide border-b border-gray-100 pb-3 mb-6 mt-10">Pagamento</h2>
 
                 <div class="space-y-5">
                     <div>
-                        <label for="payment_method" class="block text-xs font-bold text-[#0d233f] uppercase tracking-wider mb-2">Método de Pagamento</label>
+                        <label for="payment_method" class="block text-xs font-bold text-[#0A2945] uppercase tracking-wider mb-2">Método de Pagamento</label>
                         <select
                             id="payment_method"
                             name="payment_method"
-                            class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#f96b21] focus:ring-0 bg-gray-50 transition"
+                            class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#0A2945] focus:ring-0 bg-gray-50 transition"
                         >
                             <option value="" <?= $pagamentoAtual === '' ? 'selected' : '' ?>>A combinar</option>
                             <option value="transferencia" <?= $pagamentoAtual === 'transferencia' ? 'selected' : '' ?>>Transferência bancária</option>
@@ -668,17 +668,17 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                     </div>
 
                     <div>
-                        <label for="notes" class="block text-xs font-bold text-[#0d233f] uppercase tracking-wider mb-2">Observações</label>
+                        <label for="notes" class="block text-xs font-bold text-[#0A2945] uppercase tracking-wider mb-2">Observações</label>
                         <textarea
                             id="notes"
                             name="notes"
                             rows="3"
-                            class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#f96b21] focus:ring-0 bg-gray-50 transition"
+                            class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#0A2945] focus:ring-0 bg-gray-50 transition"
                         ><?= escapar($notasFormulario) ?></textarea>
                     </div>
 
-                    <div class="bg-[#f8f9fa] border-l-4 border-[#f96b21] p-4 text-sm text-gray-600 leading-relaxed">
-                        <i class="fa-solid fa-circle-info text-[#f96b21] mr-2"></i>
+                    <div class="bg-[#f8f9fa] border-l-4 border-[#0A2945] p-4 text-sm text-gray-600 leading-relaxed">
+                        <i class="fa-solid fa-circle-info text-[#0A2945] mr-2"></i>
                         O pedido será registado como pendente. A equipa GPM entrará em contacto através da conversa privada para combinar os detalhes de pagamento e entrega.
                     </div>
                 </div>
@@ -690,12 +690,12 @@ require_once __DIR__ . '/includes/header-marketplace.php';
         <div class="lg:col-span-1 reveal" style="animation-delay: 0.2s;">
             <div class="bg-[#f8f9fa] border border-gray-100 p-6 sm:p-8 sticky top-28">
 
-                <h2 class="text-lg font-black text-[#0d233f] uppercase tracking-wide border-b border-gray-200 pb-3 mb-6">Dados do Cliente</h2>
+                <h2 class="text-lg font-black text-[#0A2945] uppercase tracking-wide border-b border-gray-200 pb-3 mb-6">Dados do Cliente</h2>
 
                 <div class="space-y-4 text-sm mb-8">
                     <div>
                         <span class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Nome</span>
-                        <span class="font-bold text-[#0d233f]"><?= escapar($cliente['name']) ?></span>
+                        <span class="font-bold text-[#0A2945]"><?= escapar($cliente['name']) ?></span>
                     </div>
                     <div>
                         <span class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">E-mail</span>
@@ -710,7 +710,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                 <button
                     type="submit"
                     form="form-checkout"
-                    class="w-full bg-[#0d233f] hover:bg-[#163154] text-white font-bold text-xs uppercase tracking-wider py-4 transition shadow-md flex items-center justify-center gap-2"
+                    class="w-full bg-[#0A2945] hover:bg-[#123653] text-white font-bold text-xs uppercase tracking-wider py-4 transition shadow-md flex items-center justify-center gap-2"
                 >
                     Confirmar Pedido <i class="fa-solid fa-check"></i>
                 </button>

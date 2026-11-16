@@ -10,7 +10,7 @@ require_once __DIR__ . '/includes/iniciar.php';
 | Encaminha-o para o painel, em vez da página antiga de pedidos.
 */
 if (cliente_atual()) {
-    redirect('../cliente/painel-cliente/index.php');
+    redirect('painel-cliente/index.php');
     exit;
 }
 
@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0A2945"><link rel="icon" type="image/png" href="../assets/img/GPMlogo.png">
 
     <title>Entrar na conta | GPM</title>
 
@@ -141,10 +141,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 extend: {
                     colors: {
                         brand: {
-                            navy: '#0d233f',
-                            navyLight: '#163154',
-                            orange: '#f96b21',
-                            orangeHover: '#e05812',
+                            navy: '#0A2945',
+                            navyLight: '#123653',
+                            teal: '#2F776F',
+                            navyHover: '#0A2945',
                             offWhite: '#f8f9fa'
                         }
                     },
@@ -180,6 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     </style>
+<style>.gpm-auth-logo{display:block;width:64px;height:64px;object-fit:contain}.gpm-login-brand{display:flex;align-items:center;gap:14px;margin:0 0 28px}.gpm-login-brand span{font-size:30px;font-weight:900;letter-spacing:-1px;color:#fff}.gpm-auth-logo-center{margin:0 auto 18px}</style>
 </head>
 
 <body class="h-screen w-full flex">
@@ -190,7 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="p-8 flex justify-start">
             <a
                 href="index.php"
-                class="inline-flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-[#f96b21] transition uppercase tracking-wider"
+                class="inline-flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-[#2F776F] transition uppercase tracking-wider"
             >
                 <i class="fa-solid fa-arrow-left"></i>
                 Voltar ao Marketplace
@@ -201,7 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="w-full max-w-sm reveal">
 
                 <div class="mb-10">
-                    <h1 class="text-3xl font-black text-[#0d233f] uppercase tracking-tight mb-2">
+                    <h1 class="text-3xl font-black text-[#0A2945] uppercase tracking-tight mb-2">
                         Entrar
                     </h1>
 
@@ -226,7 +227,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div>
                         <label
                             for="email"
-                            class="block text-xs font-bold text-[#0d233f] uppercase tracking-wider mb-2"
+                            class="block text-xs font-bold text-[#0A2945] uppercase tracking-wider mb-2"
                         >
                             E-mail
                         </label>
@@ -238,7 +239,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             value="<?= escapar($email) ?>"
                             autocomplete="email"
                             required
-                            class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#f96b21] focus:ring-0 bg-gray-50 transition"
+                            class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#2F776F] focus:ring-0 bg-gray-50 transition"
                             placeholder="o.seu.email@exemplo.com"
                         >
                     </div>
@@ -247,14 +248,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="flex justify-between items-center mb-2">
                             <label
                                 for="password"
-                                class="block text-xs font-bold text-[#0d233f] uppercase tracking-wider"
+                                class="block text-xs font-bold text-[#0A2945] uppercase tracking-wider"
                             >
                                 Palavra-passe
                             </label>
 
                             <a
                                 href="#"
-                                class="text-[10px] font-bold text-[#f96b21] hover:underline uppercase tracking-wider"
+                                class="text-[10px] font-bold text-[#2F776F] hover:underline uppercase tracking-wider"
                             >
                                 Esqueceu-se?
                             </a>
@@ -266,14 +267,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             name="password"
                             autocomplete="current-password"
                             required
-                            class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#f96b21] focus:ring-0 bg-gray-50 transition"
+                            class="w-full px-4 py-3 text-sm border border-gray-300 focus:border-[#2F776F] focus:ring-0 bg-gray-50 transition"
                             placeholder="••••••••"
                         >
                     </div>
 
                     <button
                         type="submit"
-                        class="w-full bg-[#0d233f] hover:bg-[#163154] text-white font-bold text-xs uppercase tracking-wider py-4 transition flex items-center justify-center gap-2"
+                        class="w-full bg-[#0A2945] hover:bg-[#123653] text-white font-bold text-xs uppercase tracking-wider py-4 transition flex items-center justify-center gap-2"
                     >
                         Entrar na Conta
                         <i class="fa-solid fa-arrow-right"></i>
@@ -286,7 +287,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         <a
                             href="cadastro.php"
-                            class="text-[#f96b21] font-bold hover:underline ml-1"
+                            class="text-[#2F776F] font-bold hover:underline ml-1"
                         >
                             Criar conta
                         </a>
@@ -298,7 +299,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <!-- Lado direito: imagem e apresentação -->
-    <div class="hidden lg:flex w-1/2 relative bg-[#0d233f] items-center justify-center overflow-hidden">
+    <div class="hidden lg:flex w-1/2 relative bg-[#0A2945] items-center justify-center overflow-hidden">
 
         <img
             src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop"
@@ -306,12 +307,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             class="absolute inset-0 w-full h-full object-cover opacity-40"
         >
 
-        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#0d233f] via-[#0d233f]/80 to-transparent"></div>
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#0A2945] via-[#0A2945]/80 to-transparent"></div>
 
         <div class="relative z-10 px-16 w-full max-w-xl text-white">
-            <div class="w-12 h-12 bg-[#f96b21] flex items-center justify-center font-bold text-2xl mb-8">
-                <i class="fa-solid fa-layer-group"></i>
-            </div>
+            <div class="gpm-login-brand"><img class="gpm-auth-logo" src="../assets/img/GPMlogo.png" alt=""><span>gpm-conecta</span></div>
 
             <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tight leading-[1.1] mb-6">
                 A sua conta.<br>

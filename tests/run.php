@@ -18,4 +18,6 @@ $assert(login_rate_limit_key('user@example.com') === login_rate_limit_key(' USER
 $assert(csrf_token() === csrf_token(), 'CSRF token remains stable during a session');
 $assert(strlen((string) csrf_token()) === 64, 'CSRF token has 256 bits of entropy');
 
-echo "OK: {$checks} security helper checks passed.\n";
+require __DIR__ . '/project_routes_test.php';
+
+echo "OK: {$checks} security and project route checks passed.\n";

@@ -29,8 +29,8 @@ $roleLabels = [
 <div class="sidebar-overlay" id="gpmSidebarOverlay"></div>
 <aside class="sidebar" id="gpmSidebar" aria-label="Navegação principal">
     <a class="brand" href="<?= e(BASE_URL) ?>/admin/index.php">
-        <span class="brand-mark">G</span>
-        <span class="brand-copy"><strong>GPM<span>.</span></strong><small>PAINEL DE GESTÃO</small></span>
+        <img class="brand-logo" src="<?= e(BASE_URL) ?>/assets/img/GPMlogo.png?v=3" alt="GPM Conecta">
+        <span class="brand-wordmark">gpm-conecta<small>PAINEL DE GESTÃO</small></span>
     </a>
     <div class="sidebar-section-label">MENU PRINCIPAL</div>
     <nav class="sidebar-nav">
@@ -48,7 +48,10 @@ $roleLabels = [
             <span class="sidebar-user-avatar"><?= e(strtoupper(substr((string)(current_user()['name'] ?? 'U'), 0, 1))) ?></span>
             <span><strong><?= e(current_user()['name'] ?? 'Utilizador') ?></strong><small><?= e($roleLabels[$roleAtual] ?? 'Utilizador') ?></small></span>
         </div>
-        <a class="sidebar-logout" href="<?= e(BASE_URL) ?>/admin/logout.php"><span>↪</span> Terminar sessão</a>
+        <form class="sidebar-logout-form" method="post" action="<?= e(BASE_URL) ?>/admin/logout.php">
+            <?= csrf_field() ?>
+            <button class="sidebar-logout" type="submit"><span aria-hidden="true">↪</span> Terminar sessão</button>
+        </form>
     </div>
 </aside>
 <script>

@@ -39,8 +39,8 @@ if (!headers_sent()) {
 |--------------------------------------------------------------------------
 | Caminho base do projeto
 |--------------------------------------------------------------------------
-| Projeto localizado em C:\xampp\htdocs\gpm2
-| URL local: http://localhost/gpm2
+| Projeto localizado em C:\xampp\htdocs\gpm
+| URL local: http://localhost/gpm
 */
 
 if (!defined('BASE_PATH')) {
@@ -315,7 +315,9 @@ function layout_start(string $title): void
     echo '<head>';
     echo '<meta charset="utf-8">';
     echo '<meta name="viewport" content="width=device-width,initial-scale=1">';
-    echo '<meta name="theme-color" content="#111827">';
+    echo '<meta name="theme-color" content="#0A2945">';
+    echo '<link rel="icon" type="image/png" href="' . BASE_URL . '/assets/img/GPMlogo.png">';
+    echo '<link rel="apple-touch-icon" href="' . BASE_URL . '/assets/img/GPMlogo.png">';
     echo '<title>' . e($title) . ' | GPM</title>';
     echo '<link rel="preconnect" href="https://fonts.googleapis.com">';
     echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
@@ -332,7 +334,13 @@ function layout_start(string $title): void
     echo '<button class="sidebar-toggle" type="button" aria-label="Abrir menu" aria-controls="gpmSidebar" aria-expanded="false" id="gpmSidebarToggle"><span></span><span></span><span></span></button>';
     echo '<div><span class="eyebrow">GESTÃO COMERCIAL</span><h1>' . e($title) . '</h1></div>';
     echo '</div>';
-    echo '<div class="user-chip"><span class="user-avatar">' . e(strtoupper(substr((string)($user['name'] ?? 'U'), 0, 1))) . '</span><span><strong>' . e($user['name'] ?? 'Utilizador') . '</strong><small>Administrador</small></span></div>';
+    $roleLabel = match ((string) ($user['role'] ?? '')) {
+        'admin' => 'Administrador',
+        'seller' => 'Vendedor',
+        'stock_manager' => 'Gestor de stock',
+        default => 'Utilizador',
+    };
+    echo '<div class="user-chip"><span class="user-avatar">' . e(strtoupper(substr((string)($user['name'] ?? 'U'), 0, 1))) . '</span><span><strong>' . e($user['name'] ?? 'Utilizador') . '</strong><small>' . e($roleLabel) . '</small></span></div>';
     echo '</header>';
 
     if ($flash !== null) {
