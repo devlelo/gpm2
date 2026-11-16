@@ -25,6 +25,7 @@ $inicialClientePainel = strtoupper(substr($nomeClientePainel, 0, 1));
 <a class="customer-market-link" href="<?= e(BASE_URL) ?>/cliente/index.php"><span class="customer-nav-icon">↗</span><span>Voltar ao marketplace</span></a>
 <div class="customer-user"><span class="customer-avatar"><?= pc_e($inicialClientePainel) ?></span><span><strong><?= pc_e($nomeClientePainel) ?></strong><small>Cliente GPM Conecta</small></span></div>
 <form class="customer-logout-form" method="post" action="../logout.php">
+<?= csrf_field() ?>
 <button class="customer-logout" type="submit">Terminar sessão <span aria-hidden="true">↗</span></button>
 </form>
 </div>
