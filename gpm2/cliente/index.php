@@ -326,62 +326,6 @@ require_once __DIR__ . '/includes/header-marketplace.php';
  </div>
 </section>
 <?php endif; ?>
-     </a>
-     <div class="gpm-sales-card-body">
-      <span class="gpm-sales-card-category"><?= e($produto['category_name'] ?? 'GPM Conecta') ?></span>
-      <h3><?= e($produto['name']) ?></h3>
-      <div class="gpm-sales-card-price"><?= e(gpmKz($produto['price'])) ?></div>
-      <a class="gpm-sales-card-link" href="produto.php?id=<?= (int)$produto['id'] ?>">Ver produto ↗</a>
-     </div>
-    </article>
-   <?php endforeach; ?>
-  </div>
- </div>
-</section>
-<?php endif; ?>
-
-<?php if ($novidades): ?>
-<section class="gpm-featured gpm-featured--new" aria-labelledby="gpm-new-title">
- <div class="gpm-featured-inner">
-  <div class="gpm-featured-heading">
-   <div><p class="gpm-featured-kicker">Acabados de chegar</p><h2 id="gpm-new-title">Novidades</h2></div>
-   <p>Descubra os produtos mais recentes do catálogo.</p>
-  </div>
-  <div class="gpm-carousel-wrap" data-gpm-carousel>
-   <button class="gpm-carousel-arrow gpm-carousel-arrow--prev" type="button" aria-label="Novidades anteriores"><i class="fa-solid fa-chevron-left"></i></button>
-   <div class="gpm-carousel-track" id="gpm-new-track">
-   <?php foreach ($novidades as $produtoNovo): $imagemNovo = gpmImagem($produtoNovo['main_image'] ?? null); ?>
-    <article class="gpm-sales-card">
-     <a class="gpm-sales-card-image" href="produto.php?id=<?= (int)$produtoNovo['id'] ?>">
-      <?php if ($imagemNovo !== ''): ?><img src="<?= e($imagemNovo) ?>" alt="<?= e($produtoNovo['name']) ?>" loading="lazy"><?php else: ?><i class="fa-solid fa-box text-4xl" style="color:#B9C9D6"></i><?php endif; ?>
-     </a>
-     <div class="gpm-sales-card-body">
-      <span class="gpm-sales-card-category"><?= e($produtoNovo['category_name'] ?? 'GPM Conecta') ?></span>
-      <h3><?= e($produtoNovo['name']) ?></h3>
-      <div class="gpm-sales-card-price"><?= e(gpmKz($produtoNovo['price'])) ?></div>
-      <a class="gpm-sales-card-link" href="produto.php?id=<?= (int)$produtoNovo['id'] ?>">Ver produto <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-     </div>
-    </article>
-   <?php endforeach; ?>
-   </div>
-   <button class="gpm-carousel-arrow gpm-carousel-arrow--next" type="button" aria-label="Próximas novidades"><i class="fa-solid fa-chevron-right"></i></button>
-  </div>
- </div>
-</section>
-<?php endif; ?>
-     </a>
-     <div class="gpm-sales-card-body">
-      <span class="gpm-sales-card-category"><?= e($produtoNovo['category_name'] ?? 'GPM Conecta') ?></span>
-      <h3><?= e($produtoNovo['name']) ?></h3>
-      <div class="gpm-sales-card-price"><?= e(gpmKz($produtoNovo['price'])) ?></div>
-      <a class="gpm-sales-card-link" href="produto.php?id=<?= (int)$produtoNovo['id'] ?>">Ver produto ↗</a>
-     </div>
-    </article>
-   <?php endforeach; ?>
-  </div>
- </div>
-</section>
-<?php endif; ?>
 
 <!-- Main Content -->
 <main class="max-w-site mx-auto px-4 sm:px-6 py-12 flex-1 relative">
