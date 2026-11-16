@@ -48,7 +48,10 @@ $roleLabels = [
             <span class="sidebar-user-avatar"><?= e(strtoupper(substr((string)(current_user()['name'] ?? 'U'), 0, 1))) ?></span>
             <span><strong><?= e(current_user()['name'] ?? 'Utilizador') ?></strong><small><?= e($roleLabels[$roleAtual] ?? 'Utilizador') ?></small></span>
         </div>
-        <a class="sidebar-logout" href="<?= e(BASE_URL) ?>/admin/logout.php"><span>↪</span> Terminar sessão</a>
+        <form class="sidebar-logout-form" method="post" action="<?= e(BASE_URL) ?>/admin/logout.php">
+            <?= csrf_field() ?>
+            <button class="sidebar-logout" type="submit"><span aria-hidden="true">↪</span> Terminar sessão</button>
+        </form>
     </div>
 </aside>
 <script>
