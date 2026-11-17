@@ -5,12 +5,14 @@ $paginaInstitucionalAtual = basename($_SERVER['PHP_SELF'] ?? 'index.php');
 <div class="topline"><span>GPM Conecta · Fornecimento empresarial</span><span>Angola · Empresas &amp; projetos</span></div>
 <header id="header">
     <a class="brand" href="index.php" aria-label="GPM Conecta, início">
-        <img src="assets/img/GPMlogo.png" alt="GPM Conecta">
+        <img src="assets/img/GPMlogo.png?v=3" alt="Logótipo GPM Conecta">
+        <span class="brand-wordmark">GPM Conecta</span>
     </a>
     <nav class="nav" id="nav" aria-label="Navegação principal">
         <a href="index.php" <?= $paginaInstitucionalAtual === 'index.php' ? 'aria-current="page"' : '' ?>>Início</a>
         <a href="sobre.php" <?= $paginaInstitucionalAtual === 'sobre.php' ? 'aria-current="page"' : '' ?>>A empresa</a>
-        <a href="servicos.php" <?= $paginaInstitucionalAtual === 'servicos.php' ? 'aria-current="page"' : '' ?>>Serviços/produtos</a>
+        <a href="servicos.php" <?= $paginaInstitucionalAtual === 'servicos.php' ? 'aria-current="page"' : '' ?>>Serviços</a>
+        <a href="cliente/index.php#catalogo">Produtos</a>
         <a href="projetos.php" <?= $paginaInstitucionalAtual === 'projetos.php' ? 'aria-current="page"' : '' ?>>Portfólio</a>
         <a href="localizacao.php" <?= $paginaInstitucionalAtual === 'localizacao.php' ? 'aria-current="page"' : '' ?>>Localização</a>
         <a href="contacto.php" <?= $paginaInstitucionalAtual === 'contacto.php' ? 'aria-current="page"' : '' ?>>Contacto</a>
@@ -42,6 +44,7 @@ $paginaInstitucionalAtual = basename($_SERVER['PHP_SELF'] ?? 'index.php');
    toggle.textContent='×';
  };
  toggle.addEventListener('click',()=>header.classList.contains('menu-open')?close():open());
+ nav.addEventListener('click',event=>{if(event.target===nav)close();});
  nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',close));
  document.addEventListener('keydown',event=>{
    if(event.key==='Escape'&&header.classList.contains('menu-open')){close();toggle.focus();}
