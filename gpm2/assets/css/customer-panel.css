@@ -32,7 +32,7 @@
 .customer-menu-toggle{flex:0 0 42px;line-height:1;touch-action:manipulation}
 .customer-nav a,.customer-market-link,.customer-logout{touch-action:manipulation}
 @media(max-width:1024px){
- .customer-sidebar{position:fixed;top:0;bottom:0;left:0;width:min( min(84vw, 320px), 320px );height:100dvh;max-height:100dvh;transform:translate3d(-105%,0,0);visibility:hidden;transition:transform .24s ease,visibility .24s ease;z-index:1002}
+ .customer-sidebar{position:fixed;top:0;bottom:0;left:0;width:min(84vw,320px);height:100dvh;max-height:100dvh;transform:translate3d(-105%,0,0);visibility:hidden;transition:transform .24s ease,visibility .24s ease;z-index:1002}
  .customer-sidebar.is-open{transform:translate3d(0,0,0);visibility:visible}
  .customer-overlay.is-visible{position:fixed;inset:0;display:block;visibility:visible;opacity:1;background:rgba(10,25,40,.58);z-index:1001}
  .customer-workspace{margin-left:0;width:100%;min-width:0}
