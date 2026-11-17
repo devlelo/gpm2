@@ -333,3 +333,37 @@ footer .brand .brand-wordmark {
     transform: none;
   }
 }
+
+/* Menu mobile: painel integral, sem área cortada nem scroll interno. */
+@media (max-width: 850px) {
+  header.menu-open .nav {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: clamp(8px, 1.5vh, 14px) !important;
+    padding: max(82px, calc(env(safe-area-inset-top) + 72px)) 20px max(18px, env(safe-area-inset-bottom)) !important;
+    overflow: hidden !important;
+    overscroll-behavior: none !important;
+    font-size: clamp(15px, 2.2vh, 18px) !important;
+    line-height: 1.15 !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
+  header.menu-open .nav a {
+    display: block !important;
+    flex: 0 0 auto !important;
+    line-height: 1.15 !important;
+    white-space: nowrap;
+  }
+  header.menu-open .nav .nav-cta {
+    padding: 11px 20px !important;
+    margin: 2px 0;
+  }
+}
