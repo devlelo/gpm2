@@ -13,7 +13,7 @@ $inicialClientePainel = strtoupper(substr($nomeClientePainel, 0, 1));
 <div class="customer-layout">
 <div class="customer-overlay" id="customerOverlay"></div>
 <aside class="customer-sidebar" id="customerSidebar" aria-label="Navegação da área do cliente">
-<a class="customer-brand" href="index.php"><img src="<?= e(BASE_URL) ?>/assets/img/GPMlogo.png" alt=""><span class="brand-wordmark">gpm-conecta<small>ÁREA DO CLIENTE</small></span></a>
+<a class="customer-brand" href="index.php"><img src="<?= e(BASE_URL) ?>/assets/img/GPMlogo.png?v=3" alt="Logótipo GPM Conecta"><span class="brand-wordmark">GPM Conecta<small>ÁREA DO CLIENTE</small></span></a>
 <div class="customer-nav-label">A MINHA CONTA</div>
 <nav class="customer-nav">
 <a class="<?= $paginaAtual === 'index.php' ? 'active' : '' ?>" href="index.php"><span class="customer-nav-icon">⌂</span><span>Painel</span></a>
@@ -39,39 +39,36 @@ $inicialClientePainel = strtoupper(substr($nomeClientePainel, 0, 1));
 <main class="gpm-main">
 <script>
 (function(){
- const sidebar=document.getElementById('customerSidebar');
- const overlay=document.getElementById('customerOverlay');
- const toggle=document.getElementById('customerMenuToggle');
- if(!sidebar||!overlay||!toggle||toggle.dataset.menuReady==='1')return;
- toggle.dataset.menuReady='1';
- const mobile=window.matchMedia('(max-width: 1024px)');
- const close=()=>{
-   sidebar.classList.remove('is-open');
-   overlay.classList.remove('is-visible');
-   document.body.classList.remove('customer-menu-open');
-   toggle.setAttribute('aria-expanded','false');
-   toggle.setAttribute('aria-label','Abrir menu');
-   toggle.textContent='☰';
-   sidebar.setAttribute('aria-hidden',mobile.matches?'true':'false');
+ const init=()=>{
+  const sidebar=document.getElementById('customerSidebar');
+  const overlay=document.getElementById('customerOverlay');
+  const toggle=document.getElementById('customerMenuToggle');
+  if(!sidebar||!overlay||!toggle||toggle.dataset.menuReady==='1')return;
+  toggle.dataset.menuReady='1';
+  const mobile=window.matchMedia('(max-width: 1024px)');
+  const setOpen=(open)=>{
+   sidebar.classList.toggle('is-open',open);
+   overlay.classList.toggle('is-visible',open);
+   document.body.classList.toggle('customer-menu-open',open);
+   toggle.setAttribute('aria-expanded',open?'true':'false');
+   toggle.setAttribute('aria-label',open?'Fechar menu':'Abrir menu');
+   toggle.textContent=open?'✕':'☰';
+   sidebar.setAttribute('aria-hidden',open?'false':(mobile.matches?'true':'false'));
+  };
+  const close=(returnFocus=false)=>{
+   setOpen(false);
+   if(returnFocus&&mobile.matches)toggle.focus({preventScroll:true});
+  };
+  toggle.addEventListener('click',()=>setOpen(!sidebar.classList.contains('is-open')));
+  overlay.addEventListener('click',()=>close(true));
+  sidebar.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{if(mobile.matches)close();}));
+  document.addEventListener('keydown',event=>{
+   if(event.key==='Escape'&&sidebar.classList.contains('is-open'))close(true);
+  });
+  mobile.addEventListener('change',()=>close());
+  setOpen(false);
  };
- const open=()=>{
-   sidebar.classList.add('is-open');
-   overlay.classList.add('is-visible');
-   document.body.classList.add('customer-menu-open');
-   toggle.setAttribute('aria-expanded','true');
-   toggle.setAttribute('aria-label','Fechar menu');
-   toggle.textContent='✕';
-   sidebar.setAttribute('aria-hidden','false');
-   const firstLink=sidebar.querySelector('.customer-nav a');
-   if(firstLink)firstLink.focus({preventScroll:true});
- };
- toggle.addEventListener('click',()=>sidebar.classList.contains('is-open')?close():open());
- overlay.addEventListener('click',close);
- sidebar.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{if(mobile.matches)close();}));
- document.addEventListener('keydown',event=>{
-   if(event.key==='Escape'&&sidebar.classList.contains('is-open')){close();toggle.focus();}
- });
- mobile.addEventListener('change',()=>close());
- close();
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
+ else init();
 })();
 </script>
