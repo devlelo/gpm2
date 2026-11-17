@@ -44,24 +44,5 @@
     </div>
 </footer>
 
-<!-- Script do Menu Mobile -->
-<script>
-(function () {
-    const botao = document.getElementById('gpm-market-menu-btn');
-    const menu = document.getElementById('gpm-market-nav');
-
-    if (!botao || !menu) {
-        return;
-    }
-
-    botao.addEventListener('click', function () {
-        const aberto = menu.classList.toggle('aberto');
-
-        botao.setAttribute('aria-expanded', aberto ? 'true' : 'false');
-        botao.textContent = aberto ? '✕' : '☰';
-    });
-})();
-</script>
-
 </body>
 </html>
