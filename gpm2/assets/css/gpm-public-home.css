@@ -356,3 +356,83 @@ footer .brand .brand-wordmark {
     margin: 2px 0;
   }
 }
+
+
+/* GPM Conecta — correção transversal de overflow e responsividade */
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+main, section, footer, header,
+.hero-content, .intro-inner, .band-inner, .offer-head, .offer-grid,
+.approach-inner, .values-inner, .market-inner, .contact-inner,
+.location-inner, .location-grid, .footer-main, .footer-bottom {
+  min-width: 0;
+  max-width: 100%;
+}
+.hero h1, .intro h2, .offer-head h2, .band-copy h2,
+.approach-top h2, .values-head h2, .market-copy h2, .contact h2,
+.location-info h2, .tile-content h3 {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+img, iframe, video, input, textarea, select, button {
+  max-width: 100%;
+}
+@media (max-width: 850px) {
+  header { width: 100%; max-width: 100%; }
+  header .brand { min-width: 0; max-width: calc(100% - 60px); }
+  header .brand-wordmark { min-width: 0; }
+  header .nav { width: 100%; max-width: 100vw; }
+  .hero-meta { min-width: 0; flex-wrap: wrap; }
+  .hero-bottom, .hero-actions, .footer-links, .footer-bottom,
+  .contact-form, .location-actions {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .intro-inner, .band-inner, .offer-head, .market-inner,
+  .contact-inner, .location-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .intro-inner > *, .band-inner > *, .offer-head > *,
+  .market-inner > *, .contact-inner > *, .location-grid > *,
+  .step > *, .value-list > *, .contact-form > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .offer-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .step { grid-template-columns: 50px minmax(0, 1fr); }
+  .value-list { grid-template-columns: minmax(0, 1fr); }
+  .contact-form { grid-template-columns: minmax(0, 1fr); }
+  .contact-form .full { grid-column: auto; }
+}
+@media (max-width: 560px) {
+  .hero, .intro, .editorial-band, .offer, .approach, .values,
+  .market, .contact, .location-section, footer {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .hero-content, .intro-inner, .band-inner, .offer-head,
+  .approach-inner, .values-inner, .market-inner, .contact-inner,
+  .location-inner, .footer-main, .footer-bottom {
+    width: 100%;
+    min-width: 0;
+  }
+  .hero-actions { flex-wrap: wrap; }
+  .hero-actions .btn { min-width: 0; max-width: 100%; }
+  .footer-links { flex-wrap: wrap; }
+  .footer-links > div { min-width: 0; }
+  .contact-form input, .contact-form textarea, .contact-form select {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+  }
+  .location-map { width: 100%; max-width: 100%; }
+}
