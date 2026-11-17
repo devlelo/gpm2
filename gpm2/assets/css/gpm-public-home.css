@@ -291,3 +291,34 @@ footer .brand .brand-wordmark {
   }
   header .brand .brand-wordmark { font-size: 18px; }
 }
+
+/* Menu mobile: ocultação real quando fechado; visível apenas após ativação. */
+@media (max-width: 850px) {
+  header .nav {
+    position: fixed;
+    inset: 0;
+    z-index: 1001;
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(0, -110%, 0);
+    transition: transform .35s ease, opacity .25s ease, visibility 0s linear .35s;
+  }
+  header.menu-open .nav {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate3d(0, 0, 0);
+    transition: transform .35s ease, opacity .25s ease, visibility 0s;
+  }
+  header .menu-toggle { position: relative; z-index: 1002; }
+}
+@media (min-width: 851px) {
+  header .nav {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+}
