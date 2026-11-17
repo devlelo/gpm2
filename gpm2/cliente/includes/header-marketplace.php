@@ -89,7 +89,7 @@ if (is_array($carrinho)) {
             <span class="gpm-market-wordmark">gpm-conecta</span>
         </a>
 
-        <form action="<?= $baseMarketplace ?>/index.php" method="GET" class="hidden md:flex flex-1 max-w-sm bg-gray-50 border border-gray-200 focus-within:border-[#2F776F] transition">
+        <form action="<?= $baseMarketplace ?>/index.php" method="GET" class="hidden lg:flex flex-1 max-w-sm bg-gray-50 border border-gray-200 focus-within:border-[#2F776F] transition">
             <input type="search" name="q" placeholder="Pesquisar produtos e materiais..." class="w-full px-4 py-2 text-sm text-[#0A2945] bg-transparent focus:outline-none placeholder-gray-400" value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8') : '' ?>">
             <button type="submit" class="bg-[#0A2945] hover:bg-[#123653] text-white px-4 flex items-center justify-center transition" aria-label="Pesquisar">
                 <i class="fa-solid fa-magnifying-glass"></i>
