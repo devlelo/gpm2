@@ -132,7 +132,7 @@ footer{background:var(--navy-deep);color:#fff;padding:60px var(--gutter) 25px}
 .reveal.visible{opacity:1;transform:none}
 :focus-visible{outline:3px solid var(--teal);outline-offset:4px}
 @media(max-width:850px){
- header{height:72px}.nav{position:fixed;inset:0;background:var(--navy-deep);display:flex;flex-direction:column;justify-content:center;gap:28px;font-size:18px;transform:translateY(-105%);transition:transform .45s;z-index:-1}
+ header{height:72px}.nav{position:fixed;inset:0;background:var(--navy-deep);display:flex;flex-direction:column;justify-content:center;gap:28px;font-size:18px;transform:translateY(-105%);transition:transform .45s;z-index:41}
  header.menu-open .nav{transform:translateY(0)}.menu-toggle{display:block;position:relative;z-index:2}
  .nav .nav-cta{padding:16px 24px}.hero{min-height:760px;padding-top:170px}.hero h1{font-size:clamp(65px,15vw,120px)}
  .hero-index{display:none}.hero-bottom{align-items:flex-start;flex-direction:column;gap:24px}.hero-copy{max-width:470px}
