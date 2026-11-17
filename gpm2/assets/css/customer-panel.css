@@ -48,3 +48,18 @@
 @media(prefers-reduced-motion:reduce){
  .customer-sidebar{transition:none}
 }
+
+
+/* Menu pessoal do cliente: estado mobile previsível sem alterar a navegação da conta. */
+@media(max-width:1024px){
+ body.customer-menu-open{overflow:hidden!important;touch-action:none}
+ .customer-sidebar{z-index:1002;overscroll-behavior:contain}
+ .customer-sidebar.is-open{visibility:visible;pointer-events:auto}
+ .customer-overlay{z-index:1001}
+ .customer-menu-toggle{position:relative;z-index:1003;touch-action:manipulation}
+}
+@media(min-width:1025px){
+ .customer-sidebar{visibility:visible;transform:none}
+ .customer-overlay{display:none!important}
+ .customer-menu-toggle{display:none!important}
+}
