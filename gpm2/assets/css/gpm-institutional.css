@@ -194,3 +194,19 @@ header.scrolled .brand img{width:clamp(285px,26vw,340px);max-height:94px}
 .location-details strong{display:block;color:var(--gold);font:10px var(--mono);letter-spacing:.12em;margin-bottom:4px}
 @media(max-width:850px){.brand img{width:280px;max-height:82px}.location-grid{grid-template-columns:1fr}.location-map{min-height:420px}}
 @media(max-width:560px){header{height:82px}.brand img{width:235px;max-height:72px}header.scrolled .brand img{width:225px;max-height:68px}.location-map{min-height:360px}}
+
+/* Navegação institucional partilhada: corrigir camada e interação mobile. */
+@media(max-width:850px){
+ header{z-index:40}
+ header .nav{z-index:41;visibility:hidden;pointer-events:none;transform:translateY(-105%)}
+ header.menu-open .nav{z-index:41;visibility:visible;pointer-events:auto;transform:translateY(0);transition:transform .45s,visibility 0s}
+ header .menu-toggle{z-index:42;position:relative}
+ header .nav a{flex:none}
+ header .nav a[aria-current="page"]{color:var(--gold);opacity:1}
+}
+@media(min-width:851px){
+ header .nav{visibility:visible;pointer-events:auto;transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+ header .nav{transition:none!important}
+}
