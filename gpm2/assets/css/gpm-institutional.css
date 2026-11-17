@@ -210,3 +210,22 @@ header.scrolled .brand img{width:clamp(285px,26vw,340px);max-height:94px}
 @media(prefers-reduced-motion:reduce){
  header .nav{transition:none!important}
 }
+
+
+/* GPM Conecta: navegação pública e marca consistentes */
+.brand{display:inline-flex;align-items:center;gap:11px;min-width:0}
+.brand img{width:54px;height:54px;max-height:54px;flex:0 0 54px;object-fit:contain;object-position:center}
+.brand-wordmark{display:block;color:inherit;font:800 clamp(18px,1.7vw,23px)/1 var(--body);letter-spacing:-.055em;white-space:nowrap}
+footer .brand{color:#fff}
+footer .brand img{width:54px;height:54px;max-height:54px}
+@media(max-width:850px){
+ header{z-index:1000}
+ header.menu-open{position:fixed;top:0;left:0;z-index:1000;height:72px;background:var(--navy-deep);border-bottom-color:rgba(255,255,255,.16)}
+ header.menu-open .nav{z-index:1001;inset:0;overflow-y:auto;overscroll-behavior:contain;padding:88px 24px 36px}
+ header .menu-toggle{position:relative;z-index:1002;flex:0 0 44px}
+ header.menu-open .menu-toggle{background:var(--navy);border-color:var(--gold);color:var(--gold)}
+ body.menu-open{overflow:hidden;touch-action:none}
+ .brand img{width:48px;height:48px;max-height:48px;flex-basis:48px}
+ .brand-wordmark{font-size:19px}
+}
+@media(prefers-reduced-motion:reduce){header .nav{transition:none}}
