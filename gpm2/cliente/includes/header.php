@@ -38,11 +38,40 @@ $inicialClientePainel = strtoupper(substr($nomeClientePainel, 0, 1));
 </header>
 <main class="gpm-main">
 <script>
-document.addEventListener('DOMContentLoaded',function(){
- const sidebar=document.getElementById('customerSidebar'),overlay=document.getElementById('customerOverlay'),toggle=document.getElementById('customerMenuToggle');
- if(!sidebar||!overlay||!toggle)return;
- const close=()=>{sidebar.classList.remove('is-open');overlay.classList.remove('is-visible');toggle.setAttribute('aria-expanded','false');document.body.classList.remove('customer-menu-open')};
- toggle.addEventListener('click',()=>{const open=!sidebar.classList.contains('is-open');sidebar.classList.toggle('is-open',open);overlay.classList.toggle('is-visible',open);toggle.setAttribute('aria-expanded',String(open));document.body.classList.toggle('customer-menu-open',open)});
- overlay.addEventListener('click',close);document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
-});
+(function(){
+ const sidebar=document.getElementById('customerSidebar');
+ const overlay=document.getElementById('customerOverlay');
+ const toggle=document.getElementById('customerMenuToggle');
+ if(!sidebar||!overlay||!toggle||toggle.dataset.menuReady==='1')return;
+ toggle.dataset.menuReady='1';
+ const mobile=window.matchMedia('(max-width: 1024px)');
+ const close=()=>{
+   sidebar.classList.remove('is-open');
+   overlay.classList.remove('is-visible');
+   document.body.classList.remove('customer-menu-open');
+   toggle.setAttribute('aria-expanded','false');
+   toggle.setAttribute('aria-label','Abrir menu');
+   toggle.textContent='☰';
+   sidebar.setAttribute('aria-hidden',mobile.matches?'true':'false');
+ };
+ const open=()=>{
+   sidebar.classList.add('is-open');
+   overlay.classList.add('is-visible');
+   document.body.classList.add('customer-menu-open');
+   toggle.setAttribute('aria-expanded','true');
+   toggle.setAttribute('aria-label','Fechar menu');
+   toggle.textContent='✕';
+   sidebar.setAttribute('aria-hidden','false');
+   const firstLink=sidebar.querySelector('.customer-nav a');
+   if(firstLink)firstLink.focus({preventScroll:true});
+ };
+ toggle.addEventListener('click',()=>sidebar.classList.contains('is-open')?close():open());
+ overlay.addEventListener('click',close);
+ sidebar.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{if(mobile.matches)close();}));
+ document.addEventListener('keydown',event=>{
+   if(event.key==='Escape'&&sidebar.classList.contains('is-open')){close();toggle.focus();}
+ });
+ mobile.addEventListener('change',()=>close());
+ close();
+})();
 </script>
