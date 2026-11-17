@@ -24,3 +24,27 @@
 
 /* Logout now submits a CSRF-protected form. */
 .customer-logout-form{margin:0}.customer-logout{width:100%;border:0;background:transparent;text-align:left;cursor:pointer}
+
+/* Correção funcional do menu mobile: painel, overlay e botão permanecem sincronizados. */
+.customer-overlay{display:none;pointer-events:none}
+.customer-overlay.is-visible{display:block;pointer-events:auto}
+.customer-sidebar{will-change:transform}
+.customer-menu-toggle{flex:0 0 42px;line-height:1;touch-action:manipulation}
+.customer-nav a,.customer-market-link,.customer-logout{touch-action:manipulation}
+@media(max-width:1024px){
+ .customer-sidebar{position:fixed;top:0;bottom:0;left:0;width:min( min(84vw, 320px), 320px );height:100dvh;max-height:100dvh;transform:translate3d(-105%,0,0);visibility:hidden;transition:transform .24s ease,visibility .24s ease;z-index:1002}
+ .customer-sidebar.is-open{transform:translate3d(0,0,0);visibility:visible}
+ .customer-overlay.is-visible{position:fixed;inset:0;display:block;visibility:visible;opacity:1;background:rgba(10,25,40,.58);z-index:1001}
+ .customer-workspace{margin-left:0;width:100%;min-width:0}
+ .customer-menu-toggle{display:inline-flex;align-items:center;justify-content:center}
+ .customer-menu-open{overflow:hidden;touch-action:none}
+}
+@media(min-width:1025px){
+ .customer-sidebar{transform:none;visibility:visible}
+ .customer-overlay{display:none!important}
+ .customer-menu-toggle{display:none}
+ .customer-workspace{margin-left:264px;width:calc(100% - 264px)}
+}
+@media(prefers-reduced-motion:reduce){
+ .customer-sidebar{transition:none}
+}
