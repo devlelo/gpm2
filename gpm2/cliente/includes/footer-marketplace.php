@@ -2,10 +2,10 @@
 <footer class="bg-[#0A2945] text-white pt-16 pb-8 border-t border-[#2F776F] mt-auto"><style>.footer-wordmark{color:#fff!important}</style>
     <div class="max-w-site mx-auto px-4 sm:px-6">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-            
+
             <!-- Logo e Descrição -->
             <div class="md:col-span-2">
-                <a href="<?= $baseMarketplace ?>/index.php" class="flex items-center gap-2 mb-4"><img class="gpm-market-logo" src="<?= e(BASE_URL) ?>/assets/img/GPMlogo.png?v=3" alt=""><span class="gpm-market-wordmark footer-wordmark">gpm-conecta</span></a>
+                <a href="<?= $baseMarketplace ?>/index.php" class="flex items-center gap-2 mb-4"><img class="gpm-market-logo" src="<?= e(BASE_URL) ?>/assets/img/GPMlogo.png?v=3" alt="Logótipo GPM Conecta"><span class="gpm-market-wordmark footer-wordmark">GPM Conecta</span></a>
                 <p class="text-gray-400 text-sm max-w-sm leading-relaxed mb-6">
                     Materiais de construção para ajudar a transformar os seus projetos em realidade.
                 </p></div>
@@ -18,6 +18,9 @@
                     <li><a href="<?= $baseMarketplace ?>/index.php" class="hover:text-white transition">Produtos</a></li>
                     <li><a href="<?= $baseMarketplace ?>/carrinho.php" class="hover:text-white transition">Meu Carrinho</a></li>
                     <li><a href="<?= $baseMarketplace ?>/login.php" class="hover:text-white transition">Minha Conta</a></li>
+                    <li><a href="<?= $baseMarketplace ?>/termos.php" class="hover:text-white transition">Termos e Condições</a></li>
+                    <li><a href="<?= $baseMarketplace ?>/privacidade.php" class="hover:text-white transition">Política de Privacidade</a></li>
+                    <li><a href="<?= $baseMarketplace ?>/reembolsos.php" class="hover:text-white transition">Reembolsos e Cancelamentos</a></li>
                 </ul>
             </div>
 
@@ -40,25 +43,6 @@
         </div>
     </div>
 </footer>
-
-<!-- Script do Menu Mobile -->
-<script>
-(function () {
-    const botao = document.getElementById('gpm-market-menu-btn');
-    const menu = document.getElementById('gpm-market-nav');
-
-    if (!botao || !menu) {
-        return;
-    }
-
-    botao.addEventListener('click', function () {
-        const aberto = menu.classList.toggle('aberto');
-
-        botao.setAttribute('aria-expanded', aberto ? 'true' : 'false');
-        botao.textContent = aberto ? '✕' : '☰';
-    });
-})();
-</script>
 
 </body>
 </html>

@@ -81,72 +81,97 @@ if (is_array($carrinho)) {
     </div>
 </div>
 
-<!-- Header Principal -->
-<header class="bg-white sticky top-0 z-50 border-b border-gray-100">
-    <div class="max-w-site mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4">
-        <!-- Logo -->
-        <a href="<?= $baseMarketplace ?>/index.php" class="flex items-center gap-2 cursor-pointer flex-shrink-0"><img class="gpm-market-logo" src="<?= e(BASE_URL) ?>/assets/img/GPMlogo.png?v=3" alt=""><span class="gpm-market-wordmark">gpm-conecta</span></a>
+<!-- Navegação única do marketplace: desktop e mobile usam os mesmos links -->
+<header class="bg-white sticky top-0 z-50 border-b border-gray-100" id="gpm-market-header">
+    <div class="max-w-site mx-auto px-4 sm:px-6 min-h-20 flex items-center justify-between gap-4">
+        <a href="<?= $baseMarketplace ?>/index.php" class="flex items-center gap-2 cursor-pointer flex-shrink-0" aria-label="GPM Conecta - Início">
+            <img class="gpm-market-logo" src="<?= e(BASE_URL) ?>/assets/img/GPMlogo.png?v=3" alt="Logótipo GPM Conecta">
+            <span class="gpm-market-wordmark">GPM Conecta</span>
+        </a>
 
-        <!-- Barra de Pesquisa (Desktop) -->
-        <form action="<?= $baseMarketplace ?>/index.php" method="GET" class="hidden md:flex flex-1 max-w-md bg-gray-50 border border-gray-200 focus-within:border-[#2F776F] transition">
-            <input type="search" name="q" placeholder="Pesquisar equipamentos, materiais, ferramentas..." class="w-full px-4 py-2 text-sm text-[#0A2945] bg-transparent focus:outline-none placeholder-gray-400" value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8') : '' ?>">
-            <button type="submit" class="bg-[#0A2945] hover:bg-[#123653] text-white px-5 flex items-center justify-center transition" aria-label="Pesquisar">
+        <form action="<?= $baseMarketplace ?>/index.php" method="GET" class="hidden lg:flex flex-1 max-w-sm bg-gray-50 border border-gray-200 focus-within:border-[#2F776F] transition">
+            <input type="search" name="q" placeholder="Pesquisar produtos e materiais..." class="w-full px-4 py-2 text-sm text-[#0A2945] bg-transparent focus:outline-none placeholder-gray-400" value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8') : '' ?>">
+            <button type="submit" class="bg-[#0A2945] hover:bg-[#123653] text-white px-4 flex items-center justify-center transition" aria-label="Pesquisar">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
         </form>
 
-        <!-- Menu Mobile Toggle -->
-        <button
-            type="button"
-            class="lg:hidden text-[#0A2945] text-2xl p-2 focus:outline-none flex-shrink-0"
-            id="gpm-market-menu-btn"
-            aria-label="Abrir menu"
-            aria-expanded="false">
-            ☰
+        <button type="button" class="gpm-market-menu-btn lg:hidden" id="gpm-market-menu-btn" aria-label="Abrir menu" aria-controls="gpm-market-nav" aria-expanded="false">
+            <span class="gpm-menu-open-icon" aria-hidden="true">☰</span>
+            <span class="gpm-menu-close-icon" aria-hidden="true">✕</span>
         </button>
 
-        <!-- Navegação Desktop -->
-        <nav class="hidden lg:flex items-center space-x-8 text-xs font-bold uppercase tracking-wider text-[#0A2945] flex-shrink-0">
-            <a href="<?= $baseMarketplace ?>/index.php" class="hover:text-[#2F776F] transition">Início</a>
-            <a href="<?= e(BASE_URL) ?>/contacto.php" class="hover:text-[#2F776F] transition">Contactos</a>
+        <nav class="gpm-market-nav" id="gpm-market-nav" aria-label="Navegação principal">
+            <form action="<?= $baseMarketplace ?>/index.php" method="GET" class="gpm-market-mobile-search">
+                <input type="search" name="q" placeholder="Pesquisar produtos e materiais..." value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8') : '' ?>">
+                <button type="submit" aria-label="Pesquisar"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+            <a href="<?= $baseMarketplace ?>/index.php" class="gpm-market-nav-link">Início</a>
+            <a href="<?= e(BASE_URL) ?>/servicos.php" class="gpm-market-nav-link">Serviços</a>
+            <a href="<?= $baseMarketplace ?>/index.php#categorias" class="gpm-market-nav-link">Categorias</a>
+            <a href="<?= $baseMarketplace ?>/index.php#catalogo" class="gpm-market-nav-link">Produtos</a>
+            <a href="<?= $baseMarketplace ?>/index.php#mais-vendidos" class="gpm-market-nav-link">Destaques</a>
+            <a href="<?= e(BASE_URL) ?>/contacto.php" class="gpm-market-nav-link">Contactos</a>
             <?php if (function_exists('cliente_atual') && cliente_atual()): ?>
-                <a href="<?= $baseMarketplace ?>/painel-cliente/index.php" class="hover:text-[#2F776F] transition">Minha Conta</a>
+                <a href="<?= $baseMarketplace ?>/painel-cliente/index.php" class="gpm-market-nav-link">Minha Conta</a>
             <?php else: ?>
-                <a href="<?= $baseMarketplace ?>/login.php" class="hover:text-[#2F776F] transition">Entrar</a>
+                <a href="<?= $baseMarketplace ?>/login.php" class="gpm-market-nav-link">Entrar</a>
             <?php endif; ?>
         </nav>
 
-        <!-- Ações (Carrinho) -->
-        <div class="flex items-center space-x-5 flex-shrink-0">
-            <a href="<?= $baseMarketplace ?>/carrinho.php" class="flex items-center gap-2 text-[#0A2945] hover:text-[#2F776F] transition group">
-                <i class="fa-solid fa-cart-shopping text-lg"></i>
-                <span class="bg-[#2F776F] text-white text-[10px] font-bold px-2 py-0.5" id="contador-carrinho">
-                    <?= $quantidadeCarrinho ?>
-                </span>
-            </a>
-        </div>
+        <a href="<?= $baseMarketplace ?>/carrinho.php" class="flex items-center gap-2 text-[#0A2945] hover:text-[#2F776F] transition group flex-shrink-0" aria-label="Abrir carrinho">
+            <i class="fa-solid fa-cart-shopping text-lg"></i>
+            <span class="bg-[#2F776F] text-white text-[10px] font-bold px-2 py-0.5" id="contador-carrinho"><?= $quantidadeCarrinho ?></span>
+        </a>
     </div>
-
-    <!-- Navegação Mobile (Escondida por defeito) -->
-    <nav class="hidden lg:hidden bg-white border-t border-gray-100" id="gpm-market-nav">
-        <div class="px-4 py-2 flex flex-col text-sm font-bold text-[#0A2945]">
-            <!-- Barra de Pesquisa Mobile -->
-            <form action="<?= $baseMarketplace ?>/index.php" method="GET" class="flex my-3 bg-gray-50 border border-gray-200 focus-within:border-[#2F776F] transition">
-                <input type="search" name="q" placeholder="Pesquisar..." class="w-full px-4 py-2 text-sm text-[#0A2945] bg-transparent focus:outline-none placeholder-gray-400" value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8') : '' ?>">
-                <button type="submit" class="bg-[#0A2945] hover:bg-[#123653] text-white px-4 flex items-center justify-center transition" aria-label="Pesquisar">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </form>
-
-            <a href="<?= $baseMarketplace ?>/index.php" class="py-3 border-b border-gray-100 hover:text-[#2F776F]">Início</a>
-            <a href="<?= e(BASE_URL) ?>/contacto.php" class="py-3 border-b border-gray-100 hover:text-[#2F776F]">Contactos</a>
-            <?php if (function_exists('cliente_atual') && cliente_atual()): ?>
-                <a href="<?= $baseMarketplace ?>/painel-cliente/index.php" class="py-3 border-b border-gray-100 hover:text-[#2F776F]">Minha Conta</a>
-            <?php else: ?>
-                <a href="<?= $baseMarketplace ?>/login.php" class="py-3 border-b border-gray-100 hover:text-[#2F776F]">Entrar</a>
-            <?php endif; ?>
-        </div>
-    </nav>
 </header>
+
+<style>
+#gpm-market-header{position:sticky;top:0;z-index:100}
+.gpm-market-nav{display:flex;align-items:center;justify-content:center;gap:clamp(12px,1.6vw,24px);padding:0 10px;flex:1;min-width:0}
+.gpm-market-nav-link{display:inline-flex;align-items:center;min-height:44px;color:#0A2945;font-size:11px;font-weight:800;letter-spacing:.055em;text-transform:uppercase;white-space:nowrap;transition:color .18s ease}
+.gpm-market-nav-link:hover,.gpm-market-nav-link:focus-visible{color:#2F776F}
+.gpm-market-menu-btn{display:none;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid #e2e8ee;background:#fff;color:#0A2945;font-size:21px;line-height:1;cursor:pointer}
+.gpm-menu-close-icon{display:none}
+.gpm-market-mobile-search{display:none}
+@media(max-width:1023px){
+ .gpm-market-nav{display:none;position:absolute;top:100%;left:0;right:0;z-index:101;align-items:stretch;justify-content:flex-start;flex-direction:column;gap:0;padding:10px 20px 18px;background:#fff;border-top:1px solid #edf1f4;border-bottom:1px solid #dce3e9;box-shadow:0 16px 28px rgba(10,41,69,.13);max-height:calc(100vh - 80px);overflow-y:auto}
+ .gpm-market-nav.is-open{display:flex}
+ .gpm-market-nav-link{width:100%;min-height:48px;border-bottom:1px solid #edf1f4;font-size:12px}
+ .gpm-market-menu-btn{display:inline-flex}
+ .gpm-market-menu-btn[aria-expanded="true"] .gpm-menu-open-icon{display:none}
+ .gpm-market-menu-btn[aria-expanded="true"] .gpm-menu-close-icon{display:inline}
+ .gpm-market-mobile-search{display:flex;width:100%;margin:4px 0 10px;border:1px solid #dce3e9;background:#f8fafb}
+ .gpm-market-mobile-search input{min-width:0;flex:1;padding:12px;border:0;outline:0;background:transparent;color:#0A2945;font-size:14px}
+ .gpm-market-mobile-search button{width:46px;flex:none;background:#0A2945;color:#fff}
+}
+@media(min-width:1024px) and (max-width:1240px){.gpm-market-nav{gap:10px}.gpm-market-nav-link{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.gpm-market-nav-link{transition:none}}
+</style>
+<script>
+(function(){
+ const header=document.getElementById('gpm-market-header');
+ const button=document.getElementById('gpm-market-menu-btn');
+ const menu=document.getElementById('gpm-market-nav');
+ if(!header||!button||!menu||button.dataset.menuReady==='1')return;
+ button.dataset.menuReady='1';
+ const mobile=window.matchMedia('(max-width: 1023px)');
+ const close=()=>{
+   menu.classList.remove('is-open');
+   button.setAttribute('aria-expanded','false');
+   button.setAttribute('aria-label','Abrir menu');
+ };
+ const open=()=>{
+   menu.classList.add('is-open');
+   button.setAttribute('aria-expanded','true');
+   button.setAttribute('aria-label','Fechar menu');
+ };
+ button.addEventListener('click',()=>menu.classList.contains('is-open')?close():open());
+ menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',close));
+ document.addEventListener('click',event=>{if(mobile.matches&&!header.contains(event.target))close();});
+ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&menu.classList.contains('is-open')){close();button.focus();}});
+ mobile.addEventListener('change',close);
+})();
+</script>
 
 <main class="gpm-market-main flex-1">

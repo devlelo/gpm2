@@ -298,7 +298,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
 
 <?php if ($maisVendidos): ?>
-<section class="gpm-featured gpm-featured--best" aria-labelledby="gpm-sales-title">
+<section id="mais-vendidos" class="gpm-featured gpm-featured--best" aria-labelledby="gpm-sales-title">
  <div class="gpm-featured-inner">
   <div class="gpm-featured-heading">
    <div><p class="gpm-featured-kicker">Escolhas dos clientes</p><h2 id="gpm-sales-title">Mais vendidos</h2></div>
@@ -334,7 +334,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
         <!-- Sidebar (Sticky no Desktop) -->
         <aside class="w-full lg:w-64 flex-shrink-0 space-y-8 lg:sticky lg:top-28 h-fit reveal">
             <!-- Categories -->
-            <div>
+            <div id="categorias">
                 <h2 class="text-lg font-black text-[#0A2945] mb-4 border-b-2 border-[#CE9E53] inline-block pb-1 uppercase tracking-wide">Categorias</h2>
                 <ul class="space-y-1 text-sm max-h-[60vh] overflow-y-auto sidebar-scroll pr-2">
                     <li>
@@ -375,7 +375,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
         <!-- Product Grid -->
         <div class="flex-1 min-w-0">
-            <div class="flex justify-between items-end mb-8 border-b border-gray-200 pb-2 reveal">
+            <div id="catalogo" class="flex justify-between items-end mb-8 border-b border-gray-200 pb-2 reveal">
                 <h2 class="text-xl font-black text-[#0A2945] uppercase">Catálogo completo</h2>
                 <span class="text-xs font-bold text-gray-400"><?= count($produtos) ?> resultados</span>
             </div>

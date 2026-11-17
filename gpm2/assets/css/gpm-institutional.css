@@ -132,7 +132,7 @@ footer{background:var(--navy-deep);color:#fff;padding:60px var(--gutter) 25px}
 .reveal.visible{opacity:1;transform:none}
 :focus-visible{outline:3px solid var(--teal);outline-offset:4px}
 @media(max-width:850px){
- header{height:72px}.nav{position:fixed;inset:0;background:var(--navy-deep);display:flex;flex-direction:column;justify-content:center;gap:28px;font-size:18px;transform:translateY(-105%);transition:transform .45s;z-index:-1}
+ header{height:72px}.nav{position:fixed;inset:0;background:var(--navy-deep);display:flex;flex-direction:column;justify-content:center;gap:28px;font-size:18px;transform:translateY(-105%);transition:transform .45s;z-index:41}
  header.menu-open .nav{transform:translateY(0)}.menu-toggle{display:block;position:relative;z-index:2}
  .nav .nav-cta{padding:16px 24px}.hero{min-height:760px;padding-top:170px}.hero h1{font-size:clamp(65px,15vw,120px)}
  .hero-index{display:none}.hero-bottom{align-items:flex-start;flex-direction:column;gap:24px}.hero-copy{max-width:470px}
@@ -194,3 +194,256 @@ header.scrolled .brand img{width:clamp(285px,26vw,340px);max-height:94px}
 .location-details strong{display:block;color:var(--gold);font:10px var(--mono);letter-spacing:.12em;margin-bottom:4px}
 @media(max-width:850px){.brand img{width:280px;max-height:82px}.location-grid{grid-template-columns:1fr}.location-map{min-height:420px}}
 @media(max-width:560px){header{height:82px}.brand img{width:235px;max-height:72px}header.scrolled .brand img{width:225px;max-height:68px}.location-map{min-height:360px}}
+
+/* Navegação institucional partilhada: corrigir camada e interação mobile. */
+@media(max-width:850px){
+ header{z-index:40}
+ header .nav{z-index:41;visibility:hidden;pointer-events:none;transform:translateY(-105%)}
+ header.menu-open .nav{z-index:41;visibility:visible;pointer-events:auto;transform:translateY(0);transition:transform .45s,visibility 0s}
+ header .menu-toggle{z-index:42;position:relative}
+ header .nav a{flex:none}
+ header .nav a[aria-current="page"]{color:var(--gold);opacity:1}
+}
+@media(min-width:851px){
+ header .nav{visibility:visible;pointer-events:auto;transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+ header .nav{transition:none!important}
+}
+
+
+/* GPM Conecta: navegação pública e marca consistentes */
+.brand{display:inline-flex;align-items:center;gap:11px;min-width:0}
+.brand img{width:54px;height:54px;max-height:54px;flex:0 0 54px;object-fit:contain;object-position:center}
+.brand-wordmark{display:block;color:inherit;font:800 clamp(18px,1.7vw,23px)/1 var(--body);letter-spacing:-.055em;white-space:nowrap}
+footer .brand{color:#fff}
+footer .brand img{width:54px;height:54px;max-height:54px}
+@media(max-width:850px){
+ header{z-index:1000}
+ header.menu-open{position:fixed;top:0;left:0;z-index:1000;height:72px;background:var(--navy-deep);border-bottom-color:rgba(255,255,255,.16)}
+ header.menu-open .nav{z-index:1001;inset:0;overflow-y:auto;overscroll-behavior:contain;padding:88px 24px 36px}
+ header .menu-toggle{position:relative;z-index:1002;flex:0 0 44px}
+ header.menu-open .menu-toggle{background:var(--navy);border-color:var(--gold);color:var(--gold)}
+ body.menu-open{overflow:hidden;touch-action:none}
+ .brand img{width:48px;height:48px;max-height:48px;flex-basis:48px}
+ .brand-wordmark{font-size:19px}
+}
+@media(prefers-reduced-motion:reduce){header .nav{transition:none}}
+
+
+
+/* GPM Conecta — identidade partilhada e dimensões consistentes */
+header .brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  flex: 0 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+header .brand img {
+  display: block;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  max-width: 48px;
+  max-height: 48px;
+  flex: 0 0 48px;
+  margin: 0;
+  padding: 0;
+  object-fit: contain;
+  object-position: center;
+}
+header .brand .brand-wordmark {
+  display: block;
+  flex: 0 1 auto;
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  font: 800 21px/1 var(--body);
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+}
+footer .brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+footer .brand img {
+  display: block;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  max-width: 48px;
+  max-height: 48px;
+  flex: 0 0 48px;
+  margin: 0;
+  object-fit: contain;
+  object-position: center;
+}
+footer .brand .brand-wordmark {
+  display: block;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+}
+@media (max-width: 560px) {
+  header .brand { gap: 7px; }
+  header .brand img {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    max-width: 42px;
+    max-height: 42px;
+    flex-basis: 42px;
+  }
+  header .brand .brand-wordmark { font-size: 18px; }
+}
+
+/* Menu mobile: ocultação real quando fechado; visível apenas após ativação. */
+@media (max-width: 850px) {
+  header .nav {
+    position: fixed;
+    inset: 0;
+    z-index: 1001;
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(0, -110%, 0);
+    transition: transform .35s ease, opacity .25s ease, visibility 0s linear .35s;
+  }
+  header.menu-open .nav {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate3d(0, 0, 0);
+    transition: transform .35s ease, opacity .25s ease, visibility 0s;
+  }
+  header .menu-toggle { position: relative; z-index: 1002; }
+}
+@media (min-width: 851px) {
+  header .nav {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+}
+
+/* Menu mobile: painel integral, sem área cortada nem scroll interno. */
+@media (max-width: 850px) {
+  header.menu-open .nav {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: clamp(8px, 1.5vh, 14px) !important;
+    padding: max(82px, calc(env(safe-area-inset-top) + 72px)) 20px max(18px, env(safe-area-inset-bottom)) !important;
+    overflow: hidden !important;
+    overscroll-behavior: none !important;
+    font-size: clamp(15px, 2.2vh, 18px) !important;
+    line-height: 1.15 !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
+  header.menu-open .nav a {
+    display: block !important;
+    flex: 0 0 auto !important;
+    line-height: 1.15 !important;
+    white-space: nowrap;
+  }
+  header.menu-open .nav .nav-cta {
+    padding: 11px 20px !important;
+    margin: 2px 0;
+  }
+}
+
+
+/* GPM Conecta — correção transversal de overflow e responsividade */
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+main, section, footer, header,
+.hero-content, .intro-inner, .band-inner, .offer-head, .offer-grid,
+.approach-inner, .values-inner, .market-inner, .contact-inner,
+.location-inner, .location-grid, .footer-main, .footer-bottom {
+  min-width: 0;
+  max-width: 100%;
+}
+.hero h1, .intro h2, .offer-head h2, .band-copy h2,
+.approach-top h2, .values-head h2, .market-copy h2, .contact h2,
+.location-info h2, .tile-content h3 {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+img, iframe, video, input, textarea, select, button {
+  max-width: 100%;
+}
+@media (max-width: 850px) {
+  header { width: 100%; max-width: 100%; }
+  header .brand { min-width: 0; max-width: calc(100% - 60px); }
+  header .brand-wordmark { min-width: 0; }
+  header .nav { width: 100%; max-width: 100vw; }
+  .hero-meta { min-width: 0; flex-wrap: wrap; }
+  .hero-bottom, .hero-actions, .footer-links, .footer-bottom,
+  .contact-form, .location-actions {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .intro-inner, .band-inner, .offer-head, .market-inner,
+  .contact-inner, .location-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .intro-inner > *, .band-inner > *, .offer-head > *,
+  .market-inner > *, .contact-inner > *, .location-grid > *,
+  .step > *, .value-list > *, .contact-form > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .offer-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .step { grid-template-columns: 50px minmax(0, 1fr); }
+  .value-list { grid-template-columns: minmax(0, 1fr); }
+  .contact-form { grid-template-columns: minmax(0, 1fr); }
+  .contact-form .full { grid-column: auto; }
+}
+@media (max-width: 560px) {
+  .hero, .intro, .editorial-band, .offer, .approach, .values,
+  .market, .contact, .location-section, footer {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .hero-content, .intro-inner, .band-inner, .offer-head,
+  .approach-inner, .values-inner, .market-inner, .contact-inner,
+  .location-inner, .footer-main, .footer-bottom {
+    width: 100%;
+    min-width: 0;
+  }
+  .hero-actions { flex-wrap: wrap; }
+  .hero-actions .btn { min-width: 0; max-width: 100%; }
+  .footer-links { flex-wrap: wrap; }
+  .footer-links > div { min-width: 0; }
+  .contact-form input, .contact-form textarea, .contact-form select {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+  }
+  .location-map { width: 100%; max-width: 100%; }
+}
