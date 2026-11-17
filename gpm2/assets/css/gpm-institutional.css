@@ -229,3 +229,76 @@ footer .brand img{width:54px;height:54px;max-height:54px}
  .brand-wordmark{font-size:19px}
 }
 @media(prefers-reduced-motion:reduce){header .nav{transition:none}}
+
+
+
+/* GPM Conecta — identidade partilhada e dimensões consistentes */
+header .brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  flex: 0 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+header .brand img {
+  display: block;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  max-width: 48px;
+  max-height: 48px;
+  flex: 0 0 48px;
+  margin: 0;
+  padding: 0;
+  object-fit: contain;
+  object-position: center;
+}
+header .brand .brand-wordmark {
+  display: block;
+  flex: 0 1 auto;
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  font: 800 21px/1 var(--body);
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+}
+footer .brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+footer .brand img {
+  display: block;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  max-width: 48px;
+  max-height: 48px;
+  flex: 0 0 48px;
+  margin: 0;
+  object-fit: contain;
+  object-position: center;
+}
+footer .brand .brand-wordmark {
+  display: block;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+}
+@media (max-width: 560px) {
+  header .brand { gap: 7px; }
+  header .brand img {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    max-width: 42px;
+    max-height: 42px;
+    flex-basis: 42px;
+  }
+  header .brand .brand-wordmark { font-size: 18px; }
+}
