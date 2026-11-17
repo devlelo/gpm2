@@ -85,8 +85,8 @@ if (is_array($carrinho)) {
 <header class="bg-white sticky top-0 z-50 border-b border-gray-100" id="gpm-market-header">
     <div class="max-w-site mx-auto px-4 sm:px-6 min-h-20 flex items-center justify-between gap-4">
         <a href="<?= $baseMarketplace ?>/index.php" class="flex items-center gap-2 cursor-pointer flex-shrink-0" aria-label="GPM Conecta - Início">
-            <img class="gpm-market-logo" src="<?= e(BASE_URL) ?>/assets/img/GPMlogo.png?v=3" alt="">
-            <span class="gpm-market-wordmark">gpm-conecta</span>
+            <img class="gpm-market-logo" src="<?= e(BASE_URL) ?>/assets/img/GPMlogo.png?v=3" alt="Logótipo GPM Conecta">
+            <span class="gpm-market-wordmark">GPM Conecta</span>
         </a>
 
         <form action="<?= $baseMarketplace ?>/index.php" method="GET" class="hidden lg:flex flex-1 max-w-sm bg-gray-50 border border-gray-200 focus-within:border-[#2F776F] transition">
