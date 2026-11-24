@@ -33,6 +33,50 @@ $labels = [
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     verify_csrf();
+    $action = (string)($_POST['action'] ?? '');
+
+    if ($action === 'confirm_quote') {
+        if (($order['order_type'] ?? 'sale') !== 'quote_request' || ($order['request_status'] ?? '') !== 'location_received') {
+            flash('A proposta precisa estar aceite e a localização recebida antes da confirmação.', 'error');
+            redirect('order.php?id=' . $id);
+        }
+        try {
+            $pdo->beginTransaction();
+            $proposalStmt = $pdo->prepare("SELECT * FROM quote_proposals WHERE order_id = ? AND status = 'accepted' ORDER BY version DESC LIMIT 1 FOR UPDATE");
+            $proposalStmt->execute([$id]);
+            $acceptedProposal = $proposalStmt->fetch(PDO::FETCH_ASSOC);
+            if (!$acceptedProposal) throw new RuntimeException('Não existe uma proposta aceite para este pedido.');
+
+            $proposalItemsStmt = $pdo->prepare('SELECT request_item_id, approved_quantity, unit_price, subtotal FROM quote_proposal_items WHERE proposal_id = ?');
+            $proposalItemsStmt->execute([(int)$acceptedProposal['id']]);
+            $proposalItems = $proposalItemsStmt->fetchAll(PDO::FETCH_ASSOC);
+            if (!$proposalItems) throw new RuntimeException('A proposta aceite não contém produtos.');
+
+            $updateItem = $pdo->prepare('UPDATE order_items SET quantity = ?, unit_price = ?, subtotal = ? WHERE id = ? AND order_id = ?');
+            foreach ($proposalItems as $proposalItem) {
+                $updateItem->execute([
+                    $proposalItem['approved_quantity'], $proposalItem['unit_price'],
+                    $proposalItem['subtotal'], $proposalItem['request_item_id'], $id
+                ]);
+            }
+
+            $pdo->prepare("UPDATE orders SET order_type = 'sale', request_status = 'converted', status = 'confirmed', subtotal = ?, delivery_fee = ?, discount = ?, total = ?, confirmed_at = NOW() WHERE id = ?")
+                ->execute([
+                    $acceptedProposal['subtotal'], $acceptedProposal['delivery_fee'],
+                    $acceptedProposal['discount'], $acceptedProposal['total'], $id
+                ]);
+            $pdo->prepare("INSERT INTO order_status_history (order_id, user_id, old_status, new_status, note) VALUES (?, ?, 'pending', 'confirmed', ?)")
+                ->execute([$id, (int)current_user()['id'], 'Cotação aceite pelo cliente, localização recebida e convertida em pedido confirmado.']);
+            $pdo->commit();
+            flash('Cotação convertida em pedido confirmado. O stock não foi alterado automaticamente.');
+        } catch (Throwable $e) {
+            if ($pdo->inTransaction()) $pdo->rollBack();
+            error_log('[GPM quote conversion] ' . $e->getMessage());
+            flash($e instanceof RuntimeException ? $e->getMessage() : 'Não foi possível confirmar a cotação.', 'error');
+        }
+        redirect('order.php?id=' . $id);
+    }
+
     $newStatus = (string)($_POST['status'] ?? '');
     $note = trim((string)($_POST['note'] ?? ''));
 
@@ -218,7 +262,16 @@ layout_start('Detalhes do pedido');
     </form>
 </section>
 <?php else: ?>
-<section class="panel"><h2>Pedido de cotação</h2><p>Este registo ainda não é uma venda. Prepara e envia a proposta comercial antes de avançar para a confirmação.</p><a class="btn" href="quote.php?id=<?= $id ?>">Abrir proposta comercial</a></section>
+<section class="panel">
+    <h2>Pedido de cotação</h2>
+    <p>Estado: <?= e($order['request_status'] ?: 'submitted') ?></p>
+    <p><a class="btn" href="quote.php?id=<?= $id ?>">Abrir proposta comercial</a></p>
+    <?php if (($order['request_status'] ?? '') === 'location_received'): ?>
+        <form method="post"><?= csrf_field() ?><input type="hidden" name="action" value="confirm_quote"><button type="submit">Confirmar pedido e converter em venda</button></form>
+    <?php else: ?>
+        <p>Para confirmar, o cliente precisa aceitar a proposta e enviar a localização através do link seguro.</p>
+    <?php endif; ?>
+</section>
 <?php endif; ?>
 <section class="panel">
     <h2>Histórico de estados</h2>
