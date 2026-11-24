@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
         }
 
         $stmt = $pdo->prepare(
-            'SELECT id, name, stock_quantity, active
+            'SELECT id, name, active
              FROM products
              WHERE id = :id
              LIMIT 1'
@@ -59,19 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
             exit;
         }
 
-        $stock = max(0, (int)$produtoAjax['stock_quantity']);
-
-        if ($stock < 1) {
-            http_response_code(422);
-            echo json_encode([
-                'ok' => false,
-                'mensagem' => 'Produto sem stock disponível.'
-            ]);
-            exit;
-        }
-
         $quantidadeAtual = (int)($_SESSION['gpm_cart'][$produtoId] ?? 0);
-        $novaQuantidade = min($stock, $quantidadeAtual + $quantidade);
+        $novaQuantidade = $quantidadeAtual + $quantidade;
 
         $_SESSION['gpm_cart'][$produtoId] = $novaQuantidade;
 
@@ -330,15 +319,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                     <span class="text-lg font-black text-[#0d233f]">
                                         Preço sob consulta
                                     </span>
-                                    <?php if ($stock > 0): ?>
-                                        <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-1 uppercase tracking-wide">
-                                            Em Stock
-                                        </span>
-                                    <?php else: ?>
-                                        <span class="text-[10px] font-bold text-red-500 bg-red-50 px-2 py-1 uppercase tracking-wide">
-                                            Esgotado
-                                        </span>
-                                    <?php endif; ?>
+                                    <span class="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-1 uppercase tracking-wide">Disponibilidade a confirmar</span>
                                 </div>
                             </div>
                         </div>
@@ -354,8 +335,8 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                 <input type="hidden" name="ajax_adicionar" value="1">
                                 <input type="hidden" name="produto_id" value="<?= (int)$produto['id'] ?>">
                                 <input type="hidden" name="quantidade" value="1">
-                                <button type="submit" class="w-full bg-[#0d233f] hover:bg-[#163154] text-white text-xs font-bold py-2.5 uppercase tracking-wider transition flex items-center justify-center gap-2 <?= $stock < 1 ? 'opacity-50 cursor-not-allowed' : '' ?>" <?= $stock < 1 ? 'disabled' : '' ?>>
-                                    <i class="fa-solid fa-cart-plus"></i> <?= $stock > 0 ? 'Add' : 'Esgotado' ?>
+                                <button type="submit" class="w-full bg-[#0d233f] hover:bg-[#163154] text-white text-xs font-bold py-2.5 uppercase tracking-wider transition flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-cart-plus"></i> Solicitar
                                 </button>
                             </form>
                         </div>
