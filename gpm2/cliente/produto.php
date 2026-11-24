@@ -430,13 +430,13 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                     <?php if ($stockPrincipal > 0): ?>
 
                         <span class="font-bold text-emerald-600">
-                            Em stock
+                            Disponibilidade a confirmar
                         </span>
 
                     <?php else: ?>
 
                         <span class="font-bold text-red-500">
-                            Esgotado
+                            Disponibilidade a confirmar
                         </span>
 
                     <?php endif; ?>
@@ -530,7 +530,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                         class="flex-1 bg-[#0d233f] hover:bg-[#163154] text-white font-bold py-3 px-6 uppercase text-sm transition"
                     >
                         <i class="fa-solid fa-cart-plus mr-2"></i>
-                        Adicionar ao carrinho
+                        Adicionar à cotação
                     </button>
 
                 </form>
