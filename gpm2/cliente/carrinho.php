@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($id && isset($_SESSION['gpm_cart'][$id])) {
             $stmt = $pdo->prepare(
-                "SELECT stock_quantity
+                "SELECT id
                  FROM products
                  WHERE id = ? AND active = 1"
             );
@@ -46,8 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $quantidade !== null &&
                 $quantidade >= 1
             ) {
-                $stock = (int) floor((float) $produto['stock_quantity']);
-
+                $_SESSION['gpm_cart'][$id] = $quantidade;
                 $_SESSION['gpm_cart'][$id] = min($quantidade, $stock);
             }
         }
@@ -103,10 +102,6 @@ if (!empty($_SESSION['gpm_cart'])) {
             $id = (int) $produto['id'];
             $stock = (int) floor((float) $produto['stock_quantity']);
 
-            if ($stock < 1) {
-                unset($_SESSION['gpm_cart'][$id]);
-                continue;
-            }
 
             $quantidade = (int) ($_SESSION['gpm_cart'][$id] ?? 1);
             $quantidade = max(1, $quantidade);
