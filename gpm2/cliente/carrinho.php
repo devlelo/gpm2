@@ -187,7 +187,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
                     <!-- Preço -->
                     <div class="col-span-2 text-sm font-bold text-gray-600">
-                        <?= escapar(formatar_valor_carrinho($item['price'])) ?>
+                        A confirmar
                     </div>
 
                     <!-- Quantidade -->
@@ -215,7 +215,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
                     <!-- Subtotal -->
                     <div class="col-span-2 text-right font-black text-[#f96b21] text-lg subtotal">
-                        <?= escapar(formatar_valor_carrinho($item['subtotal'])) ?>
+                        A confirmar
                     </div>
 
                     <!-- Remover -->
@@ -243,9 +243,9 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                 <div class="flex flex-col md:flex-row justify-between items-center gap-6">
                     
                     <div class="text-center md:text-left">
-                        <span class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Total a Pagar</span>
+                        <span class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Valor a confirmar</span>
                         <div class="text-3xl font-black text-[#0d233f]" id="total-carrinho">
-                            <?= escapar(formatar_valor_carrinho($total)) ?>
+                            A confirmar
                         </div>
                     </div>
 
@@ -253,8 +253,8 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                         <a class="bg-white border border-gray-300 text-[#0d233f] hover:bg-gray-50 font-bold text-xs uppercase tracking-wider px-6 py-3 text-center transition" href="index.php">
                             Continuar a Comprar
                         </a>
-                        <a class="bg-[#0d233f] hover:bg-[#163154] text-white font-bold text-xs uppercase tracking-wider px-8 py-3 text-center transition shadow-md flex items-center justify-center gap-2" href="finalizar-pedido.php">
-                            Finalizar Compra <i class="fa-solid fa-arrow-right"></i>
+                        <a class="bg-[#0d233f] hover:bg-[#163154] text-white font-bold text-xs uppercase tracking-wider px-8 py-3 text-center transition shadow-md flex items-center justify-center gap-2" href="solicitar-cotacao.php">
+                            Solicitar Cotação <i class="fa-solid fa-arrow-right"></i>
                         </a>
                     </div>
 
