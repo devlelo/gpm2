@@ -167,6 +167,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                 <span class="block text-xs text-gray-400 mb-1"><?= escapar(money($item['unit_price'])) ?> / un</span>
                                 <span class="block font-black text-[#f96b21] text-lg"><?= escapar(money($item['subtotal'])) ?></span>
                             </div>
+                            <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -194,6 +195,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                         </div>
                     </div>
                 </div>
+                <?php endif; ?>
             </div>
 
         </div>
