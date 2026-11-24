@@ -328,7 +328,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                 
                                 <div class="flex items-center justify-between mt-auto pt-2 border-t border-gray-100">
                                     <span class="text-lg font-black text-[#0d233f]">
-                                        <?= e(gpmKz($produto['price'])) ?>
+                                        Preço sob consulta
                                     </span>
                                     <?php if ($stock > 0): ?>
                                         <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-1 uppercase tracking-wide">
