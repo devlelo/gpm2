@@ -88,19 +88,22 @@ require_once __DIR__ . '/includes/header-marketplace.php';
             </p>
         </div>
         <div class="text-left md:text-right">
-            <span class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Total a Pagar</span>
-            <span class="text-3xl font-black text-[#0d233f]"><?= escapar(money($pedido['total'])) ?></span>
+            <?php if (($pedido["order_type"] ?? "sale") === "quote_request"): ?><span class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Pedido de cotação</span><?php else: ?><span class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Total a Pagar</span><?php endif; ?>
+            <?php if (($pedido["order_type"] ?? "sale") === "quote_request"): ?><span class="text-xl font-black text-[#0d233f]">A aguardar proposta</span><?php else: ?><span class="text-3xl font-black text-[#0d233f]"><?= escapar(money($pedido["total"])) ?></span><?php endif; ?>
         </div>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <?php if (($pedido["order_type"] ?? "sale") === "quote_request"): ?>
+            <section class="lg:col-span-3 bg-[#f8f9fa] border-l-4 border-[#f96b21] p-5"><h2 class="font-black text-[#0d233f] uppercase mb-2">Pedido enviado à GPM</h2><p class="text-sm text-gray-600">A equipa está a verificar os produtos, quantidades, disponibilidade e condições comerciais. Ainda não existe pagamento nem confirmação de compra.</p><?php if (in_array($pedido["request_status"], ["proposal_sent","customer_accepted","location_received"], true)): ?><a href="proposta.php?id=<?= (int)$pedido["id"] ?>" class="inline-block mt-4 bg-[#0d233f] text-white font-bold text-xs uppercase tracking-wider px-6 py-3">Ver proposta comercial</a><?php endif; ?></section>
+        <?php endif; ?>
         
         <div class="lg:col-span-2 space-y-8">
             
             <!-- Linha de Estado Visual -->
             <div class="bg-white border border-gray-100 shadow-sm p-6 reveal">
                 <h2 class="text-xs font-bold text-[#0d233f] uppercase tracking-widest mb-6 flex items-center gap-2">
-                    <i class="fa-solid fa-truck-fast text-[#f96b21]"></i> Estado do Pedido
+                    <i class="fa-solid fa-truck-fast text-[#f96b21]"></i> Estado da cotação
                 </h2>
                 <div class="flex items-center justify-between relative">
                     <div class="absolute top-1/2 left-0 w-full h-0.5 bg-gray-100 -z-10"></div>
@@ -144,7 +147,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
             <!-- Produtos -->
             <div class="bg-white border border-gray-100 shadow-sm reveal">
                 <div class="p-6 border-b border-gray-100">
-                    <h2 class="text-lg font-black text-[#0d233f] uppercase tracking-wide">Produtos Comprados</h2>
+                    <h2 class="text-lg font-black text-[#0d233f] uppercase tracking-wide">Produtos solicitados</h2>
                 </div>
                 
                 <div class="divide-y divide-gray-100">
@@ -159,14 +162,17 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                     <?php endif; ?>
                                 </span>
                             </div>
+                            <?php if (($pedido["order_type"] ?? "sale") !== "quote_request"): ?>
                             <div class="text-left sm:text-right">
                                 <span class="block text-xs text-gray-400 mb-1"><?= escapar(money($item['unit_price'])) ?> / un</span>
                                 <span class="block font-black text-[#f96b21] text-lg"><?= escapar(money($item['subtotal'])) ?></span>
                             </div>
+                            <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
                 </div>
 
+                <?php if (($pedido["order_type"] ?? "sale") !== "quote_request"): ?>
                 <div class="p-6 bg-[#f8f9fa] border-t border-gray-100">
                     <div class="space-y-2 text-sm text-gray-600 max-w-xs ml-auto">
                         <div class="flex justify-between">
@@ -189,6 +195,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                         </div>
                     </div>
                 </div>
+                <?php endif; ?>
             </div>
 
         </div>
@@ -203,6 +210,9 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                 </h2>
                 
                 <div class="space-y-4 text-sm">
+                    <?php if (($pedido['order_type'] ?? 'sale') === 'quote_request'): ?>
+                        <p class="text-gray-200 leading-relaxed">A localização de entrega será solicitada através de um link seguro depois de aceitares a proposta comercial.</p>
+                    <?php else: ?>
                     <div>
                         <span class="block text-[10px] text-gray-400 uppercase tracking-wider mb-1">Endereço</span>
                         <p class="text-gray-200 leading-relaxed"><?= escapar($pedido['delivery_address']) ?></p>
@@ -227,7 +237,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                             <?= escapar($pedido['payment_status'] ?: 'A combinar') ?>
                         </p>
                     </div>
-                </div>
+                </div><?php endif; ?>
             </div>
 
             <!-- Apoio ao Cliente -->

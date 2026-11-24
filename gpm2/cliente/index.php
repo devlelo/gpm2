@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
         }
 
         $stmt = $pdo->prepare(
-            'SELECT id, name, stock_quantity, active
+            'SELECT id, name, active
              FROM products
              WHERE id = :id
              LIMIT 1'
@@ -59,25 +59,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
             exit;
         }
 
-        $stock = max(0, (int)$produtoAjax['stock_quantity']);
-
-        if ($stock < 1) {
-            http_response_code(422);
-            echo json_encode([
-                'ok' => false,
-                'mensagem' => 'Produto sem stock disponível.'
-            ]);
-            exit;
-        }
-
         $quantidadeAtual = (int)($_SESSION['gpm_cart'][$produtoId] ?? 0);
-        $novaQuantidade = min($stock, $quantidadeAtual + $quantidade);
+        $novaQuantidade = $quantidadeAtual + $quantidade;
 
         $_SESSION['gpm_cart'][$produtoId] = $novaQuantidade;
 
         echo json_encode([
             'ok' => true,
-            'mensagem' => 'Produto adicionado ao carrinho.',
+            'mensagem' => 'Produto adicionado à cotação.',
             'produto' => (string)$produtoAjax['name'],
             'totalCarrinho' => array_sum(
                 array_map('intval', $_SESSION['gpm_cart'])
@@ -150,7 +139,7 @@ try {
 
     $sql = "
         SELECT p.id, p.category_id, p.name, p.description, p.price,
-               p.stock_quantity, p.unit, p.main_image,
+               p.stock_quantity, p.unit, p.min_order_quantity, p.main_image,
                c.name AS category_name
         FROM products p
         LEFT JOIN categories c ON c.id = p.category_id
@@ -328,17 +317,9 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                 
                                 <div class="flex items-center justify-between mt-auto pt-2 border-t border-gray-100">
                                     <span class="text-lg font-black text-[#0d233f]">
-                                        <?= e(gpmKz($produto['price'])) ?>
+                                        Preço sob consulta
                                     </span>
-                                    <?php if ($stock > 0): ?>
-                                        <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-1 uppercase tracking-wide">
-                                            Em Stock
-                                        </span>
-                                    <?php else: ?>
-                                        <span class="text-[10px] font-bold text-red-500 bg-red-50 px-2 py-1 uppercase tracking-wide">
-                                            Esgotado
-                                        </span>
-                                    <?php endif; ?>
+                                    <span class="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-1 uppercase tracking-wide">Disponibilidade a confirmar</span>
                                 </div>
                             </div>
                         </div>
@@ -353,9 +334,9 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="ajax_adicionar" value="1">
                                 <input type="hidden" name="produto_id" value="<?= (int)$produto['id'] ?>">
-                                <input type="hidden" name="quantidade" value="1">
-                                <button type="submit" class="w-full bg-[#0d233f] hover:bg-[#163154] text-white text-xs font-bold py-2.5 uppercase tracking-wider transition flex items-center justify-center gap-2 <?= $stock < 1 ? 'opacity-50 cursor-not-allowed' : '' ?>" <?= $stock < 1 ? 'disabled' : '' ?>>
-                                    <i class="fa-solid fa-cart-plus"></i> <?= $stock > 0 ? 'Add' : 'Esgotado' ?>
+                                <input type="hidden" name="quantidade" value="<?= max(1, (int) ceil((float) ($produto['min_order_quantity'] ?? 1))) ?>">
+                                <button type="submit" class="w-full bg-[#0d233f] hover:bg-[#163154] text-white text-xs font-bold py-2.5 uppercase tracking-wider transition flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-cart-plus"></i> Solicitar
                                 </button>
                             </form>
                         </div>
@@ -446,7 +427,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                 }
                 
                 // Mensagem estilizada
-                mostrarAviso(dados.produto + ' foi adicionado ao carrinho.');
+                mostrarAviso(dados.produto + ' foi adicionado à cotação.');
                 
                 botao.innerHTML = '<i class="fa-solid fa-check"></i>';
 

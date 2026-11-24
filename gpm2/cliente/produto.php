@@ -121,7 +121,7 @@ if (
         }
 
         $stmt = $pdo->prepare(
-            'SELECT id, name, stock_quantity, active
+            'SELECT id, name, active
              FROM products
              WHERE id = :id
              LIMIT 1'
@@ -174,7 +174,7 @@ if (
 
         echo json_encode([
             'ok' => true,
-            'mensagem' => 'Produto adicionado ao carrinho.',
+            'mensagem' => 'Produto adicionado à cotação.',
             'produto' => (string)$produtoAjax['name'],
             'totalCarrinho' => array_sum(
                 array_map('intval', $_SESSION['gpm_cart'])
@@ -266,6 +266,7 @@ try {
                 price,
                 stock_quantity,
                 unit,
+                min_order_quantity,
                 main_image
              FROM products
              WHERE category_id = :categoria_id
@@ -330,6 +331,7 @@ foreach ($imagensAdicionais as $imagemExtra) {
 }
 
 $stockPrincipal = (int)($produto['stock_quantity'] ?? 0);
+$minOrderPrincipal = max(1, (int)ceil((float)($produto['min_order_quantity'] ?? 1)));
 
 $totalCarrinho = array_sum(
     array_map('intval', $_SESSION['gpm_cart'])
@@ -417,7 +419,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
             </h1>
 
             <div class="text-3xl font-black text-[#0d233f] mb-6">
-                <?= e(gpmKzDetalhe($produto['price'])) ?>
+                Preço sob consulta
             </div>
 
             <div class="border-y border-gray-200 py-5 space-y-3 mb-6">
@@ -428,13 +430,13 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                     <?php if ($stockPrincipal > 0): ?>
 
                         <span class="font-bold text-emerald-600">
-                            Em stock
+                            Disponibilidade a confirmar
                         </span>
 
                     <?php else: ?>
 
                         <span class="font-bold text-red-500">
-                            Esgotado
+                            Disponibilidade a confirmar
                         </span>
 
                     <?php endif; ?>
@@ -453,10 +455,10 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                 <?php endif; ?>
 
                 <div class="flex justify-between text-sm">
-                    <span class="text-gray-500">Quantidade disponível</span>
+                    <span class="text-gray-500">Disponibilidade</span>
 
                     <span class="font-bold text-[#0d233f]">
-                        <?= $stockPrincipal ?>
+                        A confirmar
                     </span>
                 </div>
 
@@ -507,9 +509,9 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                             id="quantidade-principal"
                             type="number"
                             name="quantidade"
-                            value="1"
-                            min="1"
-                            max="<?= $stockPrincipal ?>"
+                            value="<?= $minOrderPrincipal ?>"
+                            min="<?= $minOrderPrincipal ?>"
+                            max="999999"
                             class="w-16 text-center border-x border-gray-300 py-3 outline-none"
                         >
 
@@ -528,7 +530,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                         class="flex-1 bg-[#0d233f] hover:bg-[#163154] text-white font-bold py-3 px-6 uppercase text-sm transition"
                     >
                         <i class="fa-solid fa-cart-plus mr-2"></i>
-                        Adicionar ao carrinho
+                        Adicionar à cotação
                     </button>
 
                 </form>
@@ -540,7 +542,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                     disabled
                     class="w-full bg-gray-300 text-gray-600 font-bold py-3 uppercase text-sm cursor-not-allowed"
                 >
-                    Produto esgotado
+                    Disponibilidade a confirmar
                 </button>
 
             <?php endif; ?>
@@ -621,7 +623,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                 </h3>
 
                                 <p class="text-lg font-black text-[#0d233f] mb-3">
-                                    <?= e(gpmKzDetalhe($relacionado['price'])) ?>
+                                    Preço sob consulta
                                 </p>
 
                                 <?php if ($stockRelacionado > 0): ?>
@@ -677,7 +679,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                     <input
                                         type="hidden"
                                         name="quantidade"
-                                        value="1"
+                                        value="<?= max(1, (int)ceil((float)($relacionado['min_order_quantity'] ?? 1))) ?>"
                                     >
 
                                     <button
@@ -685,7 +687,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                         class="w-full bg-[#0d233f] hover:bg-[#163154] text-white font-bold text-xs py-2.5 uppercase transition"
                                     >
                                         <i class="fa-solid fa-cart-plus mr-2"></i>
-                                        Add ao carrinho
+                                        Adicionar à cotação
                                     </button>
 
                                 </form>
@@ -891,7 +893,7 @@ function alterarQuantidade(valor) {
                 atualizarContador(dados.totalCarrinho);
 
                 mostrarAviso(
-                    dados.produto + ' foi adicionado ao carrinho.'
+                    dados.produto + ' foi adicionado à cotação.'
                 );
 
                 botao.innerHTML =

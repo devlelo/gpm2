@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($id && isset($_SESSION['gpm_cart'][$id])) {
             $stmt = $pdo->prepare(
-                "SELECT stock_quantity
+                "SELECT id
                  FROM products
                  WHERE id = ? AND active = 1"
             );
@@ -39,16 +39,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$id]);
             $produto = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if (!$produto || (float) $produto['stock_quantity'] < 1) {
+            if (!$produto) {
                 unset($_SESSION['gpm_cart'][$id]);
             } elseif (
                 $quantidade !== false &&
                 $quantidade !== null &&
                 $quantidade >= 1
             ) {
-                $stock = (int) floor((float) $produto['stock_quantity']);
-
-                $_SESSION['gpm_cart'][$id] = min($quantidade, $stock);
+                $_SESSION['gpm_cart'][$id] = $quantidade;
             }
         }
 
@@ -103,18 +101,14 @@ if (!empty($_SESSION['gpm_cart'])) {
             $id = (int) $produto['id'];
             $stock = (int) floor((float) $produto['stock_quantity']);
 
-            if ($stock < 1) {
-                unset($_SESSION['gpm_cart'][$id]);
-                continue;
-            }
 
             $quantidade = (int) ($_SESSION['gpm_cart'][$id] ?? 1);
-            $quantidade = max(1, min($quantidade, $stock));
+            $quantidade = max(1, $quantidade);
 
             $_SESSION['gpm_cart'][$id] = $quantidade;
 
             $produto['quantity'] = $quantidade;
-            $produto['stock_limit'] = $stock;
+            $produto['stock_limit'] = 999999;
             $produto['subtotal'] = $quantidade * (float) $produto['price'];
 
             $itens[] = $produto;
@@ -187,7 +181,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
                     <!-- Preço -->
                     <div class="col-span-2 text-sm font-bold text-gray-600">
-                        <?= escapar(formatar_valor_carrinho($item['price'])) ?>
+                        A confirmar
                     </div>
 
                     <!-- Quantidade -->
@@ -209,13 +203,13 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                             >
                         </form>
                         <small class="block text-[10px] text-gray-400 mt-1 uppercase tracking-wide">
-                            Disp: <?= (int) $item['stock_limit'] ?>
+                            Quantidade para cotação
                         </small>
                     </div>
 
                     <!-- Subtotal -->
                     <div class="col-span-2 text-right font-black text-[#f96b21] text-lg subtotal">
-                        <?= escapar(formatar_valor_carrinho($item['subtotal'])) ?>
+                        A confirmar
                     </div>
 
                     <!-- Remover -->
@@ -243,9 +237,9 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                 <div class="flex flex-col md:flex-row justify-between items-center gap-6">
                     
                     <div class="text-center md:text-left">
-                        <span class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Total a Pagar</span>
+                        <span class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Valor a confirmar</span>
                         <div class="text-3xl font-black text-[#0d233f]" id="total-carrinho">
-                            <?= escapar(formatar_valor_carrinho($total)) ?>
+                            A confirmar
                         </div>
                     </div>
 
@@ -253,8 +247,8 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                         <a class="bg-white border border-gray-300 text-[#0d233f] hover:bg-gray-50 font-bold text-xs uppercase tracking-wider px-6 py-3 text-center transition" href="index.php">
                             Continuar a Comprar
                         </a>
-                        <a class="bg-[#0d233f] hover:bg-[#163154] text-white font-bold text-xs uppercase tracking-wider px-8 py-3 text-center transition shadow-md flex items-center justify-center gap-2" href="finalizar-pedido.php">
-                            Finalizar Compra <i class="fa-solid fa-arrow-right"></i>
+                        <a class="bg-[#0d233f] hover:bg-[#163154] text-white font-bold text-xs uppercase tracking-wider px-8 py-3 text-center transition shadow-md flex items-center justify-center gap-2" href="solicitar-cotacao.php">
+                            Solicitar Cotação <i class="fa-solid fa-arrow-right"></i>
                         </a>
                     </div>
 
@@ -268,77 +262,15 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const campos = document.querySelectorAll('.quantidade');
-    const linhas = document.querySelectorAll('.item-carrinho');
-    const totalElemento = document.getElementById('total-carrinho');
-
-    const temporizadores = new WeakMap();
-
-    function formatarKz(valor) {
-        return valor.toLocaleString('pt-PT', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        }) + ' Kz';
-    }
-
-    function atualizarTotais() {
-        let total = 0;
-
-        linhas.forEach(function (linha) {
-            const preco = Number(linha.dataset.preco);
-            const campo = linha.querySelector('.quantidade');
-
-            let quantidade = Math.floor(Number(campo.value) || 1);
-            const maximo = Number(campo.max);
-
-            quantidade = Math.max(1, Math.min(quantidade, maximo));
-            total += preco * quantidade;
-
-            linha.querySelector('.subtotal').textContent = formatarKz(preco * quantidade);
-        });
-
-        if (totalElemento) {
-            totalElemento.textContent = formatarKz(total);
-        }
-    }
-
-    campos.forEach(function (campo) {
-        campo.addEventListener('input', function () {
-            const maximo = Number(campo.max);
-
-            if (campo.value !== '') {
-                let valor = Math.floor(Number(campo.value));
-
-                if (valor > maximo) valor = maximo;
-                if (valor < 1) valor = 1;
-
-                campo.value = valor;
-            }
-
-            atualizarTotais();
-
-            clearTimeout(temporizadores.get(campo));
-
-            if (campo.value !== '' && campo.checkValidity()) {
-                temporizadores.set(campo, setTimeout(function () {
-                    campo.form.requestSubmit();
-                }, 600));
-            }
-        });
-
+    document.querySelectorAll('.quantidade').forEach(function (campo) {
         campo.addEventListener('change', function () {
             if (campo.value === '' || !campo.checkValidity()) {
                 campo.value = campo.defaultValue;
-                atualizarTotais();
                 return;
             }
-
-            clearTimeout(temporizadores.get(campo));
             campo.form.requestSubmit();
         });
     });
-
-    atualizarTotal();
 });
 </script>
 
