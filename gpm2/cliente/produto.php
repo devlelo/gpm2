@@ -174,7 +174,7 @@ if (
 
         echo json_encode([
             'ok' => true,
-            'mensagem' => 'Produto adicionado ao carrinho.',
+            'mensagem' => 'Produto adicionado à cotação.',
             'produto' => (string)$produtoAjax['name'],
             'totalCarrinho' => array_sum(
                 array_map('intval', $_SESSION['gpm_cart'])
@@ -687,7 +687,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                         class="w-full bg-[#0d233f] hover:bg-[#163154] text-white font-bold text-xs py-2.5 uppercase transition"
                                     >
                                         <i class="fa-solid fa-cart-plus mr-2"></i>
-                                        Add ao carrinho
+                                        Adicionar à cotação
                                     </button>
 
                                 </form>
@@ -893,7 +893,7 @@ function alterarQuantidade(valor) {
                 atualizarContador(dados.totalCarrinho);
 
                 mostrarAviso(
-                    dados.produto + ' foi adicionado ao carrinho.'
+                    dados.produto + ' foi adicionado à cotação.'
                 );
 
                 botao.innerHTML =
