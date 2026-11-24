@@ -268,77 +268,15 @@ require_once __DIR__ . '/includes/header-marketplace.php';
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const campos = document.querySelectorAll('.quantidade');
-    const linhas = document.querySelectorAll('.item-carrinho');
-    const totalElemento = document.getElementById('total-carrinho');
-
-    const temporizadores = new WeakMap();
-
-    function formatarKz(valor) {
-        return valor.toLocaleString('pt-PT', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        }) + ' Kz';
-    }
-
-    function atualizarTotais() {
-        let total = 0;
-
-        linhas.forEach(function (linha) {
-            const preco = Number(linha.dataset.preco);
-            const campo = linha.querySelector('.quantidade');
-
-            let quantidade = Math.floor(Number(campo.value) || 1);
-            const maximo = Number(campo.max);
-
-            quantidade = Math.max(1, Math.min(quantidade, maximo));
-            total += preco * quantidade;
-
-            linha.querySelector('.subtotal').textContent = formatarKz(preco * quantidade);
-        });
-
-        if (totalElemento) {
-            totalElemento.textContent = formatarKz(total);
-        }
-    }
-
-    campos.forEach(function (campo) {
-        campo.addEventListener('input', function () {
-            const maximo = Number(campo.max);
-
-            if (campo.value !== '') {
-                let valor = Math.floor(Number(campo.value));
-
-                if (valor > maximo) valor = maximo;
-                if (valor < 1) valor = 1;
-
-                campo.value = valor;
-            }
-
-            atualizarTotais();
-
-            clearTimeout(temporizadores.get(campo));
-
-            if (campo.value !== '' && campo.checkValidity()) {
-                temporizadores.set(campo, setTimeout(function () {
-                    campo.form.requestSubmit();
-                }, 600));
-            }
-        });
-
+    document.querySelectorAll('.quantidade').forEach(function (campo) {
         campo.addEventListener('change', function () {
             if (campo.value === '' || !campo.checkValidity()) {
                 campo.value = campo.defaultValue;
-                atualizarTotais();
                 return;
             }
-
-            clearTimeout(temporizadores.get(campo));
             campo.form.requestSubmit();
         });
     });
-
-    atualizarTotal();
 });
 </script>
 
