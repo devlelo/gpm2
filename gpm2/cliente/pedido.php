@@ -94,13 +94,16 @@ require_once __DIR__ . '/includes/header-marketplace.php';
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <?php if (($pedido["order_type"] ?? "sale") === "quote_request"): ?>
+            <section class="lg:col-span-3 bg-[#f8f9fa] border-l-4 border-[#f96b21] p-5"><h2 class="font-black text-[#0d233f] uppercase mb-2">Pedido enviado à GPM</h2><p class="text-sm text-gray-600">A equipa está a verificar os produtos, quantidades, disponibilidade e condições comerciais. Ainda não existe pagamento nem confirmação de compra.</p><?php if (in_array($pedido["request_status"], ["proposal_sent","customer_accepted","location_received"], true)): ?><a href="proposta.php?id=<?= (int)$pedido["id"] ?>" class="inline-block mt-4 bg-[#0d233f] text-white font-bold text-xs uppercase tracking-wider px-6 py-3">Ver proposta comercial</a><?php endif; ?></section>
+        <?php endif; ?>
         
         <div class="lg:col-span-2 space-y-8">
             
             <!-- Linha de Estado Visual -->
             <div class="bg-white border border-gray-100 shadow-sm p-6 reveal">
                 <h2 class="text-xs font-bold text-[#0d233f] uppercase tracking-widest mb-6 flex items-center gap-2">
-                    <i class="fa-solid fa-truck-fast text-[#f96b21]"></i> Estado do Pedido
+                    <i class="fa-solid fa-truck-fast text-[#f96b21]"></i> Estado da cotação
                 </h2>
                 <div class="flex items-center justify-between relative">
                     <div class="absolute top-1/2 left-0 w-full h-0.5 bg-gray-100 -z-10"></div>
@@ -144,7 +147,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
             <!-- Produtos -->
             <div class="bg-white border border-gray-100 shadow-sm reveal">
                 <div class="p-6 border-b border-gray-100">
-                    <h2 class="text-lg font-black text-[#0d233f] uppercase tracking-wide">Produtos Comprados</h2>
+                    <h2 class="text-lg font-black text-[#0d233f] uppercase tracking-wide">Produtos solicitados</h2>
                 </div>
                 
                 <div class="divide-y divide-gray-100">
