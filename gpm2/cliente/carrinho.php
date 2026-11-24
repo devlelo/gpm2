@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$id]);
             $produto = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if (!$produto || (float) $produto['stock_quantity'] < 1) {
+            if (!$produto) {
                 unset($_SESSION['gpm_cart'][$id]);
             } elseif (
                 $quantidade !== false &&
@@ -109,12 +109,12 @@ if (!empty($_SESSION['gpm_cart'])) {
             }
 
             $quantidade = (int) ($_SESSION['gpm_cart'][$id] ?? 1);
-            $quantidade = max(1, min($quantidade, $stock));
+            $quantidade = max(1, $quantidade);
 
             $_SESSION['gpm_cart'][$id] = $quantidade;
 
             $produto['quantity'] = $quantidade;
-            $produto['stock_limit'] = $stock;
+            $produto['stock_limit'] = 999999;
             $produto['subtotal'] = $quantidade * (float) $produto['price'];
 
             $itens[] = $produto;
@@ -209,7 +209,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                             >
                         </form>
                         <small class="block text-[10px] text-gray-400 mt-1 uppercase tracking-wide">
-                            Disp: <?= (int) $item['stock_limit'] ?>
+                            Quantidade para cotação
                         </small>
                     </div>
 
