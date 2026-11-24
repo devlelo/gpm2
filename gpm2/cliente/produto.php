@@ -417,7 +417,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
             </h1>
 
             <div class="text-3xl font-black text-[#0d233f] mb-6">
-                <?= e(gpmKzDetalhe($produto['price'])) ?>
+                Preço sob consulta
             </div>
 
             <div class="border-y border-gray-200 py-5 space-y-3 mb-6">
@@ -621,7 +621,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                 </h3>
 
                                 <p class="text-lg font-black text-[#0d233f] mb-3">
-                                    <?= e(gpmKzDetalhe($relacionado['price'])) ?>
+                                    Preço sob consulta
                                 </p>
 
                                 <?php if ($stockRelacionado > 0): ?>
