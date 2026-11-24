@@ -330,6 +330,7 @@ foreach ($imagensAdicionais as $imagemExtra) {
 }
 
 $stockPrincipal = (int)($produto['stock_quantity'] ?? 0);
+$minOrderPrincipal = max(1, (int)ceil((float)($produto['min_order_quantity'] ?? 1)));
 
 $totalCarrinho = array_sum(
     array_map('intval', $_SESSION['gpm_cart'])
