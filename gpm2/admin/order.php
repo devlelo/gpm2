@@ -195,6 +195,7 @@ layout_start('Detalhes do pedido');
         <h2>Total: <?= e(money($order['total'])) ?></h2>
     </div><?php endif; ?>
 </section>
+<?php if (($order["order_type"] ?? "sale") !== "quote_request"): ?>
 <section class="panel">
     <h2>Atualizar estado</h2>
     <form method="post">
@@ -216,6 +217,9 @@ layout_start('Detalhes do pedido');
         <button type="submit">Guardar estado</button>
     </form>
 </section>
+<?php else: ?>
+<section class="panel"><h2>Pedido de cotação</h2><p>Este registo ainda não é uma venda. Prepara e envia a proposta comercial antes de avançar para a confirmação.</p><a class="btn" href="quote.php?id=<?= $id ?>">Abrir proposta comercial</a></section>
+<?php endif; ?>
 <section class="panel">
     <h2>Histórico de estados</h2>
     <div class="table-wrap">
