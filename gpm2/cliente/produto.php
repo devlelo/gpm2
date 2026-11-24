@@ -266,6 +266,7 @@ try {
                 price,
                 stock_quantity,
                 unit,
+                min_order_quantity,
                 main_image
              FROM products
              WHERE category_id = :categoria_id
@@ -508,8 +509,8 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                             id="quantidade-principal"
                             type="number"
                             name="quantidade"
-                            value="1"
-                            min="1"
+                            value="<?= $minOrderPrincipal ?>"
+                            min="<?= $minOrderPrincipal ?>"
                             max="999999"
                             class="w-16 text-center border-x border-gray-300 py-3 outline-none"
                         >
@@ -678,7 +679,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                     <input
                                         type="hidden"
                                         name="quantidade"
-                                        value="1"
+                                        value="<?= max(1, (int)ceil((float)($relacionado['min_order_quantity'] ?? 1))) ?>"
                                     >
 
                                     <button
