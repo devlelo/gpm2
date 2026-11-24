@@ -26,6 +26,9 @@ if (!$proposal) {
 $stmt = $pdo->prepare('SELECT * FROM quote_proposal_items WHERE proposal_id = ? ORDER BY id');
 $stmt->execute([(int)$proposal['id']]);
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $pdo->prepare('SELECT proforma_number, status, valid_until FROM proformas WHERE order_id = ? ORDER BY id DESC LIMIT 1');
+$stmt->execute([$orderId]);
+$proforma = $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
 $error = '';
 $deliveryLink = '';
 
@@ -44,6 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ->execute([$newStatus, (int)$proposal['id']]);
             $pdo->prepare('UPDATE orders SET request_status = ? WHERE id = ?')
                 ->execute([$newStatus === 'accepted' ? 'customer_accepted' : 'customer_rejected', $orderId]);
+            $pdo->prepare('UPDATE proformas SET status = ? WHERE order_id = ? AND status = "issued"')
+                ->execute([$newStatus, $orderId]);
 
             if ($newStatus === 'accepted') {
                 $token = bin2hex(random_bytes(32));
@@ -77,6 +82,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
         <p class="text-gray-500 text-sm mt-2">Analisa os produtos, quantidades e condições apresentados pela GPM.</p>
     </div>
     <?php if ($error !== ''): ?><div class="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 mb-6 text-sm"><?= escapar($error) ?></div><?php endif; ?>
+    <?php if ($proforma): ?><p class="text-xs text-gray-500 mb-4">Proforma comercial: <strong><?= escapar($proforma['proforma_number']) ?></strong> · <?= escapar($proforma['status']) ?></p><?php endif; ?>
     <section class="bg-white border border-gray-100 shadow-sm">
         <div class="divide-y divide-gray-100">
             <?php foreach ($items as $item): ?>
