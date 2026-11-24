@@ -160,6 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $priceRaw = trim((string) ($_POST['price'] ?? ''));
             $stockRaw = trim((string) ($_POST['stock_quantity'] ?? ''));
             $minStockRaw = trim((string) ($_POST['min_stock'] ?? '0'));
+            $minOrderRaw = trim((string) ($_POST['min_order_quantity'] ?? '1'));
             
 
             if ($slug === '') {
@@ -176,6 +177,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'preço' => $priceRaw,
                 'stock' => $stockRaw,
                 'stock mínimo' => $minStockRaw,
+                'quantidade mínima de pedido' => $minOrderRaw,
             ] as $label => $value) {
                 if ($value === '' || !is_numeric($value)) {
                     throw new RuntimeException(
@@ -187,6 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $price = (float) $priceRaw;
             $stock = (float) $stockRaw;
             $minStock = (float) $minStockRaw;
+            $minOrder = (float) $minOrderRaw;
 
             if ($name === '' || $slug === '') {
                 throw new RuntimeException(
@@ -195,8 +198,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             if (
-                $price < 0 || $stock < 0 || $minStock < 0 ||
-                !is_finite($price) || !is_finite($stock) || !is_finite($minStock)
+                $price < 0 || $stock < 0 || $minStock < 0 || $minOrder < 1 ||
+                !is_finite($price) || !is_finite($stock) || !is_finite($minStock) || !is_finite($minOrder)
             ) {
                 throw new RuntimeException(
                     'O preço e as quantidades não podem ser negativos.'
@@ -303,7 +306,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         'UPDATE products
                          SET category_id = ?, name = ?, slug = ?, sku = ?,
                              description = ?, price = ?,
-                             unit = ?, active = ?, min_stock = ?
+                             unit = ?, active = ?, min_stock = ?, min_order_quantity = ?
                          WHERE id = ?'
                     );
 
@@ -321,14 +324,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $unit,
                         $active,
                         $minStock,
+                        $minOrder,
                         $id,
                     ]);
                 } else {
                     $statement = $pdo->prepare(
                         'INSERT INTO products
                          (category_id, name, slug, sku, description, price,
-                          stock_quantity, min_stock, unit, active)
-                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+                          stock_quantity, min_stock, min_order_quantity, unit, active)
+                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
                     );
 
                     $statement->execute([
@@ -340,6 +344,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $price,
                         $stock,
                         $minStock,
+                        $minOrder,
                         $unit,
                         $active,
                     ]);
@@ -577,6 +582,7 @@ layout_start('Produtos');
                 ['price', 'Preço (Kz)', 'number', $edit['price'] ?? '0.00'],
                 ['stock_quantity', $edit ? 'Stock atual (gerido no módulo Stock)' : 'Stock inicial', 'number', $edit['stock_quantity'] ?? '0'],
                 ['min_stock', 'Alerta de stock mínimo', 'number', $edit['min_stock'] ?? '0'],
+                ['min_order_quantity', 'Quantidade mínima por pedido', 'number', $edit['min_order_quantity'] ?? '1'],
                 ['unit', 'Unidade', 'text', $edit['unit'] ?? 'unidade'],
             ];
 
