@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
 
         echo json_encode([
             'ok' => true,
-            'mensagem' => 'Produto adicionado ao carrinho.',
+            'mensagem' => 'Produto adicionado à cotação.',
             'produto' => (string)$produtoAjax['name'],
             'totalCarrinho' => array_sum(
                 array_map('intval', $_SESSION['gpm_cart'])
@@ -427,7 +427,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                 }
                 
                 // Mensagem estilizada
-                mostrarAviso(dados.produto + ' foi adicionado ao carrinho.');
+                mostrarAviso(dados.produto + ' foi adicionado à cotação.');
                 
                 botao.innerHTML = '<i class="fa-solid fa-check"></i>';
 
