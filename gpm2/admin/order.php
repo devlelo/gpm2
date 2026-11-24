@@ -157,10 +157,10 @@ layout_start('Detalhes do pedido');
 <section class="panel">
     <div class="toolbar">
         <h2><?= e($order['order_number']) ?></h2>
-        <a class="btn secondary" href="orders.php">Voltar aos pedidos</a>
+        <a class="btn secondary" href="orders.php">Voltar aos pedidos</a><?php if (($order["order_type"] ?? "sale") === "quote_request"): ?><a class="btn" href="quote.php?id=<?= $id ?>">Preparar proposta comercial</a><?php endif; ?>
     </div>
     <div class="form-grid">
-        <p><strong>Cliente:</strong> <?= e($order['customer_name']) ?></p>
+        <?php if (($order["order_type"] ?? "sale") === "quote_request"): ?><p><strong>Tipo:</strong> Pedido de cotação · <strong>Estado:</strong> <?= e($order["request_status"] ?: "submitted") ?></p><?php endif; ?><p><strong>Cliente:</strong> <?= e($order['customer_name']) ?></p>
         <p><strong>Tipo:</strong> <?= $order['customer_type'] === 'company' ? 'Empresa' : 'Particular' ?></p>
         <p><strong>NIF:</strong> <?= e($order['customer_nif'] ?: '—') ?></p>
         <p><strong>Telefone:</strong> <?= e($order['customer_phone']) ?></p>
@@ -176,26 +176,24 @@ layout_start('Detalhes do pedido');
     </div>
     <div class="table-wrap">
         <table>
-            <thead><tr><th>Produto</th><th>Quantidade</th><th>Preço unitário</th><th>Total</th></tr></thead>
+            <thead><tr><th>Produto</th><th>Quantidade</th><?php if (($order["order_type"] ?? "sale") !== "quote_request"): ?><th>Preço unitário</th><th>Total</th><?php endif; ?></tr></thead>
             <tbody>
             <?php foreach ($items as $item): ?>
                 <tr>
                     <td><?= e($item['product_name']) ?></td>
-                    <td><?= e($item['quantity']) ?> <?= e($item['unit']) ?></td>
-                    <td><?= e(money($item['unit_price'])) ?></td>
-                    <td><?= e(money($item['subtotal'])) ?></td>
+                    <td><?= e($item['quantity']) ?> <?= e($item['unit']) ?></td><?php if (($order["order_type"] ?? "sale") !== "quote_request"): ?><td><?= e(money($item['unit_price'])) ?></td><td><?= e(money($item['subtotal'])) ?></td><?php endif; ?>
                 </tr>
             <?php endforeach; ?>
             <?php if (!$items): ?><tr><td colspan="4" class="empty">Este pedido não tem linhas.</td></tr><?php endif; ?>
             </tbody>
         </table>
     </div>
-    <div style="text-align:right;margin-top:18px">
+    <?php if (($order["order_type"] ?? "sale") !== "quote_request"): ?><div style="text-align:right;margin-top:18px">
         <p>Subtotal: <strong><?= e(money($order['subtotal'])) ?></strong></p>
         <p>Desconto: <strong><?= e(money($order['discount'])) ?></strong></p>
         <p>Entrega: <strong><?= e(money($order['delivery_fee'])) ?></strong></p>
         <h2>Total: <?= e(money($order['total'])) ?></h2>
-    </div>
+    </div><?php endif; ?>
 </section>
 <section class="panel">
     <h2>Atualizar estado</h2>
