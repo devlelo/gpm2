@@ -96,6 +96,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $line['requested'], $line['quantity'], $line['price'], $line['subtotal']
             ]);
         }
+        $pdo->prepare("UPDATE proformas SET status = 'expired' WHERE order_id = ? AND status = 'issued'")
+            ->execute([$orderId]);
+        $companyStmt = $pdo->query('SELECT company_name, nif, address, phone, email FROM company_settings ORDER BY id LIMIT 1');
+        $company = $companyStmt->fetch(PDO::FETCH_ASSOC) ?: [];
+        $proformaNumber = 'PF-' . date('Ymd') . '-' . strtoupper(bin2hex(random_bytes(3)));
+        $proformaStmt = $pdo->prepare(
+            "INSERT INTO proformas (
+                order_id, proforma_number, company_name, company_nif, company_address,
+                company_phone, company_email, customer_name, customer_nif,
+                customer_phone, customer_email, subtotal, delivery_fee, discount,
+                total, status, issue_date, valid_until, notes, created_by
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'issued', CURDATE(), ?, ?, ?)"
+        );
+        $proformaStmt->execute([
+            $orderId, $proformaNumber, $company['company_name'] ?? 'GPM',
+            $company['nif'] ?? null, $company['address'] ?? null,
+            $company['phone'] ?? null, $company['email'] ?? null,
+            $order['customer_name'], $order['customer_nif'],
+            $order['customer_phone'], $order['customer_email'],
+            $subtotal, $deliveryFee, $discount, $total,
+            $validUntil !== '' ? $validUntil : null,
+            'Proforma comercial emitida com base na proposta ' . $version . ' do pedido ' . $order['order_number'],
+            (int)current_user()['id']
+        ]);
+
         $pdo->prepare("UPDATE orders SET proposal_version = ?, request_status = 'proposal_sent' WHERE id = ?")
             ->execute([$version, $orderId]);
         $pdo->commit();
