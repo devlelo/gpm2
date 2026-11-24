@@ -139,7 +139,7 @@ try {
 
     $sql = "
         SELECT p.id, p.category_id, p.name, p.description, p.price,
-               p.stock_quantity, p.unit, p.main_image,
+               p.stock_quantity, p.unit, p.min_order_quantity, p.main_image,
                c.name AS category_name
         FROM products p
         LEFT JOIN categories c ON c.id = p.category_id
@@ -334,7 +334,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="ajax_adicionar" value="1">
                                 <input type="hidden" name="produto_id" value="<?= (int)$produto['id'] ?>">
-                                <input type="hidden" name="quantidade" value="1">
+                                <input type="hidden" name="quantidade" value="<?= max(1, (int) ceil((float) ($produto['min_order_quantity'] ?? 1))) ?>">
                                 <button type="submit" class="w-full bg-[#0d233f] hover:bg-[#163154] text-white text-xs font-bold py-2.5 uppercase tracking-wider transition flex items-center justify-center gap-2">
                                     <i class="fa-solid fa-cart-plus"></i> Solicitar
                                 </button>
