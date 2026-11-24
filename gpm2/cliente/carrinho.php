@@ -47,7 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $quantidade >= 1
             ) {
                 $_SESSION['gpm_cart'][$id] = $quantidade;
-                $_SESSION['gpm_cart'][$id] = min($quantidade, $stock);
             }
         }
 
