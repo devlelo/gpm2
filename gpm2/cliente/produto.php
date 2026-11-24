@@ -121,7 +121,7 @@ if (
         }
 
         $stmt = $pdo->prepare(
-            'SELECT id, name, stock_quantity, active
+            'SELECT id, name, active
              FROM products
              WHERE id = :id
              LIMIT 1'
@@ -453,10 +453,10 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                 <?php endif; ?>
 
                 <div class="flex justify-between text-sm">
-                    <span class="text-gray-500">Quantidade disponível</span>
+                    <span class="text-gray-500">Disponibilidade</span>
 
                     <span class="font-bold text-[#0d233f]">
-                        <?= $stockPrincipal ?>
+                        A confirmar
                     </span>
                 </div>
 
@@ -509,7 +509,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                             name="quantidade"
                             value="1"
                             min="1"
-                            max="<?= $stockPrincipal ?>"
+                            max="999999"
                             class="w-16 text-center border-x border-gray-300 py-3 outline-none"
                         >
 
@@ -540,7 +540,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                     disabled
                     class="w-full bg-gray-300 text-gray-600 font-bold py-3 uppercase text-sm cursor-not-allowed"
                 >
-                    Produto esgotado
+                    Disponibilidade a confirmar
                 </button>
 
             <?php endif; ?>
