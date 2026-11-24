@@ -14,7 +14,7 @@ if (!$order) {
     exit('Pedido de cotação não encontrado.');
 }
 
-$stmt = $pdo->prepare("SELECT * FROM quote_proposals WHERE order_id = ? AND status IN ('sent','accepted') ORDER BY version DESC LIMIT 1");
+$stmt = $pdo->prepare("SELECT * FROM quote_proposals WHERE order_id = ? AND status IN ('sent','accepted','rejected') ORDER BY version DESC LIMIT 1");
 $stmt->execute([$orderId]);
 $proposal = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!$proposal) {
@@ -113,6 +113,11 @@ require_once __DIR__ . '/includes/header-marketplace.php';
             <h2 class="font-black text-[#0d233f] uppercase mb-2">Proposta aceite</h2>
             <p class="text-sm text-gray-600 mb-4">Agora envia a localização onde pretendes receber os produtos através do link seguro abaixo.</p>
             <?php if ($deliveryLink): ?><a class="inline-block bg-[#0d233f] text-white font-bold text-xs uppercase tracking-wider px-6 py-3" href="<?= escapar($deliveryLink) ?>">Indicar localização de entrega</a><?php else: ?><a class="inline-block bg-[#0d233f] text-white font-bold text-xs uppercase tracking-wider px-6 py-3" href="pedido.php?id=<?= $orderId ?>">Continuar</a><?php endif; ?>
+        </section>
+    <?php elseif ($proposal['status'] === 'rejected'): ?>
+        <section class="mt-6 bg-[#f8f9fa] border-l-4 border-gray-400 p-6">
+            <h2 class="font-black text-[#0d233f] uppercase mb-2">Proposta recusada</h2>
+            <p class="text-sm text-gray-600">A tua resposta foi registada. Se quiseres rever as condições, contacta a equipa GPM através da conversa do pedido.</p>
         </section>
     <?php endif; ?>
 </main>
