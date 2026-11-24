@@ -88,8 +88,8 @@ require_once __DIR__ . '/includes/header-marketplace.php';
             </p>
         </div>
         <div class="text-left md:text-right">
-            <span class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Total a Pagar</span>
-            <span class="text-3xl font-black text-[#0d233f]"><?= escapar(money($pedido['total'])) ?></span>
+            <?php if (($pedido["order_type"] ?? "sale") === "quote_request"): ?><span class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Pedido de cotação</span><?php else: ?><span class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Total a Pagar</span><?php endif; ?>
+            <?php if (($pedido["order_type"] ?? "sale") === "quote_request"): ?><span class="text-xl font-black text-[#0d233f]">A aguardar proposta</span><?php else: ?><span class="text-3xl font-black text-[#0d233f]"><?= escapar(money($pedido["total"])) ?></span><?php endif; ?>
         </div>
     </div>
 
@@ -162,6 +162,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                                     <?php endif; ?>
                                 </span>
                             </div>
+                            <?php if (($pedido["order_type"] ?? "sale") !== "quote_request"): ?>
                             <div class="text-left sm:text-right">
                                 <span class="block text-xs text-gray-400 mb-1"><?= escapar(money($item['unit_price'])) ?> / un</span>
                                 <span class="block font-black text-[#f96b21] text-lg"><?= escapar(money($item['subtotal'])) ?></span>
@@ -170,6 +171,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                     <?php endforeach; ?>
                 </div>
 
+                <?php if (($pedido["order_type"] ?? "sale") !== "quote_request"): ?>
                 <div class="p-6 bg-[#f8f9fa] border-t border-gray-100">
                     <div class="space-y-2 text-sm text-gray-600 max-w-xs ml-auto">
                         <div class="flex justify-between">
