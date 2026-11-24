@@ -210,6 +210,9 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                 </h2>
                 
                 <div class="space-y-4 text-sm">
+                    <?php if (($pedido['order_type'] ?? 'sale') === 'quote_request'): ?>
+                        <p class="text-gray-200 leading-relaxed">A localização de entrega será solicitada através de um link seguro depois de aceitares a proposta comercial.</p>
+                    <?php else: ?>
                     <div>
                         <span class="block text-[10px] text-gray-400 uppercase tracking-wider mb-1">Endereço</span>
                         <p class="text-gray-200 leading-relaxed"><?= escapar($pedido['delivery_address']) ?></p>
@@ -234,7 +237,7 @@ require_once __DIR__ . '/includes/header-marketplace.php';
                             <?= escapar($pedido['payment_status'] ?: 'A combinar') ?>
                         </p>
                     </div>
-                </div>
+                </div><?php endif; ?>
             </div>
 
             <!-- Apoio ao Cliente -->
